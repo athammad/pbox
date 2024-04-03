@@ -107,7 +107,7 @@ return(finalCop)
 #should use the results from fitDistPbox,fitCopulaPbox
 finalFit(results_df,allDitrs,dim=ncol(SEAex))
 
-setPBX <- function(data) {
+set_pbox <- function(data) {
   ############################################
   #+Questo dovrebbe sparare fuori una mega tabella
   #+con tutti i BIC/ AIC alla pycret

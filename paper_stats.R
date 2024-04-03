@@ -87,7 +87,7 @@ dfGrid$results <- apply(dfGrid, 1, dai)
 
 # Create a new PBT object
 SEAex<-fread("./data/SEAex.csv")
-pbx<- setPBX(data=SEAex)
+pbx<- set_pbox(data=SEAex)
 pbx
 class(pbx)
 typeof(pbx)

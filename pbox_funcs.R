@@ -7,7 +7,7 @@ source("helperFuncs.R")
 pBox<- setClass("pbox",slots = c(data = "data.table",copula="mvdc",fit=list()))
 #new("pbox", data = SEAex, copula = copSEA)
 # Define constructor function
-setPBX <- function(data) {
+set_pbox <- function(data) {
   ############################################
   #+Questo dovrebbe sparare fuori una mega tabella
   #+con tutti i BIC/ AIC alla pycret
