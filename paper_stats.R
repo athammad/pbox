@@ -4,7 +4,7 @@ pacman::p_load(data.table,ggplot2,MASS,extRemes,
                fitdistrplus,gamlss,purrr)
 
 source("helperFuncs.R")
-SEAex<-fread("./Data/SEAex.csv")
+SEAex<-fread("./data/SEAex.csv")
 
 ### Fit distribution to extreme temp Malaysia,Thailand,Vietnam
 seaGev<-lapply(SEAex[,.(Malaysia,Thailand,Vietnam)],gevFuncs)
@@ -17,7 +17,7 @@ model<-gamlssML(SEAex$avgRegion,family="SHASHo2")
 coefz<-data.table(model$mu,model$sigma,
                   model$nu,model$tau)
 names(coefz)<-model$parameters
-plot(density(rSHASHo2(length(SEAex$avgRegion),mu=coefz$mu,sigma= coefz$sigma, 
+plot(density(rSHASHo2(length(SEAex$avgRegion),mu=coefz$mu,sigma= coefz$sigma,
                       nu=coefz$nu, tau=coefz$tau)))
 
 
@@ -25,10 +25,10 @@ plot.ts(SEAex,plot.type = "single")
 cor(SEAex,method = "kendall")
 
 
-# Copula object 
+# Copula object
 u <- pobs(SEAex)
 #Fit copula
-thetaVal <- 2 
+thetaVal <- 2
 copula <- evCopula(family = 'gumbel',param=thetaVal,dim=ncol(SEAex))
 copula@parameters
 fit.ml <- fitCopula(copula, u, method="ml")
@@ -76,7 +76,7 @@ dfGrid<-expand.grid(A=quantile(SEAex$Malaysia,seq(0, 1, 0.5)),
 dfGrid$block<-rep(1:3,3)
 dai<-function(x){
   pqFix(data=SEAex,cop=copSEA,query = paste0("Malaysia>",x["A"]," & Vietnam>",x["B"],"|avgRegion=",x["C"]),lower.tail = F)
-  
+
 }
 
 dfGrid$results <- apply(dfGrid, 1, dai)
@@ -86,7 +86,7 @@ dfGrid$results <- apply(dfGrid, 1, dai)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 # Create a new PBT object
-SEAex<-fread("./Data/SEAex.csv")
+SEAex<-fread("./data/SEAex.csv")
 pbx<- setPBX(data=SEAex)
 pbx
 class(pbx)
