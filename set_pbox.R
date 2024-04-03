@@ -25,23 +25,20 @@
 
 
 ##### Marginal Distributions Fit  #######
-pacman::p_load(data.table,ggplot2,MASS,extRemes,
-               copula,stargazer,
-               lubridate,jtools,gamlss.dist,
-               fitdistrplus,gamlss,purrr)
+pacman::p_load(data.table,copula,gamlss.dist,gamlss,purrr)
 
 #source("helperFuncs.R")
 SEAex<-fread("./data/SEAex.csv")
 SEAex<-SEAex[,.(Vietnam,avgRegion,Malaysia)]
 
-fitDistPbox<-function(SEAex,...){
+fitDistPbox<-function(data,...){
 
-allDitrs<-lapply(SEAex,fitDist(...))
+allDitrs<-lapply(data,function(x) fitDist(x,...))
 distTable<-data.table(do.call(cbind,map_depth(allDitrs,1,"fits")), keep.rownames="DIST")
 #Selected Distributions
 #map_depth(allDitrs,1,"family")
 #map_depth(allDitrs,1,"Allpar")
-return(list(allDitrs,distTable))
+return(list(allDitrs=allDitrs,distTable=distTable))
 }
 
 ##### Copula Fit  #######
@@ -76,7 +73,6 @@ dfCopula <- setNames(stack(copula_families), c('family','copula'))
 
 # Perform grid search
 results <- apply(dfCopula, 1, function(row) {
-  print(row)
   fit_copula(copula=row["copula"], family=row["family"], dim = ncol(data), u)
 
 })
@@ -88,6 +84,7 @@ return(results_df)
 
 #Fit togheter
 finalFit<-function(results_df,allDitrs,data){
+
 bestCopula<-results_df[which.min(results_df$AIC),]
 copFun <- get(bestCopula$copula)
 cop <- copFun(family = bestCopula$family, param = bestCopula$coef, dim = ncol(data))
@@ -105,7 +102,7 @@ return(finalCop)
 }
 
 #should use the results from fitDistPbox,fitCopulaPbox
-finalFit(results_df,allDitrs,dim=ncol(SEAex))
+#finalFit(results_df,allDitrs,SEAex)
 
 set_pbox <- function(data) {
   ############################################
@@ -116,14 +113,14 @@ set_pbox <- function(data) {
     stop("Input must be a data frame or a data.table")
   }
   setDT(data)
-  distSearch<-fitDistPbox
-  CopulaSearch<-fitCopulaPbox
+  distSearch<-fitDistPbox(data)
+  CopulaSearch<-fitCopulaPbox(data,copula_families)
   ##
   ##
   ##
   ##
 
-  finalCopula<-finalFit(distSearch$allDitrs,CopulaSearch,dim=ncol(data))
+  finalCopula<-finalFit(CopulaSearch,distSearch$allDitrs,data)
   print("pbox object genrated!")
 
   obj <- new("pbox", data =data, copula=finalCopula,fit=list(distSearch,CopulaSearch))

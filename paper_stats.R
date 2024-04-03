@@ -95,7 +95,7 @@ class(pbx@data)
 class(pbx@copula)
 typeof(pbx@data)
 typeof(pbx@copula)
-
+pbx@fit
 pbx["Malaysia:33 & Vietnam:34",]
 pq(data=SEAex,cop=copSEA,query = "Malaysia<33 & Vietnam<34",lower.tail = T)
 

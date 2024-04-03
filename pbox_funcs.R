@@ -4,7 +4,7 @@ pacman::p_load(data.table,ggplot2,MASS,extRemes,
                fitdistrplus,gamlss,purrr)
 source("helperFuncs.R")
 # Define your own data class
-pBox<- setClass("pbox",slots = c(data = "data.table",copula="mvdc",fit=list()))
+pBox<- setClass("pbox",slots = c(data = "data.table",copula="mvdc",fit="list"))
 #new("pbox", data = SEAex, copula = copSEA)
 # Define constructor function
 set_pbox <- function(data) {
@@ -93,9 +93,11 @@ setMethod(f = "show",
             cat("2.1)Kendall Kendall correlation:\n")
             print(cor(object@data,method = "kendall"))
             cat("\n-------------------------------\n")
+
             cat("You can now query the data as pbx['Var:Val',Var:Val',...]\n")
             cat("The data.table object can be directly access with pbx@data\n")
             cat("The copula object can be directly access with pbx@copula\n")
+            cat("Detail on the results of the fitted distributions and copula can be found in pbx@fit\n")
             cat("Please follow the instruction in xxx\n")
 
           })
