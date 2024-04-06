@@ -99,7 +99,7 @@ pbx@fit
 pbx["Malaysia:33 & Vietnam:34",]
 pq(data=SEAex,cop=copSEA,query = "Malaysia<33 & Vietnam<34",lower.tail = T)
 
-pbx[]
+
 pbx["Vietnam:31", "avgRegion:26",lower.tail=F]
 pq(data=SEAex,cop=copSEA,query = "Vietnam<31| avgRegion<26",lower.tail = F)
 

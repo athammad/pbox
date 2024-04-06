@@ -4,7 +4,7 @@ pacman::p_load(data.table,ggplot2,MASS,extRemes,
                fitdistrplus,gamlss,purrr)
 source("helperFuncs.R")
 # Define your own data class
-pBox<- setClass("pbox",slots = c(data = "data.table",copula="mvdc",fit="list"))
+pbox<- setClass("pbox",slots = c(data = "data.table",copula="mvdc",fit="list"))
 #new("pbox", data = SEAex, copula = copSEA)
 # Define constructor function
 set_pbox <- function(data) {
