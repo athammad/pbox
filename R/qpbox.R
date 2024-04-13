@@ -3,10 +3,8 @@
 #'
 #' Combine all the results from \code{fit_copula_pbox} and \code{fit_dist_pbox} to build a Multivariate Distributions from Copula.
 #'
-#' @name [
-#' @aliases [,pbox-method
+#' @name qpbox
 #' @docType methods
-#' @rdname extract
 #' @export
 #
 #' @import data.table
@@ -43,9 +41,13 @@
 #' pbx["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)"]
 #'
 
+setGeneric("qpbox",
+           def = function(x,marginal="character",conditional="character", lower.tail=TRUE,fixed=FALSE) {
+             standardGeneric("qpbox")
+           })
 
-setMethod("[", signature = "pbox",
-          definition = function(x,marginal="character",conditional="character", i="missing", j="missing", ..., lower.tail=TRUE,fixed=FALSE,drop="missing") {
+setMethod("qpbox", signature = "pbox",
+          definition = function(x,marginal="character",conditional="character", lower.tail=TRUE,fixed=FALSE) {
             #definition = function(x,marginal,conditional, i, j, ..., lower.tail=TRUE,fixed=FALSE,drop) {
 
             if (!inherits(x, c("pbox"))) {

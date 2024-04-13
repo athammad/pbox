@@ -3,16 +3,26 @@
 #'
 #' Internal function used to Parse query to explore a pbox object.
 #'
+#'
+#'
+#' @docType methods
+#' @name q_parser
+#' @export
+#' @include pbox.R
+#'
+#'
 #' @param query string
 #' @return A table with the parsed elements of the query.
 #'
-#'
-#'
-#' @export
-#' @import data.table
-#' @import stringr str_match_all
 
-q_parser<-function(query){
+
+setGeneric("q_parser",
+           def = function(query) {
+             standardGeneric("q_parser")
+           })
+
+setMethod("q_parser",
+          definition= function(query){
   # Define the regular expression pattern
   #pattern <- "([a-zA-Z]+)(:)(\\d+)|(\\w+)([:])c\\(([^)]+)\\)"
   pattern <- "([a-zA-Z]+)(:)(\\d+\\.?\\d*)|(\\w+)([:])c\\(([^)]+)\\)"
@@ -25,4 +35,4 @@ q_parser<-function(query){
 
   return(matches)
 
-}
+})

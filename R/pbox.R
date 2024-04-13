@@ -5,7 +5,6 @@
 #'
 #' @export
 #' @name pbox-class
-#' @rdname pbox-class
 #' @docType class
 #' @slot data The original data coerced to a \code{data.table}.
 #' @slot copula The copula object of class \code{mvdc}.

@@ -1,12 +1,12 @@
-
 pkgload::load_all()
 roxygen2::roxygenise()
 
-SEAex<-fread("./data/SEAex.csv")
-dai<-set_pbox(gg[,.(Malaysia,Thailand,Vietnam,avgRegion)])
+data(SEAex)
+dai<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam,avgRegion)])
 print(dai)
 
 dai["Vietnam:31",]
+qpbox(dai,marginal ="Vietnam:31")
 
 dai["Vietnam:31", "avgRegion:26"]
 #Conditional distribtuion Pr(X <= x, Y <= y) / Pr(Y <= y)
@@ -23,7 +23,16 @@ dai["median:c(Vietnam, Thailand)",lower.tail=T]
 #' # Joint distribution with xxxx
 dai["Malaysia:33 & mean:c(Vietnam, Thailand)",lower.tail=T]
 #' # Condtional distribtuion distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
-dai["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)"]
+dai["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)", fixed=TRUE]
 
+dai["Malaysia:33 & median:c(Vietnam,Thailand)", "avgRegion:27", fixed=TRUE]
 
+lapply(paste0("avgRegion:",c(21:35)),function(x) {
+  print(x)
+  dai["Malaysia:33 & median:c(Vietnam,Thailand)", x, fixed=TRUE]
+  })
 
+iop<-make_pbox(dai,pbx@copula)
+
+showMethods(class="pbox")
+help(package = pbox)

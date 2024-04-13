@@ -3,6 +3,12 @@
 #'
 #' Combine all the results from \code{fit_copula_pbox} and \code{fit_dist_pbox} to build a Multivariate Distributions from Copula.
 #'
+#' @name fit_pbox
+#' @docType methods
+#' @export
+#' @include pbox.R
+#'
+#'
 #' @param results_df The data.table with the correspondent AIC and the parameter estimates of the evaluated copulas and families resulting from \code{fit_copula_pbox}.
 #' @param allDitrs The list of the fitted distributions for each variable resulting from \code{fit_dist_pbox}.
 #' @param data A \code{data.frame} or \code{data.table} (the data will be coerced to a \code{data.table} internally).
@@ -10,22 +16,21 @@
 #'
 #'
 #'
-#' @export
 #' @examples
 #' SEAex<-fread("./data/SEAex.csv")
 #' copulaFits<- fit_copula_pbox(data=SEAex,copula_families)
 #' distFits<- fit_dist_pbox(data=SEAex)
 #'
 #' final_pbox(copulaFits,distFits$allDitrs,SEAex)
-#'
-#' @import data.table
-#' @import copula
-#' @import gamlss.dist
-#' @import gamlss
-#' @import purrr map map_depth
 
 
-final_pbox<-function(results_df,allDitrs,data){
+setGeneric("final_pbox",
+           def = function(results_df,allDitrs,data) {
+             standardGeneric("final_pbox")
+           })
+
+setMethod("final_pbox",
+          definition=function(results_df,allDitrs,data){
 
   bestCopula<-results_df[which.min(results_df$AIC),]
   copFun <- getFromNamespace(bestCopula$copula,ns = "copula")
@@ -47,7 +52,7 @@ final_pbox<-function(results_df,allDitrs,data){
   cat("parameter:",bestCopula$coef,"\n")
   cat("--------------------\n")
   return(finalCop)
-}
+})
 
 
 coefAll2<-function (obj, deviance = FALSE, ...)

@@ -3,6 +3,11 @@
 #'
 #' Method to automatically find the best marginal distribution of each variable in a data.frame.
 #'
+#' @name fit_dist_pbox
+#' @docType methods
+#' @export
+#' @include pbox.R
+#'
 #' @param data A \code{data.frame} or \code{data.table} (the data will be coerced to a \code{data.table} internally).
 #' @param ... Other arguments to be passed to \code{fitDist}.
 #' @return a list containing 2 elements:
@@ -12,23 +17,22 @@
 #' \code{distTable}: \code{data.frame} with numeric value with the corresponding Akaike's Information Criterion \bold{AIC} for each distribution tested.
 #'
 #'
-#'
-#' @export
 #' @examples
-#' SEAex<-fread("./data/SEAex.csv")
+#' data(SEAex)
 #' distFits<- fit_dist_pbox(data=SEAex)
 #' distFits$allDitrs
 #' distFits$distTable
 #'
-#' @import data.table
-#' @import copula
-#' @import gamlss.dist
-#' @import gamlss
-#' @importFrom purrr map_depth
 
-fit_dist_pbox<-function(data,...){
+setGeneric("fit_dist_pbox",
+           def = function(data,...) {
+             standardGeneric("fit_dist_pbox")
+           })
+
+setMethod("fit_dist_pbox",
+          definition=function(data,...){
 
   allDitrs<-suppressMessages(suppressWarnings(lapply(data,function(x) gamlss::fitDist(x,...))))
   distTable<-data.table(do.call(cbind,purrr::map_depth(allDitrs,1,"fits")), keep.rownames="DIST")
   return(list(allDitrs=allDitrs,distTable=distTable))
-}
+})

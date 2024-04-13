@@ -1,22 +1,29 @@
 ##############################################################
-#' Generate the query vector to explore the probabilistc space.
+#' Generate the query vector to explore the probabilistic space.
 #'
-#' Internal function used to Parse query to explore a pbox object.
+#' Internal function used to generate the query vector to explore the probabilistic space.
+#'
+#'
+#' @docType methods
+#' @name match_maker
+#' @export
+#' @include pbox.R
+#'
 #'
 #' @param varSet string
 #' @param matches description
 #' @param data description
-#' @return A table with the parsed elements of the query.
+#' @return A table with the value to be queried of each column/marginal distribution of the data.
 #'
-#'
-#'
-#' @export
-#' @import data.table
-#' @import stringr str_match_all
 #'
 
+setGeneric("match_maker",
+           def = function(varSet,matches,data) {
+             standardGeneric("match_maker")
+           })
 
-match_maker<-function(varSet,matches,data){
+setMethod("match_maker",
+          definition= function(varSet,matches,data){
   if ('Varnames' %in% names(matches)) {
     matchesVal<-na.omit(matches[,.(Varnames,Value)])
     varSet[match(matchesVal$Varnames, varSet$Varnames),]<-matchesVal
@@ -26,4 +33,4 @@ match_maker<-function(varSet,matches,data){
     varSet<-stats_calc(data,matches=matchesOp,varSet)
   }
   return(varSet)
-}
+})

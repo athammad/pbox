@@ -36,6 +36,7 @@ Collate:
     'make_pbox.R'
     'match_maker.R'
     'q_parser.R'
+    'qpbox.R'
     'set_pbox.R'
     'show.R'
     'stats_calc.R'

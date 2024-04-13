@@ -3,19 +3,23 @@
 #'
 #' Internal function used to calculate mean and median as part of the query.
 #'
+#' @name stats_calc
+#' @docType methods
+#' @export
+#' @include pbox.R
+#'
+#'
 #' @param data
 #' @param matches
 #' @param varSet
-#'
-#'
-#'
-#' @export
-#' @import data.table
-#' @import stringr str_match_all
 
+setGeneric("stats_calc",
+           def = function(data, matches,varSet) {
+             standardGeneric("stats_calc")
+           })
 
-
-stats_calc<- function(data, matches,varSet) {
+setMethod("stats_calc",
+          definition=function(data, matches,varSet) {
   for (i in 1:nrow(matches)) {
     operator <- matches$Operator[i]
     varnames <- unlist(strsplit(matches$Varnames2[i], ","))
@@ -33,4 +37,4 @@ stats_calc<- function(data, matches,varSet) {
   }
 
   return(varSet)
-}
+})

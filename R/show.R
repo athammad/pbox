@@ -6,7 +6,6 @@
 #' @export
 #' @name show
 #' @docType method
-#' @import data.table
 #' @include pbox.R
 
 fun_stats <- function(x) {
