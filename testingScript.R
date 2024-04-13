@@ -26,13 +26,37 @@ dai["Malaysia:33 & mean:c(Vietnam, Thailand)",lower.tail=T]
 dai["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)", fixed=TRUE]
 
 dai["Malaysia:33 & median:c(Vietnam,Thailand)", "avgRegion:27", fixed=TRUE]
+qpbox(dai,marginal ="Malaysia:33 & median:c(Vietnam,Thailand)",conditional ="avgRegion:27",fixed = T)
+lapply(paste0("avgRegion:",c(21:35)),function(x) {
+  print(x)
+  #dai["Malaysia:33 & median:c(Vietnam,Thailand)", x, fixed=TRUE]
+  qpbox(dai,marginal ="Malaysia:33 & median:c(Vietnam,Thailand)",conditional =x,fixed = T)
+
+  })
+
 
 lapply(paste0("avgRegion:",c(21:35)),function(x) {
   print(x)
-  dai["Malaysia:33 & median:c(Vietnam,Thailand)", x, fixed=TRUE]
-  })
+  #dai["Malaysia:33 & median:c(Vietnam,Thailand)", x, fixed=TRUE]
+  dai@data[avgRegion==x]
+#  qpbox(dai,marginal ="Malaysia:33 & median:c(Vietnam,Thailand)",conditional =x,fixed = T)
 
-iop<-make_pbox(dai,pbx@copula)
+})
 
-showMethods(class="pbox")
-help(package = pbox)
+lapply(paste0("avgRegion:",c(23:26)),function(x) {
+  print(x)
+  #dai["Malaysia:33 & median:c(Vietnam,Thailand)", x, fixed=TRUE]
+  qpbox(dai,marginal =x)
+  #  qpbox(dai,marginal ="Malaysia:33 & median:c(Vietnam,Thailand)",conditional =x,fixed = T)
+
+})
+
+qpbox(dai,marginal ="avgRegion:35")
+
+qpbox(dai,marginal ="avgRegion:35")
+qpbox(dai,marginal ="Malaysia:33 & median:c(Vietnam,Thailand)",conditional =x,fixed = T)
+
+
+pMvdc(c(Inf,Inf,Inf,35),dai@copula)
+
+gamlss::fitDist()

@@ -70,7 +70,7 @@ setMethod("qpbox", signature = "pbox",
               if (!is.character(marginal)) {
                 stop("Expecting a string to query the pbox!")
               }
-
+              #browser()
               varSet<-match_maker(varSet,q_parser(marginal),x@data)
               probres<-pMvdc(c(varSet$Value), x@copula)
               if(lower.tail==FALSE){probres<-1-probres}

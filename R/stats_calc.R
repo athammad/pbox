@@ -9,9 +9,9 @@
 #' @include pbox.R
 #'
 #'
-#' @param data
-#' @param matches
-#' @param varSet
+#' @param data data A \code{data.frame} or \code{data.table}
+#' @param matches \code{data.frame} with user query
+#' @param varSet \code{data.frame} with variable names
 
 setGeneric("stats_calc",
            def = function(data, matches,varSet) {

@@ -7,6 +7,13 @@
 \usage{
 stats_calc(data, matches, varSet)
 }
+\arguments{
+\item{data}{data A \code{data.frame} or \code{data.table}}
+
+\item{matches}{\code{data.frame} with user query}
+
+\item{varSet}{\code{data.frame} with variable names}
+}
 \description{
 Internal function used to calculate mean and median as part of the query.
 }

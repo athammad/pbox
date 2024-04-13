@@ -5,12 +5,12 @@
 \alias{fit_copula_pbox}
 \title{Copula Fit}
 \usage{
-fit_copula_pbox(data, copula_families)
+fit_copula_pbox(data, .copula_families)
 }
 \arguments{
 \item{data}{A \code{data.frame} or \code{data.table} (the data will be coerced to a \code{data.table} internally).}
 
-\item{copula_families}{List of copula types  and their corresponding families Currently \bold{pbox} supports only Archimedean, Elliptical and Extreme-Value copula.
+\item{.copula_families}{List of copula types  and their corresponding families Currently \bold{pbox} supports only Archimedean, Elliptical and Extreme-Value copula.
 Currently supported families are "clayton", "frank", "amh", "gumbel", and "joe" for Archimedean Copula.
 "galambos", "gumbel" and "huslerReiss" for Extreme-Value copula.
 "normal" and "t" for Elliptical copula.}
@@ -24,12 +24,12 @@ Method to automatically find the best Copula given a data.frame. Wrapper around 
 \examples{
 SEAex<-fread("./data/SEAex.csv")
 # Define the copula families and their corresponding parameters
- copula_families <- list(
+ .copula_families <- list(
  archmCopula = c("clayton", "frank", "gumbel", "joe"),# "amh",
  evCopula = c("galambos", "gumbel", "huslerReiss" ),#"tawn" #"tev"
  ellipCopula = c("normal")# "t"
 )
-distFits<- fit_copula_pbox(data=SEAex,copula_families)
+distFits<- fit_copula_pbox(data=SEAex,.copula_families)
 distFits
 
 }
