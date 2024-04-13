@@ -1,4 +1,5 @@
 pkgload::load_all()
+library(roxygen2)
 roxygen2::roxygenise()
 
 data(SEAex)
