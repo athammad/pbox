@@ -40,12 +40,6 @@ setMethod(f = "show",
             print(cor(object@data,method = "kendall"))
             cat("\n-------------------------------\n")
 
-            cat("You can now query the data as pbx['Var:Val',Var:Val',...]\n")
-            cat("The data.table object can be directly access with pbx@data\n")
-            cat("The copula object can be directly access with pbx@copula\n")
-            cat("Detail on the results of the fitted distributions and copula can be found in pbx@fit\n")
-            cat("Please follow the instruction in xxx\n")
-
           })
 
 

@@ -10,7 +10,9 @@ qpbox(
   marginal = "character",
   conditional = "character",
   lower.tail = TRUE,
-  fixed = FALSE
+  fixed = FALSE,
+  CI = FALSE,
+  iter = 1000
 )
 }
 \arguments{
@@ -20,9 +22,13 @@ qpbox(
 
 \item{conditional}{character; string used to query the marginal and conditional distribution of the variable. Must specify the variable and the value in the following format 'Var:Val'}
 
-\item{lower.tail}{logical; if TRUE (default), probabilities are $$}
+\item{lower.tail}{logical; if TRUE (default), probabilities are calculated for the area to the right of the specified value.}
 
-\item{fixed}{logical; if TRUE (default), probabilities are $$}
+\item{fixed}{logical; if TRUE (default), probabilities are \eqn{P(X \leq x | Y = y)}}
+
+\item{CI=FALSE}{logical; if TRUE, calculate bootstrap confidence intervals. See notes for details.}
+
+\item{iter=1000}{number of replications for the confidence interval calculation.}
 }
 \value{
 An object of class \code{mvdc}.

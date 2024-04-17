@@ -14,8 +14,11 @@
 #' @param x object of class \bold{pbox} from which to query the probabilistic space.
 #' @param marginal character; string used to query the marginal and joint distribution of the variable. Must specify the variable and the value in the following format 'Var:Val'
 #' @param conditional character; string used to query the marginal and conditional distribution of the variable. Must specify the variable and the value in the following format 'Var:Val'
-#' @param lower.tail logical; if TRUE (default), probabilities are $$
-#' @param fixed logical; if TRUE (default), probabilities are $$
+#' @param lower.tail logical; if TRUE (default), probabilities are calculated for the area to the right of the specified value.
+#' @param fixed logical; if TRUE (default), probabilities are \eqn{P(X \leq x | Y = y)}
+#' @param CI=FALSE logical; if TRUE, calculate bootstrap confidence intervals. See notes for details.
+#' @param iter=1000 number of replications for the confidence interval calculation.
+#'
 #' @return An object of class \code{mvdc}.
 #'
 #' @examples
@@ -42,12 +45,12 @@
 #'
 
 setGeneric("qpbox",
-           def = function(x,marginal="character",conditional="character", lower.tail=TRUE,fixed=FALSE) {
+           def = function(x,marginal="character",conditional="character", lower.tail=TRUE,fixed=FALSE,CI=FALSE,iter=1000) {
              standardGeneric("qpbox")
            })
 
 setMethod("qpbox", signature = "pbox",
-          definition = function(x,marginal="character",conditional="character", lower.tail=TRUE,fixed=FALSE) {
+          definition = function(x,marginal="character",conditional="character", lower.tail=TRUE,fixed=FALSE,CI=FALSE,iter=1000) {
             #definition = function(x,marginal,conditional, i, j, ..., lower.tail=TRUE,fixed=FALSE,drop) {
 
             if (!inherits(x, c("pbox"))) {
@@ -70,12 +73,23 @@ setMethod("qpbox", signature = "pbox",
               if (!is.character(marginal)) {
                 stop("Expecting a string to query the pbox!")
               }
+
+              if(CI){
+                varSet<-match_maker(varSet,q_parser(marginal),x@data)
+                res<-pMvdc(c(varSet$Value), x@copula)
+                probres<-probCI(replicate(iter, perProb(x,varSet$Value)))
+                probres<-c(res,probres)
+                if(lower.tail==FALSE){probres<-1-probres}
+                probres<-setNames(probres, c("P", "2.5%", "97.5%"))
+                probres
+              }else{
               #browser()
               varSet<-match_maker(varSet,q_parser(marginal),x@data)
               probres<-pMvdc(c(varSet$Value), x@copula)
               if(lower.tail==FALSE){probres<-1-probres}
-              as.vector(probres)
-
+              probres <- setNames(probres, "P")
+              probres
+              }
             } else {
               # If both `marginal` and `conditional` are provided, subset rows and select columns
               cond<-lapply(list(marginal,conditional),function(z){
@@ -87,10 +101,20 @@ setMethod("qpbox", signature = "pbox",
                   stop("Expecting a string to query the pbox!")
                 }
 
-                varSet<-match_maker(varSet,q_parser(z),x@data)
-                #query copula
-                p=pMvdc(varSet$Value, x@copula)
-                as.vector(p)
+                if(CI){
+                  varSet<-match_maker(varSet,q_parser(z),x@data)
+                  res<-pMvdc(c(varSet$Value), x@copula)
+                  probres<-probCI(replicate(iter, perProb(x,varSet$Value)))
+                  probres<-c(res,probres)
+                  probres<-setNames(probres, c("P", "2.5%", "97.5%"))
+                  probres
+                }else{
+                  varSet<-match_maker(varSet,q_parser(z),x@data)
+                  #query copula
+                  p<-pMvdc(varSet$Value,x@copula)
+                  p <- setNames(p, "P")
+                  p
+                }
               })
               if (fixed) {
                 condFix <- cCopula(
@@ -98,13 +122,25 @@ setMethod("qpbox", signature = "pbox",
                   indices = 2,
                   copula = x@copula@copula)
                 if(lower.tail==FALSE){condFix<-1-condFix}
-                as.vector(condFix)
-
+                condFix<-as.vector(condFix)
+                if (length(condFix) == 1) {
+                  condFix <- setNames(condFix, "P")
+                } else {
+                  condFix <- setNames(condFix, c("P", "2.5%", "97.5%"))
+                }
+                condFix
               }
               else{
                 probrez<-cond[[1]]/cond[[2]]
                 if(lower.tail==FALSE){probrez<-1-probrez}
-                as.vector(probrez)
+                if (length(probrez) == 1) {
+                  probrez <- setNames(probrez, "P")
+                } else {
+                  probrez <- setNames(probrez, c("P", "2.5%", "97.5%"))
+                }
+                probrez
               }}
 
           })
+
+

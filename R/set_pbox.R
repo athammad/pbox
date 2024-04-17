@@ -40,10 +40,10 @@ setMethod("set_pbox",
   }
   data.table::setDT(data)
   distSearch<-fit_dist_pbox(data)
-  CopulaSearch<-fit_copula_pbox(data,copula_families)
+  CopulaSearch<-fit_copula_pbox(data,.copula_families)
 
   finalCopula<-final_pbox(CopulaSearch,distSearch$allDitrs,data)
-  print("pbox object genrated!")
+  cat("pbox object genrated!")
 
   obj <- new("pbox", data =data, copula=finalCopula,fit=list(distSearch,CopulaSearch))
 

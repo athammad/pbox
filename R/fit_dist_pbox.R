@@ -32,7 +32,7 @@ setGeneric("fit_dist_pbox",
 setMethod("fit_dist_pbox",
           definition=function(data,...){
 
-  allDitrs<-suppressMessages(suppressWarnings(lapply(data,function(x) gamlss::fitDist(x,...))))
+  allDitrs<-suppressWarnings(lapply(data,function(x) gamlss::fitDist(x,...)))
   distTable<-data.table(do.call(cbind,purrr::map_depth(allDitrs,1,"fits")), keep.rownames="DIST")
   return(list(allDitrs=allDitrs,distTable=distTable))
 })

@@ -1,6 +1,7 @@
-pkgload::load_all()
 library(roxygen2)
 roxygen2::roxygenise()
+
+pkgload::load_all()
 
 data(SEAex)
 dai<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam,avgRegion)])
@@ -57,7 +58,66 @@ qpbox(dai,marginal ="avgRegion:35")
 qpbox(dai,marginal ="avgRegion:35")
 qpbox(dai,marginal ="Malaysia:33 & median:c(Vietnam,Thailand)",conditional =x,fixed = T)
 
-
-pMvdc(c(Inf,Inf,Inf,35),dai@copula)
+bootstrap <- boot::boot(iris, corr.fun, R = 1000)
+pMvdc(c(Inf,Inf,Inf,25),dai@copula)
+rMvdc(100,dai@copula)
+rCopula(100,dai@copula@copula)
 
 gamlss::fitDist()
+
+
+dai<-fread("./data/seaTS.csv")
+pbx<-set_pbox(dai[CRN=="Indonesia",.(Rain, Temp,Hum, VHI)])
+
+pbx["Temp:30 & VHI:70"]
+
+
+
+
+############################################################################################
+
+perturbate_params <- function(paramMargins) {
+  # Define a function to perturb a single parameter value
+  perturb_param <- function(orig_param) {
+    ind = rbinom(1, 1, 0.5) == 1
+    orig_param[ind] = orig_param[ind] + rnorm(1, 0, 0.05)
+    return(orig_param)
+  }
+
+  # Apply perturbation to each parameter in each distribution
+  perturbed_params <- lapply(paramMargins, function(dist_params) {
+    lapply(dist_params, function(param) {
+      perturb_param(param)
+    })
+  })
+  return(perturbed_params)
+}
+
+probCI <- function(probabilities, alpha = 0.05) {
+  # Calculate the confidence interval around the probabilities
+  lower <- quantile(probabilities, alpha / 2)
+  upper <- quantile(probabilities, 1 - alpha / 2)
+  c(lower, upper)
+}
+
+
+
+perProb<-function(bpx,vecQuery){
+  perCop<-copy(bpx)
+  perCop@copula@paramMargins<-perturbate_params(bpx@copula@paramMargins)
+  pMvdc(vecQuery,perCop@copula)
+}
+
+probCI(replicate(1000, perProb(dai,c(Inf,Inf,31,26))))
+dai["Vietnam:31 & avgRegion:26", ]
+
+qpbox(dai,marginal = "Vietnam:31 & avgRegion:26")
+qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",CI=T)
+qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32")
+qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",CI=T)
+qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32", fixed = T)
+qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",CI=T, fixed = T)
+
+
+
+qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",fixed = T)

@@ -10,12 +10,10 @@
   x,
   marginal = "character",
   conditional = "character",
-  i = "missing",
-  j = "missing",
-  ...,
   lower.tail = TRUE,
   fixed = FALSE,
-  drop = "missing"
+  CI = FALSE,
+  iter = 1000
 )
 }
 \arguments{
@@ -25,9 +23,13 @@
 
 \item{conditional}{character; string used to query the marginal and conditional distribution of the variable. Must specify the variable and the value in the following format 'Var:Val'}
 
-\item{lower.tail}{logical; if TRUE (default), probabilities are $$}
+\item{lower.tail}{logical; if TRUE (default), probabilities are calculated for the area to the right of the specified value.}
 
-\item{fixed}{logical; if TRUE (default), probabilities are $$}
+\item{fixed}{logical; if TRUE (default), probabilities are \eqn{P(X \leq x | Y = y)}}
+
+\item{CI=FALSE}{logical; if TRUE, calculate bootstrap confidence intervals. See notes for details.}
+
+\item{iter=1000}{number of replications for the confidence interval calculation.}
 }
 \value{
 An object of class \code{mvdc}.
@@ -44,9 +46,9 @@ pbx["Malaysia:33",]
 pbx["Malaysia:33 & Vietnam:34",]
 #Get Joint distribution
 pbx["Vietnam:31", "avgRegion:26"]
-#Conditional distribtuion Pr(X <= x, Y <= y) / Pr(Y <= y)
+#Conditional distribution Pr(X <= x, Y <= y) / Pr(Y <= y)
 pbx["Malaysia:33 & Vietnam:31", "avgRegion:26"]
-#Conditional distribtuion Pr(X <= x, Y <= y) / Pr(Y = y)
+#Conditional distribution Pr(X <= x, Y <= y) / Pr(Y = y)
 pbx["Malaysia:33 & Vietnam:31", "avgRegion:26",fixed=TRUE]
 # Joint distribution with values set on their respective mean value
 pbx["mean:c(Vietnam,Thailand)",lower.tail=T]
@@ -54,7 +56,7 @@ pbx["mean:c(Vietnam,Thailand)",lower.tail=T]
 pbx["median:c(Vietnam, Thailand)",lower.tail=T]
 # Joint distribution with xxxx
 pbx["Malaysia:33 & mean:c(Vietnam, Thailand)",lower.tail=T]
-# Condtional distribtuion distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
+# Conditional distribution distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
 pbx["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)"]
 
 }

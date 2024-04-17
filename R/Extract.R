@@ -16,8 +16,11 @@
 #' @param x object of class \bold{pbox} from which to query the probabilistic space.
 #' @param marginal character; string used to query the marginal and joint distribution of the variable. Must specify the variable and the value in the following format 'Var:Val'
 #' @param conditional character; string used to query the marginal and conditional distribution of the variable. Must specify the variable and the value in the following format 'Var:Val'
-#' @param lower.tail logical; if TRUE (default), probabilities are $$
-#' @param fixed logical; if TRUE (default), probabilities are $$
+#' @param lower.tail logical; if TRUE (default), probabilities are calculated for the area to the right of the specified value.
+#' @param fixed logical; if TRUE (default), probabilities are \eqn{P(X \leq x | Y = y)}
+#' @param CI=FALSE logical; if TRUE, calculate bootstrap confidence intervals. See notes for details.
+#' @param iter=1000 number of replications for the confidence interval calculation.
+#'
 #' @return An object of class \code{mvdc}.
 #'
 #' @examples
@@ -29,9 +32,9 @@
 #' pbx["Malaysia:33 & Vietnam:34",]
 #' #Get Joint distribution
 #' pbx["Vietnam:31", "avgRegion:26"]
-#' #Conditional distribtuion Pr(X <= x, Y <= y) / Pr(Y <= y)
+#' #Conditional distribution Pr(X <= x, Y <= y) / Pr(Y <= y)
 #' pbx["Malaysia:33 & Vietnam:31", "avgRegion:26"]
-#' #Conditional distribtuion Pr(X <= x, Y <= y) / Pr(Y = y)
+#' #Conditional distribution Pr(X <= x, Y <= y) / Pr(Y = y)
 #' pbx["Malaysia:33 & Vietnam:31", "avgRegion:26",fixed=TRUE]
 #' # Joint distribution with values set on their respective mean value
 #' pbx["mean:c(Vietnam,Thailand)",lower.tail=T]
@@ -39,14 +42,13 @@
 #' pbx["median:c(Vietnam, Thailand)",lower.tail=T]
 #' # Joint distribution with xxxx
 #' pbx["Malaysia:33 & mean:c(Vietnam, Thailand)",lower.tail=T]
-#' # Condtional distribtuion distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
+#' # Conditional distribution distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
 #' pbx["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)"]
 #'
 
 
 setMethod("[", signature = "pbox",
-          definition = function(x,marginal="character",conditional="character", i="missing", j="missing", ..., lower.tail=TRUE,fixed=FALSE,drop="missing") {
-            #definition = function(x,marginal,conditional, i, j, ..., lower.tail=TRUE,fixed=FALSE,drop) {
+          definition = function(x,marginal="character",conditional="character", lower.tail=TRUE,fixed=FALSE,CI=FALSE,iter=1000) {
 
             if (!inherits(x, c("pbox"))) {
               stop("Input must be a pbox object!")
@@ -69,11 +71,22 @@ setMethod("[", signature = "pbox",
                 stop("Expecting a string to query the pbox!")
               }
 
-              varSet<-match_maker(varSet,q_parser(marginal),x@data)
-              probres<-pMvdc(c(varSet$Value), x@copula)
-              if(lower.tail==FALSE){probres<-1-probres}
-              as.vector(probres)
-
+              if(CI){
+                varSet<-match_maker(varSet,q_parser(marginal),x@data)
+                res<-pMvdc(c(varSet$Value), x@copula)
+                probres<-probCI(replicate(iter, perProb(x,varSet$Value)))
+                probres<-c(res,probres)
+                if(lower.tail==FALSE){probres<-1-probres}
+                probres<-setNames(probres, c("P", "2.5%", "97.5%"))
+                probres
+              }else{
+                #browser()
+                varSet<-match_maker(varSet,q_parser(marginal),x@data)
+                probres<-pMvdc(c(varSet$Value), x@copula)
+                if(lower.tail==FALSE){probres<-1-probres}
+                probres <- setNames(probres, "P")
+                probres
+              }
             } else {
               # If both `marginal` and `conditional` are provided, subset rows and select columns
               cond<-lapply(list(marginal,conditional),function(z){
@@ -85,10 +98,20 @@ setMethod("[", signature = "pbox",
                   stop("Expecting a string to query the pbox!")
                 }
 
-                varSet<-match_maker(varSet,q_parser(z),x@data)
-                #query copula
-                p=pMvdc(varSet$Value, x@copula)
-                as.vector(p)
+                if(CI){
+                  varSet<-match_maker(varSet,q_parser(z),x@data)
+                  res<-pMvdc(c(varSet$Value), x@copula)
+                  probres<-probCI(replicate(iter, perProb(x,varSet$Value)))
+                  probres<-c(res,probres)
+                  probres<-setNames(probres, c("P", "2.5%", "97.5%"))
+                  probres
+                }else{
+                  varSet<-match_maker(varSet,q_parser(z),x@data)
+                  #query copula
+                  p<-pMvdc(varSet$Value,x@copula)
+                  p <- setNames(p, "P")
+                  p
+                }
               })
               if (fixed) {
                 condFix <- cCopula(
@@ -96,13 +119,25 @@ setMethod("[", signature = "pbox",
                   indices = 2,
                   copula = x@copula@copula)
                 if(lower.tail==FALSE){condFix<-1-condFix}
-                as.vector(condFix)
-
+                condFix<-as.vector(condFix)
+                if (length(condFix) == 1) {
+                  condFix <- setNames(condFix, "P")
+                } else {
+                  condFix <- setNames(condFix, c("P", "2.5%", "97.5%"))
+                }
+                condFix
               }
               else{
                 probrez<-cond[[1]]/cond[[2]]
                 if(lower.tail==FALSE){probrez<-1-probrez}
-                as.vector(probrez)
+                if (length(probrez) == 1) {
+                  probrez <- setNames(probrez, "P")
+                } else {
+                  probrez <- setNames(probrez, c("P", "2.5%", "97.5%"))
+                }
+                probrez
               }}
 
           })
+
+
