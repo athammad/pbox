@@ -1,6 +1,9 @@
-library(roxygen2)
 roxygen2::roxygenise()
-
+devtools::document()
+devtools::test()
+usethis::use_test()
+usethis::use_vignette("pbox_vignette", "The pbox vignette")
+#devtools::build()
 pkgload::load_all()
 
 data(SEAex)
