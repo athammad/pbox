@@ -38,24 +38,34 @@ pbx@fit
 **Explore the probabilistic space**
 
 ```{r, echo=TRUE, eval=FALSE}
+
 #Get marginal distribution
 pbx["Malaysia:33",]
+
 #Get Joint distribution
 pbx["Malaysia:33 & Vietnam:34",]
+
 #Get Joint distribution
 pbx["Vietnam:31", "avgRegion:26"]
+
 #Conditional distribution Pr(X <= x, Y <= y) / Pr(Y <= y)
 pbx["Malaysia:33 & Vietnam:31", "avgRegion:26"]
+
 #Conditional distribution Pr(X <= x, Y <= y) / Pr(Y = y)
 pbx["Malaysia:33 & Vietnam:31", "avgRegion:26",fixed=TRUE]
+
 # Joint distribution with values set on their respective mean value
 pbx["mean:c(Vietnam,Thailand)",lower.tail=T]
+
 # Joint distribution with values set on their respective median value
 pbx["median:c(Vietnam, Thailand)",lower.tail=T]
-# Joint distribution with xxxx
+
+# Joint distribution with mixed values
 pbx["Malaysia:33 & mean:c(Vietnam, Thailand)",lower.tail=T]
+
 # Conditional distribution distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
 pbx["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)", fixed=TRUE]
+
 # Estimate confidence intervals
 pbx["Vietnam:31 & avgRegion:26", "Malaysia:32",CI=T]
 
