@@ -22,14 +22,14 @@ pbx<-set_pbox(SEAex)
 pbx
 ```
 
-**access the data and the copula object**
+**Access the data and the copula object**
 
 ```{r, echo=TRUE, eval=FALSE}
 pbx@data
 pbc@copula
 ```
 
-**access the results of the automated selection for both the marginal distribution and the copula**
+**Access the results of the automated selection for both the marginal distribution and the copula**
 
 ```{r, echo=TRUE, eval=FALSE}
 pbx@fit
@@ -70,6 +70,27 @@ pbx["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)", fixed=TRUE]
 pbx["Vietnam:31 & avgRegion:26", "Malaysia:32",CI=T]
 
 ```
+
+
+**Same results can be obtained with the functional interface**
+
+```{r, echo=TRUE, eval=FALSE}
+
+#Get marginal distribution
+qpbox(pbx,marginal = "Malaysia:33")
+
+#Get Joint distribution
+qpbox(pbx,marginal = "Malaysia:33 & Vietnam:34")
+
+# Conditional distribution distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
+qpbox(pbx,marginal = "Malaysia:33 & median:c(Vietnam,Thailand)", conditional="mean:c(avgRegion)", fixed=TRUE)
+
+# Estimate confidence intervals
+qpbox(pbx,marginal = "Vietnam:31 & avgRegion:26", conditional="Malaysia:32",CI=T)
+
+
+```
+
 ## Installation
 The library is currently being developed at a fast pace with the aim of being available on CRAN soon. The development version can be installed as follows:
 ```         
