@@ -1,8 +1,6 @@
-# PBOX <img src="./other/pboxIcon.png" align="right" height="138" />
+# PBOX <img src="./other/pboxIcon.png" align="right" height="138"/>
 
 ### Version 0.1.1 (BETA)
-
-
 
 ## Overview
 
@@ -62,42 +60,17 @@ pbx["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)", fixed=TRUE]
 pbx["Vietnam:31 & avgRegion:26", "Malaysia:32",CI=T]
 
 ```
-
 ## Installation
-
-`install.packages("pbox")`
-
-To install the development version of the `pbox` package, you need to install the `remotes` package then the `pbox` package.
-
+The library is currently being developed at a fast pace with the aim of being available on CRAN soon. The development version can be installed as follows:
 ```         
 install.packages("remotes")
 remotes::install_github("athammad/pbox")
 ```
 
-```{=html}
-<!-- 
-## Vignettes
-
-After installing the package you can view vignettes by typing `browseVignettes("pbox")` in your R session. 
-<!--  Or you can check this [document](https://github.com/athammad/syntCF/doc/pbox_vignette.html) where you will find an example with simulated data and method references.
-
-
-<!-- badges: start -->
-
-[![R-CMD-check](https://github.com/tidyverse/ggplot2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/tidyverse/ggplot2/actions/workflows/R-CMD-check.yaml)
-[![Codecov test
-coverage](https://codecov.io/gh/tidyverse/ggplot2/branch/main/graph/badge.svg)](https://app.codecov.io/gh/tidyverse/ggplot2?branch=main)
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/ggplot2)](https://cran.r-project.org/package=ggplot2)
-<!-- badges: end -->
-
- -->
-```
 ## Getting Help or Reporting an Issue
 
 To report bugs/issues/feature requests, please file an [issue](https://github.com/athammad/pbox/issues/).
 
-```{=html}
-<!-- 
-## Cite
- -->
-```
+
+
+
