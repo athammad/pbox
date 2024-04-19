@@ -1,7 +1,7 @@
 ##############################################################
 #' Methods for 'show()' in Package 'pbox'
 #'
-#' Methods for function show in package \blod{pbox}.
+#' Methods for function show in package \bold{pbox}.
 #'
 #' @export
 #' @name show

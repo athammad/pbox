@@ -1,13 +1,14 @@
 roxygen2::roxygenise()
-devtools::document()
 devtools::test()
 usethis::use_test()
 usethis::use_vignette("pbox_vignette", "The pbox vignette")
 #devtools::build()
 pkgload::load_all()
-devtools::check()
+prova<-devtools::check()
 usethis::use_news_md()
 usethis::use_cran_comments()
+#devtools::release()
+
 
 data(SEAex)
 dai<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam,avgRegion)])
@@ -32,6 +33,16 @@ dai["median:c(Vietnam, Thailand)",lower.tail=T]
 dai["Malaysia:33 & mean:c(Vietnam, Thailand)",lower.tail=T]
 #' # Condtional distribtuion distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
 dai["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)", fixed=TRUE]
+
+
+qpbox(dai,marginal = "Vietnam:31 & avgRegion:26")
+qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",CI=T)
+qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32")
+qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",CI=T)
+qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32", fixed = T)
+qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",CI=T, fixed = T)
+
+
 
 dai["Malaysia:33 & median:c(Vietnam,Thailand)", "avgRegion:27", fixed=TRUE]
 qpbox(dai,marginal ="Malaysia:33 & median:c(Vietnam,Thailand)",conditional ="avgRegion:27",fixed = T)

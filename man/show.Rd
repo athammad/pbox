@@ -9,5 +9,5 @@
 fun_stats(x)
 }
 \description{
-Methods for function show in package \blod{pbox}.
+Methods for function show in package \bold{pbox}.
 }

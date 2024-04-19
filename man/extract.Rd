@@ -57,6 +57,6 @@ pbx["median:c(Vietnam, Thailand)",lower.tail=T]
 # Joint distribution with xxxx
 pbx["Malaysia:33 & mean:c(Vietnam, Thailand)",lower.tail=T]
 # Conditional distribution distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
-pbx["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)"]
+pbx["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)",fixed=TRUE]]
 
 }
