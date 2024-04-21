@@ -3,16 +3,19 @@
 \docType{methods}
 \name{stats_calc}
 \alias{stats_calc}
-\title{Calculate basic statistics to be used to query the pbox object}
+\title{Calculate Basic Statistics}
 \usage{
 stats_calc(data, matches, varSet)
 }
 \arguments{
-\item{data}{data A \code{data.frame} or \code{data.table}}
+\item{data}{A \code{data.frame} or \code{data.table}.}
 
-\item{matches}{\code{data.frame} with user query}
+\item{matches}{A \code{data.frame} with user query.}
 
-\item{varSet}{\code{data.frame} with variable names}
+\item{varSet}{A \code{data.frame} with variable names.}
+}
+\value{
+A modified \code{varSet} with the calculated results.
 }
 \description{
 Internal function used to calculate mean and median as part of the query.

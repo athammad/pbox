@@ -3,16 +3,21 @@
 \docType{methods}
 \name{q_parser}
 \alias{q_parser}
-\title{Parse query to explore a pbox object}
+\title{Parse Query}
 \usage{
 q_parser(query)
 }
 \arguments{
-\item{query}{string}
+\item{query}{A string representing the query.}
 }
 \value{
 A table with the parsed elements of the query.
 }
 \description{
-Internal function used to Parse query to explore a pbox object.
+Internal function used to parse a query to explore a pbox object.
+}
+\examples{
+query <- "some_query_string"
+q_parser(query)
+
 }

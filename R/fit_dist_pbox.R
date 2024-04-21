@@ -23,6 +23,9 @@
 #' distFits$allDitrs
 #' distFits$distTable
 #'
+#' @importFrom gamlss fitDist
+#' @importFrom purrr map_depth
+#' @importFrom data.table data.table
 
 setGeneric("fit_dist_pbox",
            def = function(data,...) {
@@ -32,7 +35,7 @@ setGeneric("fit_dist_pbox",
 setMethod("fit_dist_pbox",
           definition=function(data,...){
 
-  allDitrs<-suppressWarnings(lapply(data,function(x) gamlss::fitDist(x,...)))
-  distTable<-data.table(do.call(cbind,purrr::map_depth(allDitrs,1,"fits")), keep.rownames="DIST")
+  allDitrs<-lapply(data,function(x) gamlss::fitDist(x,...))
+  distTable<-data.table::data.table(do.call(cbind,purrr::map_depth(allDitrs,1,"fits")), keep.rownames="DIST")
   return(list(allDitrs=allDitrs,distTable=distTable))
 })

@@ -1,5 +1,4 @@
-##############################################################
-#' Calculate basic statistics to be used to query the pbox object
+#' Calculate Basic Statistics
 #'
 #' Internal function used to calculate mean and median as part of the query.
 #'
@@ -8,11 +7,16 @@
 #' @export
 #' @include pbox.R
 #'
+#' @param data A \code{data.frame} or \code{data.table}.
+#' @param matches A \code{data.frame} with user query.
+#' @param varSet A \code{data.frame} with variable names.
 #'
-#' @param data data A \code{data.frame} or \code{data.table}
-#' @param matches \code{data.frame} with user query
-#' @param varSet \code{data.frame} with variable names
-
+#' @return A modified \code{varSet} with the calculated results.
+#'
+#' @importFrom data.table as.data.table
+#' @import methods
+#' @importFrom stats median
+#'
 setGeneric("stats_calc",
            def = function(data, matches,varSet) {
              standardGeneric("stats_calc")

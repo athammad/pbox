@@ -6,10 +6,12 @@ usethis::use_vignette("pbox_vignette", "The pbox vignette")
 pkgload::load_all()
 prova<-devtools::check()
 usethis::use_news_md()
-usethis::use_cran_comments()
+commenti<-usethis::use_cran_comments()
 #devtools::release()
+libary(goodpractice)
+goodpractice::gp()
 
-
+pkgload::load_all()
 data(SEAex)
 dai<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam,avgRegion)])
 print(dai)
@@ -128,13 +130,19 @@ perProb<-function(bpx,vecQuery){
 probCI(replicate(1000, perProb(dai,c(Inf,Inf,31,26))))
 dai["Vietnam:31 & avgRegion:26", ]
 
+
+
+#####TEST ALL
+
+pkgload::load_all()
+data(SEAex)
+dai<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam,avgRegion)])
+print(dai)
+
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26")
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",CI=T)
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32")
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",CI=T)
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32", fixed = T)
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",CI=T, fixed = T)
-
-
-
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",fixed = T)

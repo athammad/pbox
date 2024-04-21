@@ -32,4 +32,5 @@ SEAex<-fread("./data/SEAex.csv")
 distFits<- fit_copula_pbox(data=SEAex,.copula_families)
 distFits
 
+
 }

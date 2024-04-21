@@ -7,7 +7,6 @@
 #' @name set_pbox
 #' @docType methods
 #' @export
-#' @import data.table
 #' @include pbox.R
 #'
 #' @param data A \code{data.frame} or \code{data.table} (the data will be coerced to a \code{data.table} internally).
@@ -25,6 +24,11 @@
 #' pbx<- set_pbox(data=SEAex)
 #' pbx
 #' class(pbx)
+#'
+#' @importFrom gamlss fitDist
+#' @import gamlss.dist
+
+
 
 
 setGeneric("set_pbox",

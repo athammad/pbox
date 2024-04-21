@@ -6,9 +6,7 @@
 #' @name qpbox
 #' @docType methods
 #' @export
-#
-#' @import data.table
-#' @import copula
+
 #' @include pbox.R
 #'
 #' @param x object of class \bold{pbox} from which to query the probabilistic space.
@@ -43,6 +41,12 @@
 #' # Condtional distribtuion distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
 #' pbx["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)"]
 #'
+#' @importFrom copula pMvdc cCopula
+#' @importFrom stats setNames
+#'
+#'
+
+
 
 setGeneric("qpbox",
            def = function(x,marginal="character",conditional="character", lower.tail=TRUE,fixed=FALSE,CI=FALSE,iter=1000) {

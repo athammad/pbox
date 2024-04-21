@@ -1,21 +1,19 @@
-##############################################################
-#' Generate the query vector to explore the probabilistic space.
+#' Generate Query Vector
 #'
 #' Internal function used to generate the query vector to explore the probabilistic space.
 #'
-#'
-#' @docType methods
 #' @name match_maker
+#' @docType methods
 #' @export
 #' @include pbox.R
 #'
+#' @param varSet A string describing the variable set.
+#' @param matches A description of matches.
+#' @param data A description of the data.
 #'
-#' @param varSet string
-#' @param matches description
-#' @param data description
 #' @return A table with the value to be queried of each column/marginal distribution of the data.
 #'
-#'
+#' @importFrom stats na.omit
 
 setGeneric("match_maker",
            def = function(varSet,matches,data) {

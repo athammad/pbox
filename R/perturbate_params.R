@@ -1,6 +1,28 @@
+#' Perturb Parameters
+#'
+#' Method to perturb parameters of copula distributions.
+#'
+#' @name perturb_params
+#' @docType methods
+#' @export
+#'
+#' @param paramMargins A list of parameter values for each distribution in the copula.
+#'
+#' @return A list of perturbed parameter values.
+#'
+#' @examples
+#' paramMargins <- list(list(0.2, 0.3), list(0.4, 0.5))
+#' perturb_params(paramMargins)
+#'
+#' @importFrom stats rbinom rnorm
 
+setGeneric("perturbate_params",
+           def = function(paramMargins) {
+             standardGeneric("perturbate_params")
+           })
 
-perturbate_params <- function(paramMargins) {
+setMethod("perturbate_params",
+          definition=function(paramMargins) {
   # Define a function to perturb a single parameter value
   perturb_param <- function(orig_param) {
     ind = rbinom(1, 1, 0.5) == 1
@@ -15,5 +37,5 @@ perturbate_params <- function(paramMargins) {
     })
   })
   return(perturbed_params)
-}
+})
 

@@ -5,17 +5,11 @@
 #'
 #' @export
 #' @name show
-#' @docType method
+#' @docType methods
 #' @include pbox.R
-
-fun_stats <- function(x) {
-  min <- min(x, na.rm = TRUE)
-  max <- max(x, na.rm = TRUE)
-  mean <- mean(x, na.rm = TRUE)
-  median<-median(x, na.rm = TRUE)
-  summary <- list(min = min, max = max, mean = mean,median=median)
-}
-
+#'
+#'
+#' @importFrom stats cor
 
 
 setMethod(f = "show",
@@ -37,9 +31,7 @@ setMethod(f = "show",
             cat("2.1)Copula margins:\n")
             print(object@copula@margins)
             cat("2.1)Kendall correlation:\n")
-            print(cor(object@data,method = "kendall"))
+            print(stats::cor(object@data,method = "kendall"))
             cat("\n-------------------------------\n")
 
           })
-
-

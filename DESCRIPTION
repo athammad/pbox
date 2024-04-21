@@ -7,8 +7,8 @@ Authors@R: c(person("Ahmed T.", "Hammad", role = c("aut", "cre"),
                      comment = c(ORCID = "0000-0003-3327-2435")))
 Author: Ahmed Tarek Hammad [aut, cre]
 Maintainer: Ahmed Tarek Hammad <ahmed.t.hammad@gmail.com>
-Description: The pbox R package, an advanced statistical library that offers a method to encapsulate and query the probability space of a dataset effortlessly. Its distinctive feature lies in the ease with which users can navigate and analyze marginal, joint, and conditional probabilities while taking into account the underlying correlation structure inherent in the data using copula theory and models
-License: MIT
+Description: The pbox R package, an advanced statistical library that offers a method to encapsulate and query the probability space of a dataset effortlessly. Its distinctive feature lies in the ease with which users can navigate and analyze marginal, joint, and conditional probabilities while taking into account the underlying correlation structure inherent in the data using copula theory and models.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends:
@@ -18,6 +18,7 @@ Depends:
     gamlss.dist,
     purrr,
     stringr,
+    methods,
     R (>= 2.10)
 Imports: 
     data.table,
@@ -30,12 +31,15 @@ URL: https://www.r-project.org, https://github.com/athammad/pbox
 BugReports: https://github.com/athammad/pbox/issues
 RoxygenNote: 7.2.3
 Collate: 
-    'pbox.R'
-    'Extract.R'
     'SEAex.R'
+    'pbox.R'
+    'coefAll2.R'
+    'copula_families.R'
     'final_pbox.R'
+    'fit_copula.R'
     'fit_copula_pbox.R'
     'fit_dist_pbox.R'
+    'fun_stats.R'
     'make_pbox.R'
     'match_maker.R'
     'perProb.R'

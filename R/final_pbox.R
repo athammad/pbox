@@ -22,6 +22,10 @@
 #' distFits<- fit_dist_pbox(data=SEAex)
 #'
 #' final_pbox(copulaFits,distFits$allDitrs,SEAex)
+#'
+#' @importFrom utils getFromNamespace
+#' @importFrom purrr map_depth map
+#' @importFrom copula mvdc
 
 
 setGeneric("final_pbox",
@@ -33,16 +37,16 @@ setMethod("final_pbox",
           definition=function(results_df,allDitrs,data){
 
   bestCopula<-results_df[which.min(results_df$AIC),]
-  copFun <- getFromNamespace(bestCopula$copula,ns = "copula")
+  copFun <- utils::getFromNamespace(bestCopula$copula,ns = "copula")
   cop <- copFun(family = bestCopula$family, param = bestCopula$coef, dim = ncol(data))
 
   distList<-unlist(unname(purrr::map(purrr::map_depth(allDitrs,1,"family"),1)))
 
-  allPar <- unname(purrr::map_depth(allDitrs,1,coefAll2))
+  allPar <- unname(purrr::map_depth(allDitrs,1,.coefAll2))
   # Function to modify the structure of each element in the list
   #modify_structure <- function(x) {names(x)<-gsub("eta.","",names(x));as.list(x)}
   # Applying the modification to each element of the list
-  #allPar <- modify_depth(unname(purrr::map_depth(allDitrs,1,"Allpar")), 1, modify_structure)
+  #allPar <- modify_depth(unname(map_depth(allDitrs,1,"Allpar")), 1, modify_structure)
 
   finalCop <- copula::mvdc(cop, distList,allPar)
 
@@ -55,20 +59,5 @@ setMethod("final_pbox",
 })
 
 
-coefAll2<-function (obj, deviance = FALSE, ...)
-{
-  #fix to issue with sigma in function coefAll of gamlss
-  out <- list()
-  if ("mu" %in% obj$parameters)
-    out$mu <- obj$mu
-  if ("sigma" %in% obj$parameters)
-    out$sigma <- obj$sigma
-  if ("nu" %in% obj$parameters)
-    out$nu <- obj$nu
-  if ("tau" %in% obj$parameters)
-    out$tau <- obj$tau
-  if (deviance)
-    out$deviance <- deviance(obj)
-  return(out)
-}
+
 

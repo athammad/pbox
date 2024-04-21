@@ -3,29 +3,26 @@
 \docType{methods}
 \name{make_pbox}
 \alias{make_pbox}
-\title{Make a pbox from a data.frame and a copula object.}
-\usage{
-make_pbox(data, copula)
-}
+\title{Make a Pbox}
 \arguments{
 \item{data}{A \code{data.frame} or \code{data.table} (the data will be coerced to a \code{data.table} internally).}
 
-\item{copula}{an object of class mvdc.}
+\item{copula}{An object of class \code{mvdc}.}
 }
 \value{
-an object of class \code{pbox} with 2 slots:
+An object of class \code{pbox} with 2 slots:
 
-\code{data}: The original data coerced to a data.table.
-
-\code{copula}: The copula object of class \code{mvdc}.
+\describe{
+  \item{\code{data}}{The original data coerced to a data.table.}
+  \item{\code{copula}}{The copula object of class \code{mvdc}.}
+}
 }
 \description{
-Ausiliary method to create a pbox object from a dataframe and a custom copula object.
+Auxiliary method to create a pbox object from a dataframe and a custom copula object.
 }
 \examples{
 data("SEAex")
-
-pbx<- set_pbox(data=SEAex)
+pbx <- make_pbox(data = SEAex, copula = some_mvdc_object)
 pbx
 class(pbx)
 

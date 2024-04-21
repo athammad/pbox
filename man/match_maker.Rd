@@ -3,16 +3,16 @@
 \docType{methods}
 \name{match_maker}
 \alias{match_maker}
-\title{Generate the query vector to explore the probabilistic space.}
+\title{Generate Query Vector}
 \usage{
 match_maker(varSet, matches, data)
 }
 \arguments{
-\item{varSet}{string}
+\item{varSet}{A string describing the variable set.}
 
-\item{matches}{description}
+\item{matches}{A description of matches.}
 
-\item{data}{description}
+\item{data}{A description of the data.}
 }
 \value{
 A table with the value to be queried of each column/marginal distribution of the data.

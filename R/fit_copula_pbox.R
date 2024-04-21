@@ -28,6 +28,9 @@
 #' distFits<- fit_copula_pbox(data=SEAex,.copula_families)
 #' distFits
 #'
+#'
+#' @importFrom stats setNames
+#' @importFrom utils stack
 
 
 setGeneric("fit_copula_pbox",
@@ -43,7 +46,7 @@ setMethod("fit_copula_pbox",
 
   # Perform grid search
   results <- apply(dfCopula, 1, function(row) {
-    fit_copula(copula=row["copula"], family=row["family"], dim = ncol(data), u)
+    .fit_copula(copula=row["copula"], family=row["family"], dim = ncol(data), u)
 
   })
   # Convert results to data frame
@@ -51,24 +54,4 @@ setMethod("fit_copula_pbox",
   return(results_df)
 })
 
-# Define the copula families and their corresponding parameters
-.copula_families <- list(
-  archmCopula = c("clayton", "frank", "gumbel", "joe"),# "amh",
-  evCopula = c("galambos", "gumbel", "huslerReiss" ),#"tawn" #"tev"
-  ellipCopula = c("normal")# "t"
-)
 
-fit_copula <- function(copula, family, dim, u) {
-  if (dim > 2 && family %in% c("amh", "galambos", "huslerReiss", "tawn", "tev")) {
-    return(NULL)  # Skip if the family is not available for dim > 2
-  }
-  copFun <-getFromNamespace(copula,ns = "copula")
-  cop <- copFun(family = family, param = NA_real_, dim = dim)
-
-
-  fit <- copula::fitCopula(cop, u, method = "ml")
-  aicVal <- stats::AIC(fit)
-  coefVal <- copula::coef(fit)
-
-  return(data.table::data.table(copula=copula,family = family, AIC = aicVal, coef = coefVal))
-}

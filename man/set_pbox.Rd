@@ -29,4 +29,5 @@ data("SEAex")
 pbx<- set_pbox(data=SEAex)
 pbx
 class(pbx)
+
 }

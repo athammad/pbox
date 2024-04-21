@@ -12,6 +12,9 @@
 #' @import data.table
 #' @import copula
 #'
+#' @importClassesFrom data.table data.table
+#' @importClassesFrom copula mvdc
+#'
 setClass("pbox",
          slots = c(data = "data.table",
                    copula="mvdc",
