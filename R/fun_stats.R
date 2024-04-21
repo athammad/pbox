@@ -5,7 +5,8 @@
 #' @name fun_stats
 #' @docType methods
 #' @export
-#'
+#' @aliases fun_stats
+
 #' @param x A numeric vector.
 #'
 #' @return A list containing the minimum, maximum, mean, and median of the input vector.
@@ -21,7 +22,7 @@ setGeneric("fun_stats",
              standardGeneric("fun_stats")
            })
 
-setMethod("fun_stats",
+setMethod("fun_stats","numeric",
           definition= function(x) {
   min <- min(x, na.rm = TRUE)
   max <- max(x, na.rm = TRUE)

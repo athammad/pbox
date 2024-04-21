@@ -18,7 +18,7 @@
 #'
 #'
 #' @examples
-#' SEAex<-fread("./data/SEAex.csv")
+#' data(SEAex)
 #' # Define the copula families and their corresponding parameters
 #'  .copula_families <- list(
 #'  archmCopula = c("clayton", "frank", "gumbel", "joe"),# "amh",

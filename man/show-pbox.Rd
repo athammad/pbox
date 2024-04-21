@@ -3,9 +3,14 @@
 \docType{methods}
 \name{show}
 \alias{show}
+\alias{show-pbox}
+\alias{show,pbox-method}
 \title{Methods for 'show()' in Package 'pbox'}
 \usage{
 \S4method{show}{pbox}(object)
+}
+\arguments{
+\item{object}{an object of class \bold{pbox}.}
 }
 \description{
 Methods for function show in package \bold{pbox}.

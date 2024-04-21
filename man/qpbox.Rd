@@ -26,12 +26,12 @@ qpbox(
 
 \item{fixed}{logical; if TRUE (default), probabilities are \eqn{P(X \leq x | Y = y)}}
 
-\item{CI=FALSE}{logical; if TRUE, calculate bootstrap confidence intervals. See notes for details.}
+\item{CI}{logical; if TRUE, calculate bootstrap confidence intervals. See notes for details.}
 
-\item{iter=1000}{number of replications for the confidence interval calculation.}
+\item{iter}{number of replications for the confidence interval calculation. 1000 by default.}
 }
 \value{
-An object of class \code{mvdc}.
+Estimated probability.
 }
 \description{
 Combine all the results from \code{fit_copula_pbox} and \code{fit_dist_pbox} to build a Multivariate Distributions from Copula.
@@ -50,12 +50,13 @@ pbx["Malaysia:33 & Vietnam:31", "avgRegion:26"]
 #Conditional distribtuion Pr(X <= x, Y <= y) / Pr(Y = y)
 pbx["Malaysia:33 & Vietnam:31", "avgRegion:26",fixed=TRUE]
 # Joint distribution with values set on their respective mean value
-pbx["mean:c(Vietnam,Thailand)",lower.tail=T]
+pbx["mean:c(Vietnam,Thailand)",lower.tail=TRUE]
 # Joint distribution with values set on their respective median value
-pbx["median:c(Vietnam, Thailand)",lower.tail=T]
+pbx["median:c(Vietnam, Thailand)",lower.tail=TRUE]
 # Joint distribution with xxxx
-pbx["Malaysia:33 & mean:c(Vietnam, Thailand)",lower.tail=T]
+pbx["Malaysia:33 & mean:c(Vietnam, Thailand)",lower.tail=TRUE]
 # Condtional distribtuion distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
 pbx["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)"]
-
+# Condtional distribtuion distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
+pbx["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)",CI=TRUE,iter=100]
 }

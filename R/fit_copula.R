@@ -3,26 +3,18 @@
 #'
 #' Internal method to automatically find the best Copula given a data.frame. Wrapper around the function \code{fitCopula}.
 #'
-#' @name fit_copula
+#' @name .fit_copula
 #' @docType methods
 #' @export
 #' @include pbox.R
 #'
-#' @param data A \code{data.frame} or \code{data.table} (the data will be coerced to a \code{data.table} internally).
-#' @param .copula_families List of copula types and their corresponding families. Currently supported families are "clayton", "frank", "amh", "gumbel", and "joe" for Archimedean Copula; "galambos", "gumbel", and "huslerReiss" for Extreme-Value copula; "normal" and "t" for Elliptical copula.
-#'
+#' @param copula A \code{data.frame} or \code{data.table} (the data will be coerced to a \code{data.table} internally).
+#' @param family List of copula types and their corresponding families. Currently supported families are "clayton", "frank", "amh", "gumbel", and "joe" for Archimedean Copula; "galambos", "gumbel", and "huslerReiss" for Extreme-Value copula; "normal" and "t" for Elliptical copula.
+#' @param dim number of columns of data.
+#' @param u marix of (pseudo-)observations. Consider applying the function \code{pobs()} first in order to obtain such data.
+
 #' @return A \code{data.table} with the corresponding AIC and the parameter estimates of the evaluated copulas and families.
 #'
-#' @examples
-#' SEAex <- fread("./data/SEAex.csv")
-#' # Define the copula families and their corresponding parameters
-#' .copula_families <- list(
-#'   archmCopula = c("clayton", "frank", "gumbel", "joe"),
-#'   evCopula = c("galambos", "gumbel", "huslerReiss"),
-#'   ellipCopula = c("normal")
-#' )
-#' distFits <- fit_copula(data = SEAex, .copula_families)
-#' distFits
 #'
 #' @importFrom copula fitCopula coef
 #' @importFrom data.table data.table

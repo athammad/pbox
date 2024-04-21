@@ -5,12 +5,15 @@
 #'
 #' @export
 #' @name show
+#' @aliases show-pbox show,pbox-method
 #' @docType methods
 #' @include pbox.R
-#'
+#' @param object an object of class \bold{pbox}.
 #'
 #' @importFrom stats cor
 
+#' @rdname show-pbox
+#' @aliases show-pbox
 
 setMethod(f = "show",
           signature = "pbox",

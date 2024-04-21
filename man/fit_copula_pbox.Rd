@@ -22,7 +22,7 @@ a data.table with the correspondent AIC and the parameter estimates of the evalu
 Method to automatically find the best Copula given a data.frame. Wrapper around the function \code{fitCopula}.
 }
 \examples{
-SEAex<-fread("./data/SEAex.csv")
+data(SEAex)
 # Define the copula families and their corresponding parameters
  .copula_families <- list(
  archmCopula = c("clayton", "frank", "gumbel", "joe"),# "amh",

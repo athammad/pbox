@@ -5,7 +5,7 @@
 \alias{coefAll2}
 \title{Extract Coefficients}
 \usage{
-.coefAll2(obj, deviance = FALSE, ...)
+coefAll2(obj, deviance = FALSE)
 }
 \arguments{
 \item{obj}{An object.}
@@ -17,4 +17,8 @@ A list of coefficients.
 }
 \description{
 Internal method to extract coefficients from an object.
+}
+\examples{
+print("hello")
+
 }

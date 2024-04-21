@@ -6,18 +6,18 @@
 #' @name qpbox
 #' @docType methods
 #' @export
-
 #' @include pbox.R
+#' @aliases qpbox
 #'
 #' @param x object of class \bold{pbox} from which to query the probabilistic space.
 #' @param marginal character; string used to query the marginal and joint distribution of the variable. Must specify the variable and the value in the following format 'Var:Val'
 #' @param conditional character; string used to query the marginal and conditional distribution of the variable. Must specify the variable and the value in the following format 'Var:Val'
 #' @param lower.tail logical; if TRUE (default), probabilities are calculated for the area to the right of the specified value.
 #' @param fixed logical; if TRUE (default), probabilities are \eqn{P(X \leq x | Y = y)}
-#' @param CI=FALSE logical; if TRUE, calculate bootstrap confidence intervals. See notes for details.
-#' @param iter=1000 number of replications for the confidence interval calculation.
+#' @param CI logical; if TRUE, calculate bootstrap confidence intervals. See notes for details.
+#' @param iter number of replications for the confidence interval calculation. 1000 by default.
 #'
-#' @return An object of class \code{mvdc}.
+#' @return Estimated probability.
 #'
 #' @examples
 #' data("SEAex")
@@ -33,14 +33,15 @@
 #' #Conditional distribtuion Pr(X <= x, Y <= y) / Pr(Y = y)
 #' pbx["Malaysia:33 & Vietnam:31", "avgRegion:26",fixed=TRUE]
 #' # Joint distribution with values set on their respective mean value
-#' pbx["mean:c(Vietnam,Thailand)",lower.tail=T]
+#' pbx["mean:c(Vietnam,Thailand)",lower.tail=TRUE]
 #' # Joint distribution with values set on their respective median value
-#' pbx["median:c(Vietnam, Thailand)",lower.tail=T]
+#' pbx["median:c(Vietnam, Thailand)",lower.tail=TRUE]
 #' # Joint distribution with xxxx
-#' pbx["Malaysia:33 & mean:c(Vietnam, Thailand)",lower.tail=T]
+#' pbx["Malaysia:33 & mean:c(Vietnam, Thailand)",lower.tail=TRUE]
 #' # Condtional distribtuion distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
 #' pbx["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)"]
-#'
+#' # Condtional distribtuion distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
+#' pbx["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)",CI=TRUE,iter=100]
 #' @importFrom copula pMvdc cCopula
 #' @importFrom stats setNames
 #'

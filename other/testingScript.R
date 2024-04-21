@@ -133,7 +133,7 @@ dai["Vietnam:31 & avgRegion:26", ]
 
 
 #####TEST ALL
-
+prova<-devtools::check()
 pkgload::load_all()
 data(SEAex)
 dai<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam,avgRegion)])
@@ -146,3 +146,6 @@ qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",CI=
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32", fixed = T)
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",CI=T, fixed = T)
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",fixed = T)
+
+library(goodpractice)
+goodpractice::gp()

@@ -3,7 +3,7 @@
 #'
 #' Combine all the results from \code{fit_copula_pbox} and \code{fit_dist_pbox} to build a Multivariate Distributions from Copula.
 #'
-#' @name fit_pbox
+#' @name final_pbox
 #' @docType methods
 #' @export
 #' @include pbox.R
@@ -17,8 +17,8 @@
 #'
 #'
 #' @examples
-#' SEAex<-fread("./data/SEAex.csv")
-#' copulaFits<- fit_copula_pbox(data=SEAex,copula_families)
+#' data(SEAex)
+#' copulaFits<- fit_copula_pbox(data=SEAex,.copula_families)
 #' distFits<- fit_dist_pbox(data=SEAex)
 #'
 #' final_pbox(copulaFits,distFits$allDitrs,SEAex)
@@ -42,7 +42,7 @@ setMethod("final_pbox",
 
   distList<-unlist(unname(purrr::map(purrr::map_depth(allDitrs,1,"family"),1)))
 
-  allPar <- unname(purrr::map_depth(allDitrs,1,.coefAll2))
+  allPar <- unname(purrr::map_depth(allDitrs,1,coefAll2))
   # Function to modify the structure of each element in the list
   #modify_structure <- function(x) {names(x)<-gsub("eta.","",names(x));as.list(x)}
   # Applying the modification to each element of the list

@@ -4,21 +4,27 @@
 #'
 #' @name coefAll2
 #' @docType methods
+#' @rdname coefAll2
 #' @export
 #' @include pbox.R
+#' @aliases coefAll2
 #'
 #' @param obj An object.
 #' @param deviance Logical value indicating whether to compute deviance.
 #' @return A list of coefficients.
 #'
+#'
+#'@examples
+#'print("hello")
+#'
 
-setGeneric(".coefAll2",
-           def = function(obj, deviance = FALSE, ...) {
-             standardGeneric(".coefAll2")
+setGeneric("coefAll2",
+           def = function(obj, deviance = FALSE) {
+             standardGeneric("coefAll2")
            })
 
-setMethod(".coefAll2",
-          definition=function (obj, deviance = FALSE, ...){
+setMethod("coefAll2",
+          definition=function (obj, deviance = FALSE){
   #fix to issue with sigma in function coefAll of gamlss
   out <- list()
   if ("mu" %in% obj$parameters)

@@ -12,21 +12,15 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends:
-    data.table,
-    copula,
-    gamlss,
     gamlss.dist,
-    purrr,
-    stringr,
-    methods,
     R (>= 2.10)
 Imports: 
     data.table,
     copula,
     gamlss,
-    gamlss.dist,
     purrr,
-    stringr
+    stringr,
+    methods
 URL: https://www.r-project.org, https://github.com/athammad/pbox
 BugReports: https://github.com/athammad/pbox/issues
 RoxygenNote: 7.2.3
