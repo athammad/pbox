@@ -149,3 +149,15 @@ qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",fix
 
 library(goodpractice)
 goodpractice::gp()
+
+
+
+cop<-normalCopula(param = 0.5,dim = 4)
+distList<-c("RG" , "SN1", "RG","RG" )
+allDistrs<-list(list(mu = 31.07, sigma = 0.28),
+                list(mu = 34.4, sigma = 0.98, nu = 1.7),
+                list(mu = 31.4, sigma = 0.34),
+                list(mu = 25.6, sigma = 0.24))
+copSEA <- mvdc(cop, distList,
+               allDistrs)
+pbox::make_pbox(data=SEAex,copula=copSEA)
