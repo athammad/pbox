@@ -161,3 +161,12 @@ allDistrs<-list(list(mu = 31.07, sigma = 0.28),
 copSEA <- mvdc(cop, distList,
                allDistrs)
 pbox::make_pbox(data=SEAex,copula=copSEA)
+
+data(SEAex)
+pbx<-set_pbox(SEAex[,.(Malaysia,Thailand)])
+
+
+vecQuery <- c(31, 34)
+perProb(pbx, vecQuery)
+
+

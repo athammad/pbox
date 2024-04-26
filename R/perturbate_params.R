@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' paramMargins <- list(list(0.2, 0.3), list(0.4, 0.5))
-#' perturb_params(paramMargins)
+#' perturbate_params(paramMargins)
 #'
 #' @importFrom stats rbinom rnorm
 

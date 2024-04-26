@@ -19,8 +19,9 @@ The probability computed using a perturbed copula.
 Internal method to compute the probability using a perturbed copula.
 }
 \examples{
-bpx <- some_mvdc_object
-vecQuery <- c(0.5, 0.5)
-.perProb(bpx, vecQuery)
+data(SEAex)
+pbx<-set_pbox(SEAex[,.(Malaysia,Thailand)])
+vecQuery <- c(31, 34)
+perProb(pbx, vecQuery)
 
 }

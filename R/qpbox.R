@@ -23,25 +23,25 @@
 #' data("SEAex")
 #' pbx<-set_pbox(SEAex)
 #' #Get marginal distribution
-#' pbx["Malaysia:33",]
+#' qpbox(pbx,marginal="Malaysia:33",)
 #' #Get Joint distribution
-#' pbx["Malaysia:33 & Vietnam:34",]
+#' qpbox(pbx,marginal="Malaysia:33 & Vietnam:34",)
 #' #Get Joint distribution
-#' pbx["Vietnam:31", "avgRegion:26"]
+#' qpbox(pbx,marginal="Vietnam:31", conditonal="avgRegion:26")
 #' #Conditional distribtuion Pr(X <= x, Y <= y) / Pr(Y <= y)
-#' pbx["Malaysia:33 & Vietnam:31", "avgRegion:26"]
+#' qpbox(pbx,marginal=Malaysia:33 & Vietnam:31", conditonal="avgRegion:26")
 #' #Conditional distribtuion Pr(X <= x, Y <= y) / Pr(Y = y)
-#' pbx["Malaysia:33 & Vietnam:31", "avgRegion:26",fixed=TRUE]
+#' qpbox(pbx,"Malaysia:33 & Vietnam:31", "avgRegion:26",fixed=TRUE)
 #' # Joint distribution with values set on their respective mean value
-#' pbx["mean:c(Vietnam,Thailand)",lower.tail=TRUE]
+#' qpbox(pbx,"mean:c(Vietnam,Thailand)",lower.tail=TRUE)
 #' # Joint distribution with values set on their respective median value
-#' pbx["median:c(Vietnam, Thailand)",lower.tail=TRUE]
+#' qpbox(pbx,"median:c(Vietnam, Thailand)",lower.tail=TRUE)
 #' # Joint distribution with xxxx
-#' pbx["Malaysia:33 & mean:c(Vietnam, Thailand)",lower.tail=TRUE]
+#' qpbox(pbx,"Malaysia:33 & mean:c(Vietnam, Thailand)",lower.tail=TRUE)
 #' # Condtional distribtuion distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
-#' pbx["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)"]
+#' qpbox(pbx,"Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)")
 #' # Condtional distribtuion distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
-#' pbx["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)",CI=TRUE,iter=100]
+#' qpbox(pbx,"Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)",CI=TRUE,iter=100)
 #' @importFrom copula pMvdc cCopula
 #' @importFrom stats setNames
 #'
