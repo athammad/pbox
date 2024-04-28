@@ -40,43 +40,6 @@ pbx@fit
 ```{r, echo=TRUE, eval=FALSE}
 
 #Get marginal distribution
-pbx["Malaysia:33",]
-
-#Get Joint distribution
-pbx["Malaysia:33 & Vietnam:34",]
-
-#Get Joint distribution
-pbx["Vietnam:31", "avgRegion:26"]
-
-#Conditional distribution Pr(X <= x, Y <= y) / Pr(Y <= y)
-pbx["Malaysia:33 & Vietnam:31", "avgRegion:26"]
-
-#Conditional distribution Pr(X <= x, Y <= y) / Pr(Y = y)
-pbx["Malaysia:33 & Vietnam:31", "avgRegion:26",fixed=TRUE]
-
-# Joint distribution with values set on their respective mean value
-pbx["mean:c(Vietnam,Thailand)",lower.tail=T]
-
-# Joint distribution with values set on their respective median value
-pbx["median:c(Vietnam, Thailand)",lower.tail=T]
-
-# Joint distribution with mixed values
-pbx["Malaysia:33 & mean:c(Vietnam, Thailand)",lower.tail=T]
-
-# Conditional distribution distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
-pbx["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)", fixed=TRUE]
-
-# Estimate confidence intervals
-pbx["Vietnam:31 & avgRegion:26", "Malaysia:32",CI=T]
-
-```
-
-
-**Same results can be obtained with the functional interface**
-
-```{r, echo=TRUE, eval=FALSE}
-
-#Get marginal distribution
 qpbox(pbx,marginal = "Malaysia:33")
 
 #Get Joint distribution
@@ -102,6 +65,11 @@ remotes::install_github("athammad/pbox")
 
 To report bugs/issues/feature requests, please file an [issue](https://github.com/athammad/pbox/issues/).
 
+## TO DO
 
+
+-   Add tests for all functions
+-   Finalise Vignette
+-   Improve documentation
 
 
