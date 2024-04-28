@@ -1,26 +1,33 @@
 #' Calculate Basic Statistics
 #'
-#' Internal function used to calculate mean and median as part of the query.
-#'
+#' Computes basic statistics such as mean and median for specified variables in a data frame or data table
+#' based on a set of operations specified in the `matches` data frame. This function updates the `varSet`
+#' with the computed results for each variable.
 #' @name stats_calc
-#' @docType methods
 #' @export
-#' @include pbox.R
-#'
-#' @param data A \code{data.frame} or \code{data.table}.
-#' @param matches A \code{data.frame} with user query.
-#' @param varSet A \code{data.frame} with variable names.
-#'
-#' @return A modified \code{varSet} with the calculated results.
-#'
+#' @param data A data frame or data table containing the data to analyze.
+#' @param matches A data frame specifying the variables and operations to apply.
+#'   This data frame should have columns `Operator` and `Varnames2`, where `Operator` is the operation
+#'   (either "mean" or "median") and `Varnames2` is a comma-separated list of variable names to which the
+#'   operation will be applied.
+#' @param varSet A data frame that contains variable names that may be updated with the results of the calculations.
+#' @return Returns a modified version of `varSet` with updated values based on the calculations.
 #' @importFrom data.table as.data.table
-#' @import methods
 #' @importFrom stats median
-#'
+#' @import methods
 setGeneric("stats_calc",
-           def = function(data, matches,varSet) {
+           def = function(data, matches, varSet) {
              standardGeneric("stats_calc")
            })
+
+#' @rdname stats_calc
+#' @description Method implementation for calculating statistics using 'data.table' and 'stats'.
+#' This method allows the computation of mean and median for subsets of data defined
+#' in `matches` and updates `varSet` with these results.
+#' @param data A data frame or data table.
+#' @param matches A data frame describing the operations to apply.
+#' @param varSet A data frame to be updated with results.
+#'
 
 setMethod("stats_calc",
           definition=function(data, matches,varSet) {

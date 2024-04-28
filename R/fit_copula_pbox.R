@@ -1,42 +1,45 @@
 ##############################################################
-#' Copula Fit
+#' Fit Copula Models to Data
 #'
-#' Method to automatically find the best Copula given a data.frame. Wrapper around the function \code{fitCopula}.
+#' Automatically fits various copula models specified in a list to the provided data.
+#' This function is a wrapper around the underlying copula fitting function, facilitating
+#' the exploration of multiple copula families to identify the best fitting model based
+#' on criteria such as AIC.
 #'
 #' @name fit_copula_pbox
 #' @docType methods
 #' @export
 #' @include pbox.R
-#'
-#' @param data A \code{data.frame} or \code{data.table} (the data will be coerced to a \code{data.table} internally).
-#' @param .copula_families List of copula types  and their corresponding families Currently \bold{pbox} supports only Archimedean, Elliptical and Extreme-Value copula.
-#' Currently supported families are "clayton", "frank", "amh", "gumbel", and "joe" for Archimedean Copula.
-#' "galambos", "gumbel" and "huslerReiss" for Extreme-Value copula.
-#' "normal" and "t" for Elliptical copula.
-#'
-#' @return a data.table with the correspondent AIC and the parameter estimates of the evaluated copulas and families.
-#'
-#'
+#' @param data A data frame or data table; the data will be coerced to a `data.table` internally.
+#' @param .copula_families A list specifying copula families to evaluate.
+#'        The list should be structured with names corresponding to the type of copula
+#'        (e.g., 'archmCopula', 'evCopula', 'ellipCopula') and elements being vectors
+#'        of strings naming the copula families (e.g., "clayton", "frank").
+#' @return A data table summarizing the AIC and parameter estimates for each copula family evaluated.
 #' @examples
-#' data(SEAex)
-#' # Define the copula families and their corresponding parameters
-#'  .copula_families <- list(
-#'  archmCopula = c("clayton", "frank", "gumbel", "joe"),# "amh",
-#'  evCopula = c("galambos", "gumbel", "huslerReiss" ),#"tawn" #"tev"
-#'  ellipCopula = c("normal")# "t"
-#')
-#' distFits<- fit_copula_pbox(data=SEAex,.copula_families)
-#' distFits
-#'
-#'
+#' \dontrun{
+#'   data("SEAex")
+#'   .copula_families <- list(
+#'     archmCopula = c("clayton", "frank", "gumbel", "joe"),
+#'     evCopula = c("galambos", "gumbel", "huslerReiss"),
+#'     ellipCopula = c("normal")
+#'   )
+#'   distFits <- fit_copula_pbox(data = SEAex, .copula_families)
+#'   print(distFits)
+#' }
 #' @importFrom stats setNames
 #' @importFrom utils stack
-
-
 setGeneric("fit_copula_pbox",
-           def = function(data,.copula_families) {
+           def = function(data, .copula_families) {
              standardGeneric("fit_copula_pbox")
            })
+
+#' @rdname fit_copula_pbox
+#' @description
+#' `fit_copula_pbox` method to fit a variety of copula models to data.
+#' This method performs a grid search over specified copula families to find the best fit.
+#' It employs the pseudoinverse of the empirical distribution functions to standardize the data.
+
 
 setMethod("fit_copula_pbox",
           definition=function(data,.copula_families){

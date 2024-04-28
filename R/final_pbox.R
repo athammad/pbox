@@ -1,37 +1,37 @@
 ##############################################################
-#' Fit the \code{mvdc} object.
+#' Build a Multivariate Distribution from Copula
 #'
-#' Combine all the results from \code{fit_copula_pbox} and \code{fit_dist_pbox} to build a Multivariate Distributions from Copula.
+#' Combines the results from `fit_copula_pbox` and `fit_dist_pbox` to build a multivariate distribution from copula,
+#' selecting the best copula based on AIC and utilizing the best-fitted marginal distributions.
 #'
 #' @name final_pbox
-#' @docType methods
 #' @export
-#' @include pbox.R
-#'
-#'
-#' @param results_df The data.table with the correspondent AIC and the parameter estimates of the evaluated copulas and families resulting from \code{fit_copula_pbox}.
-#' @param allDitrs The list of the fitted distributions for each variable resulting from \code{fit_dist_pbox}.
-#' @param data A \code{data.frame} or \code{data.table} (the data will be coerced to a \code{data.table} internally).
-#' @return An object of class \code{mvdc}.
-#'
-#'
-#'
+#' @param results_df A data.table with AIC and parameter estimates of evaluated copulas and families from `fit_copula_pbox`.
+#' @param allDitrs A list containing fitted distributions for each variable from `fit_dist_pbox`.
+#' @param data A data frame or data table; this will be coerced to a `data.table` internally.
+#' @return An object of class `mvdc` representing the combined multivariate distribution.
 #' @examples
-#' data(SEAex)
-#' copulaFits<- fit_copula_pbox(data=SEAex,.copula_families)
-#' distFits<- fit_dist_pbox(data=SEAex)
-#'
-#' final_pbox(copulaFits,distFits$allDitrs,SEAex)
-#'
+#' \dontrun{
+#'   data("SEAex")
+#'   copulaFits <- fit_copula_pbox(data = SEAex, .copula_families)
+#'   distFits <- fit_dist_pbox(data = SEAex)
+#'   final_mvd <- final_pbox(copulaFits, distFits$allDitrs, SEAex)
+#'   print(final_mvd)
+#' }
 #' @importFrom utils getFromNamespace
 #' @importFrom purrr map_depth map
 #' @importFrom copula mvdc
 
-
 setGeneric("final_pbox",
-           def = function(results_df,allDitrs,data) {
+           def = function(results_df, allDitrs, data) {
              standardGeneric("final_pbox")
            })
+
+#' @rdname final_pbox
+#' @description
+#' Method to construct a `mvdc` object by combining best-fit copula and marginal distribution results.
+#' The method uses the best copula model as determined by the lowest AIC and combines it with
+#' marginal distributions fitted to each variable.
 
 setMethod("final_pbox",
           definition=function(results_df,allDitrs,data){
@@ -50,11 +50,11 @@ setMethod("final_pbox",
 
   finalCop <- copula::mvdc(cop, distList,allPar)
 
-  cat("---Final fitted copula---\n")
+  cat("\n\n---Final fitted copula---\n")
   cat("Copula Type:",bestCopula$copula,"\n")
   cat("Family:",bestCopula$family,"\n")
   cat("parameter:",bestCopula$coef,"\n")
-  cat("--------------------\n")
+  cat("--------------------------\n")
   return(finalCop)
 })
 

@@ -3,11 +3,12 @@
 #'
 #' Internal method to automatically find the best Copula given a data.frame. Wrapper around the function \code{fitCopula}.
 #'
-#' @name .fit_copula
+#' @name fit_copula
 #' @docType methods
 #' @export
 #' @include pbox.R
-#'
+#' @aliases .fit_copula
+#' @usage .fit_copula(copula, family, dim, u)
 #' @param copula A \code{data.frame} or \code{data.table} (the data will be coerced to a \code{data.table} internally).
 #' @param family List of copula types and their corresponding families. Currently supported families are "clayton", "frank", "amh", "gumbel", and "joe" for Archimedean Copula; "galambos", "gumbel", and "huslerReiss" for Extreme-Value copula; "normal" and "t" for Elliptical copula.
 #' @param dim number of columns of data.
@@ -21,12 +22,19 @@
 #' @importFrom stats AIC
 #' @importFrom utils getFromNamespace
 
-
 setGeneric(".fit_copula",
            def = function(copula, family, dim, u) {
              standardGeneric(".fit_copula")
            })
-
+#'
+#' @rdname fit_copula
+#' @description
+#' Automatically fits a copula model using the provided pseudo-observations.
+#' This method supports various families of copulas and calculates the corresponding AIC
+#' and parameter estimates. It's designed to integrate seamlessly with other functions
+#' that require copula models, such as those for building more complex multivariate models.
+#'
+#'
 setMethod(".fit_copula",
           definition=function(copula, family, dim, u) {
   if (dim > 2 && family %in% c("amh", "galambos", "huslerReiss", "tawn", "tev")) {
@@ -45,9 +53,4 @@ setMethod(".fit_copula",
        )
 
 
-# Define the copula families and their corresponding parameters
-.copula_families <- list(
-  archmCopula = c("clayton", "frank", "gumbel", "joe"),# "amh",
-  evCopula = c("galambos", "gumbel", "huslerReiss" ),#"tawn" #"tev"
-  ellipCopula = c("normal")# "t"
-)
+

@@ -19,3 +19,6 @@ setClass("pbox",
          slots = c(data = "data.table",
                    copula="mvdc",
                    fit="list"))
+
+
+globalVariables(c(".", "..varnames", "Operator","Value", "Varnames" ,"Varnames2" ,"pbx"))

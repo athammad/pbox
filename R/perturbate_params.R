@@ -1,25 +1,33 @@
 #' Perturb Parameters
 #'
-#' Method to perturb parameters of copula distributions.
+#' This function defines a generic function to perturb parameter values for each distribution
+#' within a copula, using random perturbations to simulate variability or uncertainty.
 #'
 #' @name perturbate_params
-#' @docType methods
 #' @export
-#'
-#' @param paramMargins A list of parameter values for each distribution in the copula.
-#'
-#' @return A list of perturbed parameter values.
-#'
+#' @importFrom stats rbinom rnorm
+#' @param paramMargins A list containing lists of parameter values for each distribution in the copula.
+#' @return A list of lists containing perturbed parameter values.
 #' @examples
 #' paramMargins <- list(list(0.2, 0.3), list(0.4, 0.5))
-#' perturbate_params(paramMargins)
-#'
-#' @importFrom stats rbinom rnorm
-
+#' perturbed <- perturbate_params(paramMargins)
+#' print(perturbed)
 setGeneric("perturbate_params",
            def = function(paramMargins) {
              standardGeneric("perturbate_params")
            })
+
+#' Perturb Parameters Method
+#'
+#' This method implements the generic `perturbate_params` function specifically
+#' for lists of copula distribution parameters. It applies a random perturbation
+#' to each parameter based on a normal distribution centered at zero with a
+#' standard deviation of 0.05.
+#'
+#' @param paramMargins A list containing lists of parameter values for each distribution in the copula.
+#' @return A list of lists containing perturbed parameter values.
+#' @importFrom stats rbinom rnorm
+#' @seealso \code{\link{perturbate_params}} for the generic function definition.
 
 setMethod("perturbate_params",
           definition=function(paramMargins) {

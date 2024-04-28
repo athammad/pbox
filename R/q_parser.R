@@ -1,28 +1,33 @@
 #' Parse Query
 #'
-#' Internal function used to parse a query to explore a pbox object.
+#' This function defines a generic function to parse a string query into structured
+#' data that can be used to explore a pbox object. It extracts components of the query
+#' using regular expression matching.
 #'
 #' @name q_parser
-#' @docType methods
 #' @export
-#' @include pbox.R
-#'
-#' @param query A string representing the query.
-#'
-#' @return A table with the parsed elements of the query.
-#'
-#' @examples
-#' query <- "some_query_string"
-#' q_parser(query)
-#'
 #' @importFrom data.table as.data.table
 #' @importFrom stringr str_match_all
-
-
+#' @param query A string representing the query.
+#' @return A data table with columns 'Varnames', 'Value', 'Operator', and 'Varnames2',
+#'         where numeric values are converted to numeric type, and unnecessary columns are removed.
+#' @examples
+#' query <- "Vietnam:23"
+#' q_parser(query)
 setGeneric("q_parser",
            def = function(query) {
              standardGeneric("q_parser")
            })
+
+#' Method for Parsing Queries
+#'
+#' Implements the `q_parser` function specifically for string input. It uses a regular
+#' expression to split the query into its components, converting numeric strings to numeric
+#' values where applicable, and structuring the result as a data table for easy manipulation.
+#'
+#' @param query A string representing the query.
+#' @return A data table with the parsed elements of the query.
+#' @seealso \code{\link{q_parser}} for the generic function definition.
 
 setMethod("q_parser",
           definition= function(query){

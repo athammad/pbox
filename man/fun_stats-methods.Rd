@@ -3,22 +3,24 @@
 \docType{methods}
 \name{fun_stats}
 \alias{fun_stats}
+\alias{fun_stats,numeric}
 \title{Summary Statistics}
 \usage{
 fun_stats(x)
 }
 \arguments{
-\item{x}{A numeric vector.}
+\item{x}{A numeric vector for which summary statistics are to be computed.}
 }
 \value{
 A list containing the minimum, maximum, mean, and median of the input vector.
 }
 \description{
-Internal method to compute summary statistics of a numeric vector.
+Computes summary statistics for a numeric vector. This function is an S4 method
+for the generic 'fun_stats', specifically tailored for numeric vectors. It calculates
+the minimum, maximum, mean, and median values.
 }
 \examples{
 x <- c(1, 2, 3, 4, 5)
 fun_stats(x)
-
 
 }

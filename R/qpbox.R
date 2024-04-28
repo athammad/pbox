@@ -1,58 +1,46 @@
 ##############################################################
 #' Query the probabilistic space of a pbox object.
 #'
-#' Combine all the results from \code{fit_copula_pbox} and \code{fit_dist_pbox} to build a Multivariate Distributions from Copula.
+#' This function queries the probabilistic space of a pbox object to calculate probabilities
+#' associated with specific marginal or conditional distributions. It supports conditional
+#' probability calculations and can optionally estimate confidence intervals through bootstrapping.
 #'
 #' @name qpbox
-#' @docType methods
 #' @export
-#' @include pbox.R
-#' @aliases qpbox
-#'
-#' @param x object of class \bold{pbox} from which to query the probabilistic space.
-#' @param marginal character; string used to query the marginal and joint distribution of the variable. Must specify the variable and the value in the following format 'Var:Val'
-#' @param conditional character; string used to query the marginal and conditional distribution of the variable. Must specify the variable and the value in the following format 'Var:Val'
-#' @param lower.tail logical; if TRUE (default), probabilities are calculated for the area to the right of the specified value.
-#' @param fixed logical; if TRUE (default), probabilities are \eqn{P(X \leq x | Y = y)}
-#' @param CI logical; if TRUE, calculate bootstrap confidence intervals. See notes for details.
-#' @param iter number of replications for the confidence interval calculation. 1000 by default.
-#'
-#' @return Estimated probability.
-#'
+#' @param x An object of class \code{pbox} from which to query the probabilistic space.
+#' @param marginal A character string specifying the marginal and joint distribution of the variable.
+#'        It must specify the variable and the value in the format 'Var:Val'.
+#' @param conditional A character string specifying the marginal and conditional distribution of the variable.
+#'        It must specify the variable and the value in the format 'Var:Val'.
+#' @param lower.tail Logical; if TRUE (default), probabilities are calculated for the area to the right of the specified value.
+#' @param fixed Logical; if TRUE, calculates conditional probabilities with conditions treated as fixed.
+#' @param CI Logical; if TRUE, calculates bootstrap confidence intervals.
+#' @param iter Integer; the number of replications for the confidence interval calculation. Default is 1000.
+#' @return Estimated probabilities as a numeric value or a named vector including confidence intervals if requested.
 #' @examples
-#' data("SEAex")
-#' pbx<-set_pbox(SEAex)
-#' #Get marginal distribution
-#' qpbox(pbx,marginal="Malaysia:33",)
-#' #Get Joint distribution
-#' qpbox(pbx,marginal="Malaysia:33 & Vietnam:34",)
-#' #Get Joint distribution
-#' qpbox(pbx,marginal="Vietnam:31", conditonal="avgRegion:26")
-#' #Conditional distribtuion Pr(X <= x, Y <= y) / Pr(Y <= y)
-#' qpbox(pbx,marginal=Malaysia:33 & Vietnam:31", conditonal="avgRegion:26")
-#' #Conditional distribtuion Pr(X <= x, Y <= y) / Pr(Y = y)
-#' qpbox(pbx,"Malaysia:33 & Vietnam:31", "avgRegion:26",fixed=TRUE)
-#' # Joint distribution with values set on their respective mean value
-#' qpbox(pbx,"mean:c(Vietnam,Thailand)",lower.tail=TRUE)
-#' # Joint distribution with values set on their respective median value
-#' qpbox(pbx,"median:c(Vietnam, Thailand)",lower.tail=TRUE)
-#' # Joint distribution with xxxx
-#' qpbox(pbx,"Malaysia:33 & mean:c(Vietnam, Thailand)",lower.tail=TRUE)
-#' # Condtional distribtuion distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
-#' qpbox(pbx,"Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)")
-#' # Condtional distribtuion distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
-#' qpbox(pbx,"Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)",CI=TRUE,iter=100)
+#' \dontrun{
+#'   data("SEAex")
+#'   pbx <- set_pbox(SEAex)
+#'   # Get marginal distribution
+#'   qpbox(pbx, marginal="Malaysia:33")
+#'   # Get conditional distribution with fixed conditions
+#'   qpbox(pbx, marginal="Malaysia:33 & Vietnam:31", conditional="avgRegion:26", fixed=TRUE)
+#' }
 #' @importFrom copula pMvdc cCopula
+#' @importFrom data.table setDT
 #' @importFrom stats setNames
-#'
-#'
-
-
 
 setGeneric("qpbox",
            def = function(x,marginal="character",conditional="character", lower.tail=TRUE,fixed=FALSE,CI=FALSE,iter=1000) {
              standardGeneric("qpbox")
            })
+
+
+#' @rdname qpbox
+#' @description
+#' This method processes the \code{pbox} object to compute probabilities based on the specified marginal
+#' and conditional parameters. It handles both simple probability calculations and complex queries involving
+#' joint and conditional distributions, with an option for bootstrap confidence interval estimation.
 
 setMethod("qpbox", signature = "pbox",
           definition = function(x,marginal="character",conditional="character", lower.tail=TRUE,fixed=FALSE,CI=FALSE,iter=1000) {

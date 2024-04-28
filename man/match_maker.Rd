@@ -8,15 +8,17 @@
 match_maker(varSet, matches, data)
 }
 \arguments{
-\item{varSet}{A string describing the variable set.}
+\item{varSet}{A data frame or list describing the variable set.}
 
-\item{matches}{A description of matches.}
+\item{matches}{A data frame describing the matches with potential additional control parameters.}
 
-\item{data}{A description of the data.}
+\item{data}{A data frame representing the data to be queried.}
 }
 \value{
-A table with the value to be queried of each column/marginal distribution of the data.
+A modified version of `varSet` with values updated based on `matches`.
 }
 \description{
-Internal function used to generate the query vector to explore the probabilistic space.
+This function defines a generic function for creating a query vector to explore
+the probabilistic space based on provided matches and data. It is used internally
+to handle different types of inputs efficiently.
 }

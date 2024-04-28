@@ -1,7 +1,10 @@
 ##############################################################
-#' Create a probability box from data.
+#' Create a Probability Box from Data
 #'
-#' Method to automatically find the best marginal distribution and copula for a give dataset.
+#' Constructs a probability box (pbox) by automatically selecting the best marginal distribution
+#' and copula for a given dataset. This function facilitates the creation of a pbox object,
+#' which encapsulates the uncertainty and dependencies of the input data.
+#'
 #'
 #' @docType methods
 #' @name set_pbox
@@ -9,32 +12,35 @@
 #' @export
 #' @include pbox.R
 #'
-#' @param data A \code{data.frame} or \code{data.table} (the data will be coerced to a \code{data.table} internally).
-#' @param ... Other arguments to be passed to \code{fitDist}.
-#' @return an object of class \code{pbox} with 3 slots:
-#'
-#' \code{data}: The original data coerced to a data.table.
-#'
-#' \code{copula}: The copula object of class \code{mvdc}.
-#'
-#' \code{fit}: The results of the automated selection for both the marginal distribution and the copula.
-#'
+#' @export
+#' @param data A data frame or data table. The data will be coerced to a `data.table` internally.
+#' @param ... Other arguments to be passed to the `fitDist` function.
+#' @return An object of class `pbox` with the following slots:
+#'         - `@data`: The original data coerced into a `data.table`.
+#'         - `@copula`: The selected copula object, typically of class `mvdc`.
+#'         - `@fit`: A list containing results from the automated selection processes for
+#'           both the marginal distributions and the copula.
 #' @examples
-#' data("SEAex")
-#' pbx<- set_pbox(data=SEAex)
-#' pbx
-#' class(pbx)
-#'
+#' \dontrun{
+#'   data("SEAex")
+#'   pbx <- set_pbox(data = SEAex)
+#'   print(pbx)
+#'   print(class(pbx))
+#' }
 #' @importFrom gamlss fitDist
 #' @import gamlss.dist
-
-
-
-
 setGeneric("set_pbox",
            def = function(data, ...) {
-  standardGeneric("set_pbox")
-})
+             standardGeneric("set_pbox")
+           })
+
+#' @rdname set_pbox
+#' @description
+#' `set_pbox` method that utilizes data frames or data tables to configure a comprehensive
+#' pbox structure. The method involves stages of distribution fitting and copula selection,
+#' executed through external functions presumed to be available in the working environment
+#' or described in the package.
+#'
 
 setMethod("set_pbox",
           definition = function(data,...) {
@@ -47,7 +53,7 @@ setMethod("set_pbox",
   CopulaSearch<-fit_copula_pbox(data,.copula_families)
 
   finalCopula<-final_pbox(CopulaSearch,distSearch$allDitrs,data)
-  cat("pbox object genrated!")
+  cat("pbox object generated!")
 
   obj <- new("pbox", data =data, copula=finalCopula,fit=list(distSearch,CopulaSearch))
 

@@ -1,41 +1,45 @@
-##############################################################
-#' Marginal Distributions Fit
+#' Fit Marginal Distributions
 #'
-#' Method to automatically find the best marginal distribution of each variable in a data.frame.
+#' Fits the best marginal distribution for each variable in a data frame using the `gamlss::fitDist`
+#' function from the GAMLSS package. This function is designed to evaluate multiple distributions,
+#' returning a summary of fit for each, along with the Akaike Information Criterion (AIC) for comparison.
 #'
 #' @name fit_dist_pbox
-#' @docType methods
 #' @export
-#' @include pbox.R
-#'
-#' @param data A \code{data.frame} or \code{data.table} (the data will be coerced to a \code{data.table} internally).
-#' @param ... Other arguments to be passed to \code{fitDist}.
-#' @return a list containing 2 elements:
-#'
-#' \code{allDitrs}: List of the fitted distributions for each variable.
-#'
-#' \code{distTable}: \code{data.frame} with numeric value with the corresponding Akaike's Information Criterion \bold{AIC} for each distribution tested.
-#'
-#'
+#' @param data A data frame or data table that contains the variables for which distributions
+#'        will be fitted. The data will be coerced to a data.table internally if not already one.
+#' @param ... Additional arguments passed to the `fitDist` function.
+#' @return A list containing two elements:
+#'         \item{allDitrs}{List of the fitted distributions for each variable.}
+#'         \item{distTable}{A data table displaying the AIC for each tested distribution.}
 #' @examples
-#' data(SEAex)
-#' distFits<- fit_dist_pbox(data=SEAex)
-#' distFits$allDitrs
-#' distFits$distTable
-#'
+#' \dontrun{
+#'   data(SEAex)
+#'   distFits <- fit_dist_pbox(data=SEAex)
+#'   print(distFits$allDitrs)
+#'   print(distFits$distTable)
+#' }
 #' @importFrom gamlss fitDist
 #' @importFrom purrr map_depth
 #' @importFrom data.table data.table
-
 setGeneric("fit_dist_pbox",
-           def = function(data,...) {
+           def = function(data, ...) {
              standardGeneric("fit_dist_pbox")
            })
+
+#' @rdname fit_dist_pbox
+#' @description
+#' Implements the generic function `fit_dist_pbox` for data frames and data tables.
+#' This method utilizes statistical techniques to fit distributions to each column in the `data`
+#' argument, evaluating fit using criteria like AIC to determine the best fitting model.
+#' @param data A data frame or data table.
+#' @param ... Additional parameters to pass to the fitting function.
+
 
 setMethod("fit_dist_pbox",
           definition=function(data,...){
 
-  allDitrs<-lapply(data,function(x) gamlss::fitDist(x,...))
+  allDitrs<-lapply(data,function(x)  suppressWarnings(gamlss::fitDist(x, ...)))
   distTable<-data.table::data.table(do.call(cbind,purrr::map_depth(allDitrs,1,"fits")), keep.rownames="DIST")
   return(list(allDitrs=allDitrs,distTable=distTable))
 })
