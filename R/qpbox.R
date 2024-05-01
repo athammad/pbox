@@ -49,6 +49,9 @@ setMethod("qpbox", signature = "pbox",
             if (!inherits(x, c("pbox"))) {
               stop("Input must be a pbox object!")
             }
+            if (fixed==TRUE & missing(conditional)) {
+              stop("Conditional query is missing!")
+            }
 
             Varnames<-names(x@data)
             Value<-rep(Inf,ncol(x@data))
@@ -60,8 +63,9 @@ setMethod("qpbox", signature = "pbox",
             if (missing(conditional)) {
               # If only `marginal` is provided, subset rows
               marginal<- gsub("[[:blank:]]", "",marginal)
-              if (!grepl(":", marginal)) {
-                stop("Please specify the variable and the value in the following format 'Var:Val'")
+              valid_format <- grepl("^([a-zA-Z]+:(\\d+(\\.\\d+)?|[a-zA-Z]+\\(.*\\)),?(&[a-zA-Z]+:(\\d+(\\.\\d+)?|[a-zA-Z]+\\(.*\\)),?)*$)", marginal)
+              if (!valid_format) {
+                stop("Please specify the marginal in the following format 'Variable1:Value1 & Variable2:Value2'")
               }
               if (!is.character(marginal)) {
                 stop("Expecting a string to query the pbox!")
@@ -87,8 +91,10 @@ setMethod("qpbox", signature = "pbox",
               # If both `marginal` and `conditional` are provided, subset rows and select columns
               cond<-lapply(list(marginal,conditional),function(z){
                 z<-gsub("[[:blank:]]", "",z)
-                if (!grepl(":", z)) {
-                  stop("Please specify the variable and the value in the following format 'Var:Val'")
+                valid_format <- grepl("^([a-zA-Z]+:(\\d+(\\.\\d+)?|[a-zA-Z]+\\(.*\\)),?(&[a-zA-Z]+:(\\d+(\\.\\d+)?|[a-zA-Z]+\\(.*\\)),?)*$)", z)
+
+                if (!valid_format) {
+                  stop("Please specify the conditional in the following format 'Variable1:Value1 & Variable2:Value2'")
                 }
                 if (!is.character(z)) {
                   stop("Expecting a string to query the pbox!")

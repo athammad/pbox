@@ -34,6 +34,7 @@ Collate:
     'fit_copula_pbox.R'
     'fit_dist_pbox.R'
     'fun_stats.R'
+    'grid_pbox.R'
     'make_pbox.R'
     'match_maker.R'
     'perProb.R'

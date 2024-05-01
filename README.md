@@ -1,6 +1,6 @@
 # PBOX <img src="./other/pboxIcon.png" align="right" height="138"/>
 
-### Version 0.1.1 (BETA)
+### Version 0.1.2 (BETA)
 
 ## Overview
 
@@ -50,6 +50,15 @@ qpbox(pbx,marginal = "Malaysia:33 & median:c(Vietnam,Thailand)", conditional="me
 
 # Estimate confidence intervals
 qpbox(pbx,marginal = "Vietnam:31 & avgRegion:26", conditional="Malaysia:32",CI=T)
+
+
+```
+
+**Map the probabilistic space with a gird of quantile values**
+
+```{r, echo=TRUE, eval=FALSE}
+
+grid_pbox(pbx, mj = c("Vietnam", "Malaysia"))
 
 
 ```

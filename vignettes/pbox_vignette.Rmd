@@ -28,6 +28,8 @@ qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32", fi
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",CI=T, fixed = T)
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",fixed = T)
 
+#Map the probabilistic space with a gird of quantile values
+grid_pbox(pbx, mj = c("Vietnam", "Malaysia"))
 ```
 
 

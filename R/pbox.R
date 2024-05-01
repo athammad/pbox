@@ -21,4 +21,5 @@ setClass("pbox",
                    fit="list"))
 
 
-globalVariables(c(".", "..varnames", "Operator","Value", "Varnames" ,"Varnames2" ,"pbx"))
+globalVariables(c(".", "..varnames", "Operator","Value", "Varnames" ,"Varnames2" ,"pbx",
+                  '..co', '..cols', '..mj'))

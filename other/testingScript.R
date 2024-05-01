@@ -15,7 +15,7 @@ goodpractice::gp()
 roxygen2::roxygenise()
 pkgload::load_all()
 data(SEAex)
-dai<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam,avgRegion)],try.gamlss=T)
+dai<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam,avgRegion)])
 print(dai)
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26")
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",CI=T)
@@ -23,7 +23,7 @@ qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32")
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",CI=T)
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32", fixed = T)
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",CI=T, fixed = T)
-
+grid_pbox(dai,mj=c("Vietnam","avgRegion"))
 
 
 
@@ -46,41 +46,68 @@ dai["Malaysia:33 & mean:c(Vietnam, Thailand)",lower.tail=T]
 dai["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)", fixed=TRUE]
 
 
-qpbox(dai,marginal = "Vietnam:31 & avgRegion:26")
+qpbox(dai,marginal = "Vietnam:31 & avgRegion:26 & Malaysia:32")
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",CI=T)
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32")
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",CI=T)
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32", fixed = T)
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",CI=T, fixed = T)
+##############################################
+##############################################
+##############################################
+#enforce class pbox
+grid_pbox<-function(pbx,mj,co=NULL,probs=seq(0, 1, 0.1),...){
+
+cols<-c(mj,co)
+qframe<-as.data.frame(apply(pbx@data[, ..cols], 2, quantile, probs = probs))
+qgrid<-expand.grid(as.list(qframe))
+setDT(qgrid)
+generate_string <- function(row) {
+  string <- paste(names(row), row, sep=":", collapse=" & ")
+  return(string)
+}
+if(is.null(co)){
+  allCombo <- apply(qgrid, 1, generate_string)
+  qgrid$probs<-lapply(allCombo,function(x){
+    qpbox(pbx,marginal =x,...)
+  })}else{
+    mjCombo <- apply(qgrid[,..mj], 1, generate_string)
+    coCombo <- apply(qgrid[,..co], 1, generate_string)
+    allCombo<-cbind.data.frame(mjCombo,coCombo)
+    qgrid$probs<-apply(allCombo,1,function(x){
+      qpbox(pbx,marginal = x["mjCombo"], conditional = x["coCombo"],...)})
+
+  }
+return(qgrid)
+
+}
+
+qgrid[which.max(qgrid$probs),]
+qgrid[which.min(qgrid$probs),]
+mj = c("Vietnam",'Malaysia')
+co="avgRegion"
 
 
+qframe<-as.data.frame(apply(dai@data[, ..cols], 2, quantile, probs = seq(0, 1, 0.1)))
+qgrid<-expand.grid(as.list(qframe))
+setDT(qgrid)
+generate_string <- function(row) {
+  string <- paste(names(row), row, sep=":", collapse=" & ")
+  return(string)
+}
+if(is.null(co)){
+allCombo <- apply(qgrid, 1, generate_string)
+qgrid$probs<-lapply(allCombo,function(x){
+  qpbox(pbx,marginal =x,...)
+})}else{
+  mjCombo <- apply(qgrid[,..mj], 1, generate_string)
+  coCombo <- apply(qgrid[,..co], 1, generate_string)
+  allCombo<-cbind.data.frame(mjCombo,coCombo)
+  qgrid$probs<-apply(allCombo,1,function(x){
+    qpbox(dai,marginal = x["mjCombo"], conditional = x["coCombo"],...)})
 
-dai["Malaysia:33 & median:c(Vietnam,Thailand)", "avgRegion:27", fixed=TRUE]
-qpbox(dai,marginal ="Malaysia:33 & median:c(Vietnam,Thailand)",conditional ="avgRegion:27",fixed = T)
-lapply(paste0("avgRegion:",c(21:35)),function(x) {
-  print(x)
-  #dai["Malaysia:33 & median:c(Vietnam,Thailand)", x, fixed=TRUE]
-  qpbox(dai,marginal ="Malaysia:33 & median:c(Vietnam,Thailand)",conditional =x,fixed = T)
-
-  })
-
-
-lapply(paste0("avgRegion:",c(21:35)),function(x) {
-  print(x)
-  #dai["Malaysia:33 & median:c(Vietnam,Thailand)", x, fixed=TRUE]
-  dai@data[avgRegion==x]
-#  qpbox(dai,marginal ="Malaysia:33 & median:c(Vietnam,Thailand)",conditional =x,fixed = T)
-
-})
-
-lapply(paste0("avgRegion:",c(23:26)),function(x) {
-  print(x)
-  #dai["Malaysia:33 & median:c(Vietnam,Thailand)", x, fixed=TRUE]
-  qpbox(dai,marginal =x)
-  #  qpbox(dai,marginal ="Malaysia:33 & median:c(Vietnam,Thailand)",conditional =x,fixed = T)
-
-})
-
+}
+#############################################################
 qpbox(dai,marginal ="avgRegion:35")
 
 qpbox(dai,marginal ="avgRegion:35")
@@ -202,5 +229,13 @@ qpbox(pbx,"Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)")
 # Conditional distribution distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
 qpbox(pbx,"Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)",CI=TRUE,iter=100)
 
+###################################################################################
+pkgload::load_all()
+data(SEAex)
+dai<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam,avgRegion)])
+print(dai)
 
-suppressWarnings(gamlss::fitDist(SEAex$Malaysia))
+
+
+
+
