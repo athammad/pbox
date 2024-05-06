@@ -7,8 +7,8 @@
 \usage{
 qpbox(
   x,
-  marginal = "character",
-  conditional = "character",
+  mj = "character",
+  co = "character",
   lower.tail = TRUE,
   fixed = FALSE,
   CI = FALSE,
@@ -17,8 +17,8 @@ qpbox(
 
 \S4method{qpbox}{pbox}(
   x,
-  marginal = "character",
-  conditional = "character",
+  mj = "character",
+  co = "character",
   lower.tail = TRUE,
   fixed = FALSE,
   CI = FALSE,
@@ -28,10 +28,10 @@ qpbox(
 \arguments{
 \item{x}{An object of class \code{pbox} from which to query the probabilistic space.}
 
-\item{marginal}{A character string specifying the marginal and joint distribution of the variable.
+\item{mj}{A character string specifying the marginal and or joint distribution of the variable.
 It must specify the variable and the value in the format 'Var:Val'.}
 
-\item{conditional}{A character string specifying the marginal and conditional distribution of the variable.
+\item{co}{A character string specifying the marginal and conditional distribution of the variable.
 It must specify the variable and the value in the format 'Var:Val'.}
 
 \item{lower.tail}{Logical; if TRUE (default), probabilities are calculated for the area to the right of the specified value.}
@@ -59,8 +59,8 @@ joint and conditional distributions, with an option for bootstrap confidence int
   data("SEAex")
   pbx <- set_pbox(SEAex)
   # Get marginal distribution
-  qpbox(pbx, marginal="Malaysia:33")
+  qpbox(pbx, mj="Malaysia:33")
   # Get conditional distribution with fixed conditions
-  qpbox(pbx, marginal="Malaysia:33 & Vietnam:31", conditional="avgRegion:26", fixed=TRUE)
+  qpbox(pbx, mj="Malaysia:33 & Vietnam:31", co="avgRegion:26", fixed=TRUE)
 }
 }

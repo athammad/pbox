@@ -1,6 +1,6 @@
 # PBOX <img src="./other/pboxIcon.png" align="right" height="138"/>
 
-### Version 0.1.2 (BETA)
+### Version 0.1.3 (BETA)
 
 ## Overview
 
@@ -40,16 +40,16 @@ pbx@fit
 ```{r, echo=TRUE, eval=FALSE}
 
 #Get marginal distribution
-qpbox(pbx,marginal = "Malaysia:33")
+qpbox(pbx,mj = "Malaysia:33")
 
 #Get Joint distribution
-qpbox(pbx,marginal = "Malaysia:33 & Vietnam:34")
+qpbox(pbx,mj = "Malaysia:33 & Vietnam:34")
 
 # Conditional distribution distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
-qpbox(pbx,marginal = "Malaysia:33 & median:c(Vietnam,Thailand)", conditional="mean:c(avgRegion)", fixed=TRUE)
+qpbox(pbx,mj = "Malaysia:33 & median:c(Vietnam,Thailand)", co="mean:c(avgRegion)", fixed=TRUE)
 
 # Estimate confidence intervals
-qpbox(pbx,marginal = "Vietnam:31 & avgRegion:26", conditional="Malaysia:32",CI=T)
+qpbox(pbx,mj = "Vietnam:31 & avgRegion:26", co="Malaysia:32",CI=T)
 
 
 ```

@@ -20,16 +20,16 @@ data(SEAex)
 dai<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam,avgRegion)])
 print(dai)
 
-qpbox(dai,marginal = "Vietnam:31 & avgRegion:26")
-qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",CI=T)
-qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32")
-qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",CI=T)
-qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32", fixed = T)
-qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",CI=T, fixed = T)
-qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",fixed = T)
+qpbox(dai,mj = "Vietnam:31 & avgRegion:26")
+qpbox(dai,mj = "Vietnam:31 & avgRegion:26",CI=T)
+qpbox(dai,mj = "Vietnam:31 & avgRegion:26",co = "Malaysia:32")
+qpbox(dai,mj = "Vietnam:31 & avgRegion:26",co = "Malaysia:32",CI=T)
+qpbox(dai,mj = "Vietnam:31 & avgRegion:26",co = "Malaysia:32", fixed = T)
+qpbox(dai,mj = "Vietnam:31 & avgRegion:26",co = "Malaysia:32",CI=T, fixed = T)
+qpbox(dai,mj = "Vietnam:31 & avgRegion:26",co = "Malaysia:32",fixed = T)
 
 #Map the probabilistic space with a gird of quantile values
-grid_pbox(pbx, mj = c("Vietnam", "Malaysia"))
+grid_pbox(dai, mj = c("Vietnam", "Malaysia"))
 ```
 
 

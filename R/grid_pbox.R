@@ -66,14 +66,14 @@ setMethod("grid_pbox", signature = "pbox",
             if (is.null(co)) {
               allCombo <- apply(qgrid, 1, generate_string)
               qgrid$probs <- lapply(allCombo, function(x) {
-                qpbox(pbx, marginal = x, ...)
+                qpbox(pbx, mj = x, ...)
               })
             } else {
               mjCombo <- apply(qgrid[, ..mj], 1, generate_string)
               coCombo <- apply(qgrid[, ..co], 1, generate_string)
               allCombo <- cbind.data.frame(mjCombo, coCombo)
               qgrid$probs <- apply(allCombo, 1, function(x) {
-                qpbox(pbx, marginal = x["mjCombo"], conditional = x["coCombo"], ...)
+                qpbox(pbx, mj = x["mjCombo"], co = x["coCombo"], ...)
               })
             }
             return(qgrid)

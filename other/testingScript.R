@@ -235,7 +235,4 @@ data(SEAex)
 dai<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam,avgRegion)])
 print(dai)
 
-
-
-
-
+dai@copula@paramMargins
