@@ -1,7 +1,7 @@
 Package: pbox
 Type: Package
 Title: Exploring multivariate probability space in R
-Version: 0.1.3
+Version: 0.1.4
 Authors@R: c(person("Ahmed T.", "Hammad", role = c("aut", "cre"),
                      email = "ahmed.t.hammad@gmail.com",
                      comment = c(ORCID = "0000-0003-3327-2435")))
@@ -34,14 +34,18 @@ Collate:
     'fit_copula_pbox.R'
     'fit_dist_pbox.R'
     'fun_stats.R'
+    'gen_scenario.R'
     'grid_pbox.R'
     'make_pbox.R'
     'match_maker.R'
+    'modify_pbox.R'
+    'param_dev.R'
     'perProb.R'
     'perturbate_params.R'
     'probCI.R'
     'q_parser.R'
     'qpbox.R'
+    'scenario_pbox.R'
     'set_pbox.R'
     'show.R'
     'stats_calc.R'

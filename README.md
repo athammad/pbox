@@ -1,10 +1,10 @@
 # PBOX <img src="./other/pboxIcon.png" align="right" height="138"/>
 
-### Version 0.1.3 (BETA)
+### Version 0.1.4 (BETA)
 
 ## Overview
 
-The [pbox](https://github.com/athammad/pbox) R package is designed for risk assessment and management. It is an advanced statistical library that excels in exploring probability distributions within a given dataset. The tool offers a method to encapsulate and query the probability space effortlessly. Its distinctive feature lies in the ease with which users can navigate and analyze marginal, joint, and conditional probabilities while taking into account the underlying correlation structure inherent in the data. This unique capability empowers users to delve into intricate relationships and dependencies within datasets, providing a solid foundation for making well-informed decisions in the context of risk management scenarios. With pbox is straightforward to answer questions like:
+The [pbox](https://github.com/athammad/pbox) R package is designed for risk assessment and management. It is an advanced statistical library that excels in exploring probability distributions within a given dataset. The tool offers a method to encapsulate and query the probability space effortlessly. Its distinctive feature lies in the ease with which users can navigate and analyze marginal, joint, and conditional probabilities while taking into account the underlying correlation structure inherent in the data. This unique capability empowers users to delve into intricate relationships and dependencies within a dataset, providing a solid foundation for making well-informed decisions in the context of risk management scenarios. With pbox is straightforward to answer questions like:
 
 -   What is the probability of experiencing extreme heat waves in Indonesia with temperatures above 32 degrees?
 
@@ -60,6 +60,14 @@ qpbox(pbx,mj = "Vietnam:31 & avgRegion:26", co="Malaysia:32",CI=T)
 
 grid_pbox(pbx, mj = c("Vietnam", "Malaysia"))
 
+
+```
+
+**Query the probabilistic space under different scenarios with different combinations of parameters for a single query**
+
+```{r, echo=TRUE, eval=FALSE}
+
+scenario_pbox(pbx,mj = "Vietnam:31 & avgRegion:26", param_list = list(Vietnam="mu"))
 
 ```
 

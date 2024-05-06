@@ -194,6 +194,11 @@ allDistrs<-list(list(mu = 31.07, sigma = 0.28),
                 list(mu = 34.4, sigma = 0.98, nu = 1.7),
                 list(mu = 31.4, sigma = 0.34),
                 list(mu = 25.6, sigma = 0.24))
+
+allDistrs<-list(A=list(mu = 31.07, sigma = 0.28),
+     B=list(mu = 34.4, sigma = 0.98, nu = 1.7),
+     C=list(mu = 31.4, sigma = 0.34),
+     D=list(mu = 25.6, sigma = 0.24))
 copSEA <- mvdc(cop, distList,
                allDistrs)
 pbox::make_pbox(data=SEAex,copula=copSEA)
