@@ -236,8 +236,33 @@ qpbox(pbx,"Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)",CI=TRU
 
 ###################################################################################
 pkgload::load_all()
-data(SEAex)
-dai<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam,avgRegion)])
-print(dai)
+data("SEAex")
+pbx<-set_pbox(SEAex)
+pbx
 
-dai@copula@paramMargins
+
+usethis::use_version()
+
+
+#Get marginal distribution
+qpbox(pbx,mj = "Malaysia:33")
+
+#Get Joint distribution
+qpbox(pbx,mj = "Malaysia:33 & Vietnam:34")
+
+# Conditional distribution distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
+qpbox(pbx,mj = "Malaysia:33 & median:c(Vietnam,Thailand)", co="mean:c(avgRegion)", fixed=TRUE)
+
+# Estimate confidence intervals
+qpbox(pbx,mj = "Vietnam:31 & avgRegion:26", co="Malaysia:32",CI=T)
+
+grid_pbox(pbx, mj = c("Vietnam", "Malaysia"))
+
+
+scenario_pbox(pbx,mj = "Vietnam:31 & avgRegion:26", param_list = list(Vietnam="mu"))
+
+############################################################################
+# TESTING FOLDER #
+library(usethis)
+usethis::use_test()
+use_test("qpbox")

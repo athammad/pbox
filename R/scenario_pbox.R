@@ -27,6 +27,11 @@ setGeneric("scenario_pbox", function(pbx,param_list="list",sigma=0.05, range=seq
 
 setMethod("scenario_pbox", signature = "pbox",
           definition = function(pbx,param_list="list",sigma=0.05, range=seq(-3,3,1), ...){
+
+            if (!inherits(pbx, c("pbox"))) {
+              stop("Input must be a pbox object!")
+            }
+
             allParms<-pbx@copula@paramMargins
             names(allParms)<-names(pbx@data)
             deviation_results<-modify_pbox(all_parms =allParms,params_list = param_list,sigma, range)
