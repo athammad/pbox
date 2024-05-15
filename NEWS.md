@@ -1,14 +1,14 @@
-# pbox (development version)
-
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
+# pbox 0.1.5
 
 # pbox 0.1.4
 
 ------------------------------------------------------------------------
+Miscellaneous
+
+-   improved `set_pbox` error handling from `fitDist`
+-   fixed bug with the table of fitted distribution
+-   fixed bug with when `CI=TRUE` and `fixed=TRUE` in `qpbox`. It was returning swapped CI.
+
 
 **Changes in version 0.1.4**
 
