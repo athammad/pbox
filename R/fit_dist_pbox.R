@@ -20,8 +20,9 @@
 #'   print(distFits$distTable)
 #' }
 #' @importFrom gamlss fitDist
-#' @importFrom purrr map_depth
-#' @importFrom data.table data.table
+#' @importFrom utils capture.output
+#' @importFrom purrr map_depth imap is_empty
+#' @importFrom data.table data.table setnames as.data.table
 setGeneric("fit_dist_pbox",
            def = function(data, ...) {
              standardGeneric("fit_dist_pbox")
@@ -39,7 +40,22 @@ setGeneric("fit_dist_pbox",
 setMethod("fit_dist_pbox",
           definition=function(data,...){
 
-  allDitrs<-lapply(data,function(x)  suppressWarnings(gamlss::fitDist(x, ...)))
-  distTable<-data.table::data.table(do.call(cbind,purrr::map_depth(allDitrs,1,"fits")), keep.rownames="DIST")
-  return(list(allDitrs=allDitrs,distTable=distTable))
+            if(is_empty(data)){
+              stop("Input is empty!")
+            }
+
+# temporary solution with capture.output
+    er_cap<-capture.output(allDitrs<-lapply(data,function(x)  suppressWarnings(gamlss::fitDist(x, ...))),type = "message")
+
+    fitsList<-purrr::map_depth(allDitrs,1,"fits")
+    dt_list <- imap(fitsList, function(x,y) {
+      df<-as.data.table(x,keep.rownames="DIST",value.name=names(x))
+      setnames(df,"x",y)
+      df
+    })
+    distTable<- Reduce(function(...) merge(..., all = TRUE), dt_list)
+    return(list(allDitrs=allDitrs,distTable=distTable))
+  # er_cap<-capture.output(allDitrs<-lapply(data,function(x)  suppressWarnings(gamlss::fitDist(x, ...))),type = "message")
+  # distTable<-data.table::data.table(do.call(cbind,purrr::map_depth(allDitrs,1,"fits")), keep.rownames="DIST")
+  # return(list(allDitrs=allDitrs,distTable=distTable))
 })

@@ -33,7 +33,7 @@ scenario_pbox(
 \item{...}{Additional arguments passed to qpbox.}
 }
 \value{
-List of results from each scenario evaluation.
+Named list of results from each scenario evaluation.
 }
 \description{
 Performs scenario analysis by modifying underlying parameters of a pbox object.

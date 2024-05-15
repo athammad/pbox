@@ -26,7 +26,7 @@ stargazer::stargazer(SEAex,summary.stat=c('mean','SD','p25','median','p75',"min"
 
 ### Create PBOX obj ###
 # Set pbox
-pbx<-set_pbox(SEAex,verbose=FALSE)
+pbx<-set_pbox(SEAex)
 print(pbx)
 
 
@@ -34,20 +34,36 @@ print(pbx)
 
 
 #Get marginal distribution
-pbx["Malaysia:33",]
+qpbox(pbx,"Malaysia:33",)
 #Get Joint distribution
-pbx["Malaysia:33 & Vietnam:34",]
+qpbox(pbx,"Malaysia:33 & Vietnam:34",)
 #Get Joint distribution
-pbx["Vietnam:31", "avgRegion:26"]
+qpbox(pbx,"Vietnam:31", "avgRegion:26")
 #Conditional distribution Pr(X <= x, Y <= y) / Pr(Y <= y)
-pbx["Malaysia:33 & Vietnam:31", "avgRegion:26"]
+qpbox(pbx,"Malaysia:33 & Vietnam:31", "avgRegion:26")
 #Conditional distribution Pr(X <= x, Y <= y) / Pr(Y = y)
-pbx["Malaysia:33 & Vietnam:31", "avgRegion:26",fixed=TRUE]
+qpbox(pbx,"Malaysia:33 & Vietnam:31", "avgRegion:26",fixed=TRUE)
 # Joint distribution with values set on their respective mean value
-pbx["mean:c(Vietnam,Thailand)",lower.tail=T]
+qpbox(pbx,"mean:c(Vietnam,Thailand)",lower.tail=T)
 # Joint distribution with values set on their respective median value
-pbx["median:c(Vietnam, Thailand)",lower.tail=T]
+qpbox(pbx,"median:c(Vietnam, Thailand)",lower.tail=T)
 # Joint distribution with xxxx
-pbx["Malaysia:33 & mean:c(Vietnam, Thailand)",lower.tail=T]
+qpbox(pbx,"Malaysia:33 & mean:c(Vietnam, Thailand)",lower.tail=T)
 # Conditional distribution distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
-pbx["Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)"]
+qpbox(pbx,"Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)")
+#CI
+qpbox(pbx,"Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)", CI=TRUE,fixed=TRUE)
+
+
+#ERROR!!!! qpbox(pbx,"Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)", CI=TRUE)
+
+
+# Grid Search
+grid_results<-grid_pbox(pbx, mj = c("Vietnam", "Malaysia"))
+grid_results
+grid_results[which.max(grid_results$probs),]
+grid_results[which.min(grid_results$probs),]
+
+
+scenario_pbox(pbx,mj = "Vietnam:31 & avgRegion:26", param_list = list(Vietnam="mu"))
+

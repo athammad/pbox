@@ -48,12 +48,23 @@ setMethod("set_pbox",
   if (!inherits(data, c("data.frame","data.table"))) {
     stop("Input must be a data frame or a data.table")
   }
+
+  nn_cont <- names(data)[sapply(data, function(column) {
+    is.factor(column) || is.character(column) || all(column %in% c(0, 1))
+  })]
+
+  if (length(nn_cont) > 0) {
+    stop("It seems that in your data there are non-continuous features. pbox is not able to handle these features currently. Non-continuous variables: ", paste(nn_cont, collapse = ", "))
+  } else {
+    message("All features are continuous.")
+  }
+
   data.table::setDT(data)
   distSearch<-fit_dist_pbox(data)
   CopulaSearch<-fit_copula_pbox(data,.copula_families)
 
   finalCopula<-final_pbox(CopulaSearch,distSearch$allDitrs,data)
-  cat("pbox object generated!")
+  cat("pbox object generated!\n")
 
   obj <- new("pbox", data =data, copula=finalCopula,fit=list(distSearch,CopulaSearch))
 

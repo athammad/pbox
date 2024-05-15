@@ -10,7 +10,7 @@
 #' @param sigma Standard deviation for parameter deviations, defaulting to 0.05.
 #' @param range Range of deviation multipliers, default is seq(-3, 3, 1).
 #' @param ... Additional arguments passed to qpbox.
-#' @return List of results from each scenario evaluation.
+#' @return Named list of results from each scenario evaluation.
 #' @name scenario_pbox
 #' @examples
 #'   data("SEAex")
@@ -44,7 +44,7 @@ setMethod("scenario_pbox", signature = "pbox",
               perCop@copula@paramMargins<-unname(x)
               qpbox(perCop,...)
             })
-
+            names(scenario_res)<-paste0("SD",range)
             return(scenario_res)
           })
 

@@ -6,7 +6,7 @@
 \title{Query the probabilistic space of a pbox object.}
 \usage{
 qpbox(
-  x,
+  pbx,
   mj = "character",
   co = "character",
   lower.tail = TRUE,
@@ -16,7 +16,7 @@ qpbox(
 )
 
 \S4method{qpbox}{pbox}(
-  x,
+  pbx,
   mj = "character",
   co = "character",
   lower.tail = TRUE,
@@ -26,7 +26,7 @@ qpbox(
 )
 }
 \arguments{
-\item{x}{An object of class \code{pbox} from which to query the probabilistic space.}
+\item{pbx}{An object of class \code{pbox} from which to query the probabilistic space.}
 
 \item{mj}{A character string specifying the marginal and or joint distribution of the variable.
 It must specify the variable and the value in the format 'Var:Val'.}

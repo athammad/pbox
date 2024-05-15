@@ -31,8 +31,7 @@ setGeneric(".fit_copula",
 #' @description
 #' Automatically fits a copula model using the provided pseudo-observations.
 #' This method supports various families of copulas and calculates the corresponding AIC
-#' and parameter estimates. It's designed to integrate seamlessly with other functions
-#' that require copula models, such as those for building more complex multivariate models.
+#' and parameter estimates.
 #'
 #'
 setMethod(".fit_copula",
