@@ -13,7 +13,7 @@ perturbate_params(paramMargins)
 A list of lists containing perturbed parameter values.
 }
 \description{
-This function defines a generic function to perturb parameter values for each distribution
+This function defines a generic function to perturbate parameter values for each distribution
 within a copula, using random perturbations to simulate variability or uncertainty.
 }
 \examples{

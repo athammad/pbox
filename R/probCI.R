@@ -33,6 +33,9 @@ setGeneric("probCI", function(probabilities, alpha = 0.05) {
 #' @export
 setMethod("probCI", "numeric",
           function(probabilities, alpha = 0.05) {
+            if(alpha>=1 | alpha<=0){
+              stop("alpha should be in the range [0-1]!")
+            }
             # Calculate the confidence interval around the probabilities
             lower <- stats::quantile(probabilities, alpha / 2)
             upper <- stats::quantile(probabilities, 1 - alpha / 2)

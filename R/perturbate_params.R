@@ -1,6 +1,6 @@
 #' Perturb Parameters
 #'
-#' This function defines a generic function to perturb parameter values for each distribution
+#' This function defines a generic function to perturbate parameter values for each distribution
 #' within a copula, using random perturbations to simulate variability or uncertainty.
 #'
 #' @name perturbate_params

@@ -1,6 +1,6 @@
 # PBOX <img src="./other/pboxIcon.png" align="right" height="138"/>
 
-### Version 0.1.4 (BETA)
+### Version 0.1.5 (BETA)
 
 ## Overview
 

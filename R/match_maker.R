@@ -34,6 +34,19 @@ setGeneric("match_maker",
 #' @seealso \code{\link{match_maker}} for the generic function and additional details.
 setMethod("match_maker",
           definition= function(varSet, matches, data){
+
+            if(!is.data.frame(varSet)){
+              stop("'varSet' must be a data.frame!")
+            }
+            if(!is.data.frame(matches)){
+              stop("'matches' must be a data.frame!")
+            }
+            if(!is.data.frame(data)){
+              stop("'data' must be a data.frame!")
+            }
+
+
+
             if ('Varnames' %in% names(matches)) {
               matchesVal <- na.omit(matches[, .(Varnames, Value)])
               varSet[match(matchesVal$Varnames, varSet$Varnames), ] <- matchesVal

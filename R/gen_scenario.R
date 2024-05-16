@@ -15,14 +15,18 @@
 #' @export
 #' @importFrom purrr map_depth
 setGeneric("gen_scenario",
-           def=function(params) {
+           def=function(params="list") {
              standardGeneric("gen_scenario")
            })
 
 #' @rdname gen_scenario
 #' @export
 setMethod("gen_scenario",
-          definition=function(params) {
+          definition=function(params="list") {
+
+            if(length(params) == 0) {
+              stop("The list is empty!")
+            }
               # Determine the maximum length from the parameters
               max_len <- max(unlist(map_depth(params,2,length)))
 

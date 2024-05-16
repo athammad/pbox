@@ -10,7 +10,7 @@ modify_pbox(all_parms, params_list, sigma = 0.05, range = seq(-3, 3, 1))
 \S4method{modify_pbox}{ANY}(all_parms, params_list, sigma = 0.05, range = seq(-3, 3, 1))
 }
 \arguments{
-\item{all_parms}{nested list of paramters from the pbox object.}
+\item{all_parms}{nested list of parameters from the pbox object.}
 
 \item{params_list}{Named list where each name corresponds to a variable in the dataset
 and the value is a vector of parameter names to modify (e.g. list(Vietnam="mu")).}

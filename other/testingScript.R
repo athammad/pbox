@@ -111,9 +111,15 @@ scenario_pbox(pbx,mj = "Vietnam:31 & avgRegion:26", param_list = list(Vietnam="m
 usethis::use_version()
 pkgload::load_all()
 library(usethis)
-usethis::use_test("fit_dist_pbox.R")
+usethis::use_test("q_parser.R")
 
 use_test("qpbox")
 
 
 set_pbox(SEAex)
+
+#prova<-devtools::check()
+#usethis::use_news_md()
+#usethis:::use_github_action_check_standard()
+#commenti<-usethis::use_cran_comments()
+#devtools::release()

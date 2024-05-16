@@ -5,9 +5,9 @@
 \alias{gen_scenario,ANY-method}
 \title{Generate Scenarios}
 \usage{
-gen_scenario(params)
+gen_scenario(params = "list")
 
-\S4method{gen_scenario}{ANY}(params)
+\S4method{gen_scenario}{ANY}(params = "list")
 }
 \arguments{
 \item{params}{List of parameters where each parameter can vary across scenarios.}
