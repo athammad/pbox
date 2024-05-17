@@ -23,7 +23,7 @@ Imports:
     methods
 URL: https://www.r-project.org, https://github.com/athammad/pbox
 BugReports: https://github.com/athammad/pbox/issues
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Collate: 
     'SEAex.R'
     'pbox.R'
