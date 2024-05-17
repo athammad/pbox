@@ -9,7 +9,7 @@
 A data frame with 122 rows and 4 columns:
 \describe{
   \item{Malaysia,Thailand,Vietnam}{Yearly max temperatures in Celsisus for each country over 122 years.}
-  \item{avgRegion}{Average temperature in Celsius over the enetire South East Asia region}
+  \item{avgRegion}{Average temperature in Celsius over the whole South East Asia region}
 }
 }
 \source{
@@ -19,8 +19,8 @@ A data frame with 122 rows and 4 columns:
 SEAex
 }
 \description{
-Subset of the data used in XXXX where the author studied the relation between maximum yearly temperature data from 1901 to 2022 in 11
-countries in Southeast Asia and the average temperature of the entire region extracted from  Climatic Research Unit gridded Time Series Version 4.
+Maximum yearly temperature data from 1901 to 2022 in 11 countries in Southeast Asia and the average temperature of the
+entire region extracted from  Climatic Research Unit gridded Time Series Version 4.
 Data contains only temperatures for Malaysia, Thailand, Vietnam and the average regional temperature.
 }
 \examples{

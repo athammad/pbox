@@ -6,7 +6,7 @@ editor_options:
 
 ## R CMD check results
 
-0 errors \| 0 warnings \| 1 note
+0 errors \| 0 warnings \| 0 note
 
 -   This is a new release.
 
@@ -18,7 +18,7 @@ editor_options:
 
 **Title:** Exploring multivariate spaces with Probability Boxes
 
-**Authors:** Ahmed Tarek Hammad ([ahmed.t.hammad\@gmail.com](mailto:ahmed.t.hammad@gmail.com){.email})
+**Authors:** Ahmed T. Hammad ([ahmed.t.hammad\@gmail.com](mailto:ahmed.t.hammad@gmail.com){.email})
 
 # Summary
 
