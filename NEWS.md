@@ -1,4 +1,14 @@
-# pbox 0.1.5
+# pbox 0.1.6
+
+------------------------------------------------------------------------
+
+**Changes in version 0.1.6**
+
+Miscellaneous
+
+-   finalized all tests.
+-   improved vignette.
+-   fixed bug with `match_maker`.
 
 ------------------------------------------------------------------------
 
