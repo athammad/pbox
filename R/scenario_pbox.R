@@ -32,8 +32,22 @@ setMethod("scenario_pbox", signature = "pbox",
               stop("Input must be a pbox object!")
             }
 
+            if(length(param_list) == 0) {
+              stop("The list is empty!")
+            }
+
+            if(!all(unique(unlist(unname(param_list)))%in%unique(names(unlist(pbx@copula@paramMargins))))){
+              stop("The parameters you wish to modify do not exist in the current copula margins!")
+            }
+
+
             allParms<-pbx@copula@paramMargins
             names(allParms)<-names(pbx@data)
+
+            if(!all(names(param_list)%in% names(allParms))){
+              stop("The variables you wish to modify do not exist in the dataframe!")
+            }
+
             deviation_results<-modify_pbox(all_parms =allParms,params_list = param_list,sigma, range)
             scenarios<-gen_scenario(deviation_results)
 

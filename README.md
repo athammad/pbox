@@ -1,10 +1,10 @@
 # PBOX <img src="./other/pboxIcon.png" align="right" height="138"/>
 
-### Version 0.1.5 (BETA)
+### Version 0.1.6 (BETA)
 
 ## Overview
 
-The [pbox](https://github.com/athammad/pbox) R package is designed for risk assessment and management. It is an advanced statistical library that excels in exploring probability distributions within a given dataset. The tool offers a method to encapsulate and query the probability space effortlessly. Its distinctive feature lies in the ease with which users can navigate and analyze marginal, joint, and conditional probabilities while taking into account the underlying correlation structure inherent in the data. This unique capability empowers users to delve into intricate relationships and dependencies within a dataset, providing a solid foundation for making well-informed decisions in the context of risk management scenarios. With pbox is straightforward to answer questions like:
+The [pbox](https://github.com/athammad/pbox) R package is designed for risk assessment and management. It is an advanced statistical library that excels in exploring probability distributions within a given dataset. The tool offers a method to encapsulate and query the probability space effortlessly. Its distinctive feature lies in the ease with which users can navigate and analyze marginal, joint, and conditional probabilities while taking into account the underlying correlation structure inherent in the data. This unique capability empowers users to delve into intricate relationships and dependencies within a dataset, providing a solid foundation for making well-informed decisions in the context of risk management scenarios. With `pbox` is straightforward to answer questions like:
 
 -   What is the probability of experiencing extreme heat waves in Indonesia with temperatures above 32 degrees?
 
@@ -85,8 +85,23 @@ To report bugs/issues/feature requests, please file an [issue](https://github.co
 ## TO DO
 
 
--   Add tests for all functions
 -   Finalise Vignette
 -   Improve documentation
 
+<!---
+
+1) Errors from fitdist should be stored somewhere and accesible to the user. How?
+
+2) Some copula families are not included yet!
+.copula_families <- list(
+  # Archimedean copula families # "amh",
+  archmCopula = c("clayton", "frank", "gumbel", "joe"),
+  # Extreme-Value copula families #"tawn" #"tev"
+  evCopula = c("galambos", "gumbel", "huslerReiss"),
+  # Elliptical copula families # "t"
+  ellipCopula = c("normal")
+)
+
+3) Currently the user cannot change the copulas and families beign tested!
+-->
 

@@ -45,6 +45,7 @@ setMethod("fit_dist_pbox",
             }
 
 # temporary solution with capture.output
+##Errors from fitdist should be stored somewhere?
     er_cap<-capture.output(allDitrs<-lapply(data,function(x)  suppressWarnings(gamlss::fitDist(x, ...))),type = "message")
 
     fitsList<-purrr::map_depth(allDitrs,1,"fits")

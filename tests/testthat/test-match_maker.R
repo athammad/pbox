@@ -64,11 +64,7 @@ test_that("Test with empty matches input", {
 # Test with no matching variables in varSet
 test_that("Test with no matching variables in varSet", {
   non_matching_matches <- data.table(Varnames = c("NonExistentVar"), Value = c(10))
-  result <- match_maker(varSet, non_matching_matches, data)
+  expect_error(match_maker(varSet, non_matching_matches, data))
 
-  # Check if the result is a data.table
-  expect_s3_class(result, "data.table")
 
-  # Verify that the values in varSet are not updated
-  expect_true(all(is.infinite(result$Value)))
 })

@@ -2,7 +2,7 @@
 #' Build a Multivariate Distribution from Copula
 #'
 #' Combines the results from `fit_copula_pbox` and `fit_dist_pbox` to build a multivariate distribution from copula,
-#' selecting the best copula based on AIC and utilizing the best-fitted marginal distributions.
+#' selecting the best copula based on AIC and utilizing the best-fitted marginal distributions. Note that
 #'
 #' @name final_pbox
 #' @export
@@ -36,7 +36,21 @@ setGeneric("final_pbox",
 setMethod("final_pbox",
           definition=function(results_df,allDitrs,data){
 
-  bestCopula<-results_df[which.min(results_df$AIC),]
+  # Should favor evCopula if small difference with the others?????
+  #bestCopula<-results_df[which.min(results_df$AIC),]
+
+  # Find the minimum AIC
+  min_aic <- min(results_df$AIC)
+  # Select the copulas with the minimum AIC
+  best_copulas <- results_df[results_df$AIC == min(results_df$AIC), ]
+  # Check if evCopula is among them
+  if ("evCopula" %in% best_copulas$copula) {
+    bestCopula <- best_copulas[best_copulas$copula == "evCopula", ]
+  } else {
+    bestCopula <- best_copulas[1, ]  # In case there are multiple, select the first one
+  }
+
+
   copFun <- utils::getFromNamespace(bestCopula$copula,ns = "copula")
   cop <- copFun(family = bestCopula$family, param = bestCopula$coef, dim = ncol(data))
 
@@ -49,7 +63,8 @@ setMethod("final_pbox",
   #allPar <- modify_depth(unname(map_depth(allDitrs,1,"Allpar")), 1, modify_structure)
 
   finalCop <- copula::mvdc(cop, distList,allPar)
-
+  #risky using the <deprecated slot>!!!
+  finalCop@copula@fullname<-bestCopula$copula
   cat("\n\n---Final fitted copula---\n")
   cat("Copula Type:",bestCopula$copula,"\n")
   cat("Family:",bestCopula$family,"\n")

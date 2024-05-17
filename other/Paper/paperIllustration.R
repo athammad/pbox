@@ -48,14 +48,11 @@ qpbox(pbx,"mean:c(Vietnam,Thailand)",lower.tail=T)
 # Joint distribution with values set on their respective median value
 qpbox(pbx,"median:c(Vietnam, Thailand)",lower.tail=T)
 # Joint distribution with xxxx
-qpbox(pbx,"Malaysia:33 & mean:c(Vietnam, Thailand)",lower.tail=T)
+qpbox(pbx,"Malaysia:33 & mean:c(Vietnam,Thailand)",lower.tail=T)
 # Conditional distribution distribution with Pr(X <= x, Y <= y) / Pr(Y = y)
 qpbox(pbx,"Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)")
 #CI
 qpbox(pbx,"Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)", CI=TRUE,fixed=TRUE)
-
-
-#ERROR!!!! qpbox(pbx,"Malaysia:33 & median:c(Vietnam,Thailand)", "mean:c(avgRegion)", CI=TRUE)
 
 
 # Grid Search

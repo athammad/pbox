@@ -3,25 +3,29 @@
 \docType{data}
 \name{SEAex}
 \alias{SEAex}
-\title{World Health Organization TB data}
+\title{Maximum yearly temperature data from 1901 to 2022 (CRU TS v4)}
 \format{
 ## `SEAex`
-A data frame with 7,240 rows and 60 columns:
+A data frame with 122 rows and 4 columns:
 \describe{
-  \item{country}{Country name}
-  \item{iso2, iso3}{2 & 3 letter ISO country codes}
-  \item{year}{Year}
-  ...
+  \item{Malaysia,Thailand,Vietnam}{Yearly max temperatures in Celsisus for each country over 122 years.}
+  \item{avgRegion}{Average temperature in Celsius over the enetire South East Asia region}
 }
 }
 \source{
-<https://www.who.int/teams/global-tuberculosis-programme/data>
+<https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.07/crucy.2304181636.v4.07/countries/>
 }
 \usage{
 SEAex
 }
 \description{
-A subset of data from the World Health Organization Global Tuberculosis
-Report ...
+Subset of the data used in XXXX where the author studied the relation between maximum yearly temperature data from 1901 to 2022 in 11
+countries in Southeast Asia and the average temperature of the entire region extracted from  Climatic Research Unit gridded Time Series Version 4.
+Data contains only temperatures for Malaysia, Thailand, Vietnam and the average regional temperature.
+}
+\examples{
+
+data(SEAex)
+head(SEAex)
 }
 \keyword{datasets}

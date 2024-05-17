@@ -86,7 +86,7 @@ pbx<-set_pbox(SEAex)
 pbx
 
 
-usethis::use_version()
+
 
 
 #Get marginal distribution
@@ -111,14 +111,20 @@ scenario_pbox(pbx,mj = "Vietnam:31 & avgRegion:26", param_list = list(Vietnam="m
 usethis::use_version()
 pkgload::load_all()
 library(usethis)
-usethis::use_test("q_parser.R")
+#usethis::use_test("qpbox.R")
+
+
 
 use_test("qpbox")
 
+usethis::use_version()
 
-set_pbox(SEAex)
+pbx<-set_pbox(SEAex[,.(Vietnam,Malaysia,Thailand)])
+qpbox(pbx,mj="Vietnam:31",lower.tail = FALSE)
+pbx@copula@paramMargins[[1]]
+pRG(31, mu = 31.44041, sigma = 0.3473844, lower.tail = FALSE)
 
-#prova<-devtools::check()
+prova<-devtools::check()
 #usethis::use_news_md()
 #usethis:::use_github_action_check_standard()
 #commenti<-usethis::use_cran_comments()

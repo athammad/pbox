@@ -21,7 +21,7 @@ An object of class `mvdc` representing the combined multivariate distribution.
 }
 \description{
 Combines the results from `fit_copula_pbox` and `fit_dist_pbox` to build a multivariate distribution from copula,
-selecting the best copula based on AIC and utilizing the best-fitted marginal distributions.
+selecting the best copula based on AIC and utilizing the best-fitted marginal distributions. Note that
 
 Method to construct a `mvdc` object by combining best-fit copula and marginal distribution results.
 The method uses the best copula model as determined by the lowest AIC and combines it with

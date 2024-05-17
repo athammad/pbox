@@ -55,12 +55,7 @@ setMethod("qpbox", signature = "pbox",
             Varnames<-names(pbx@data)
             Value<-rep(Inf,ncol(pbx@data))
             varSet<-cbind.data.frame(Varnames,Value)
-            # Perform subsetting and other operations here
-            # Use `marginal`, `conditional`, and other arguments as needed
-
-            # Example: Subsetting rows and columns
             if (missing(co)) {
-              # If only `marginal` is provided, subset rows
               mj<- gsub("[[:blank:]]", "",mj)
               valid_format <- grepl("^([a-zA-Z]+:(\\d+(\\.\\d+)?|[a-zA-Z]+\\(.*\\)),?(&[a-zA-Z]+:(\\d+(\\.\\d+)?|[a-zA-Z]+\\(.*\\)),?)*$)", mj)
               if (!valid_format) {
@@ -87,7 +82,6 @@ setMethod("qpbox", signature = "pbox",
               probres
               }
             } else {
-              # If both `marginal` and `conditional` are provided, subset rows and select columns
               cond<-lapply(list(mj,co),function(z){
                 z<-gsub("[[:blank:]]", "",z)
                 valid_format <- grepl("^([a-zA-Z]+:(\\d+(\\.\\d+)?|[a-zA-Z]+\\(.*\\)),?(&[a-zA-Z]+:(\\d+(\\.\\d+)?|[a-zA-Z]+\\(.*\\)),?)*$)", z)

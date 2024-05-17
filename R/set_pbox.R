@@ -49,6 +49,10 @@ setMethod("set_pbox",
     stop("Input must be a data frame or a data.table")
   }
 
+  if (sum(dim(data))==0) {
+    stop("Empty data input!")
+    }
+
   nn_cont <- names(data)[sapply(data, function(column) {
     is.factor(column) || is.character(column) || all(column %in% c(0, 1))
   })]
@@ -60,7 +64,7 @@ setMethod("set_pbox",
   }
 
   data.table::setDT(data)
-  distSearch<-fit_dist_pbox(data)
+  distSearch<-fit_dist_pbox(data,...)
   CopulaSearch<-fit_copula_pbox(data,.copula_families)
 
   finalCopula<-final_pbox(CopulaSearch,distSearch$allDitrs,data)

@@ -29,6 +29,7 @@ setMethod(f = "show",
             print(object@data[, rbindlist(lapply(.SD, fun_stats), idcol = "var")])
             cat("\n----------------\n")
             cat("2)Copula Summary:\n")
+            cat("Type:",object@copula@copula@fullname,"\n")
             print(object@copula@copula)
             cat("\n")
             cat("2.1)Copula margins:\n")
