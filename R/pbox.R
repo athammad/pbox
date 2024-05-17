@@ -1,7 +1,7 @@
 ##############################################################
 #' Class "pbox": Main S4 class of the library \bold{pbox}.
 #'
-#' "pbox" is a class representing the probabilistc space which combines data, copula and margins.
+#' "pbox" is a class representing the probabilistic space which combines data, copula and margins.
 #'
 #' @export
 #' @name pbox-class

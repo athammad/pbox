@@ -1,13 +1,13 @@
 Package: pbox
 Type: Package
-Title: Exploring multivariate probability space in R
+Title: Exploring multivariate spaces with Probability Boxes
 Version: 0.1.6
 Authors@R: c(person("Ahmed T.", "Hammad", role = c("aut", "cre"),
                      email = "ahmed.t.hammad@gmail.com",
                      comment = c(ORCID = "0000-0003-3327-2435")))
 Author: Ahmed Tarek Hammad [aut, cre]
 Maintainer: Ahmed Tarek Hammad <ahmed.t.hammad@gmail.com>
-Description: The pbox R package, an advanced statistical library that offers a method to encapsulate and query the probability space of a dataset effortlessly. Its distinctive feature lies in the ease with which users can navigate and analyze marginal, joint, and conditional probabilities while taking into account the underlying correlation structure inherent in the data using copula theory and models.
+Description: The pbox package is an advanced statistical library that offers a method to encapsulate and query the probability space of a dataset effortlessly. Its distinctive feature lies in the ease with which users can navigate and analyze marginal, joint, and conditional probabilities while taking into account the underlying correlation structure inherent in the data using copula theory and models.
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
