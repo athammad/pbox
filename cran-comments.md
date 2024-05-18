@@ -28,7 +28,7 @@ The package is particularly useful for applications requiring detailed uncertain
 
 # Key Features
 
-Automated Distribution and Copula Selection: Automatically selects the best marginal distributions and copula models for a given dataset, simplifying the modeling process.
+-   Automated Distribution and Copula Selection: Automatically selects the best marginal distributions and copula models for a given dataset, simplifying the modeling process.
 
 -   Flexible Querying: Supports complex queries on the probabilistic space of p-box objects, including marginal, joint, and conditional distributions.
 
@@ -63,4 +63,5 @@ This is the initial submission of the `pbox` package to CRAN.
 The package follows CRAN policies and guidelines, including proper documentation, testing, and dependency management.
 I am committed to maintaining and updating the package based on user feedback and CRAN policies.
 Thank you for considering the `pbox` package for inclusion in CRAN.
-We look forward to your feedback and are happy to make any necessary adjustments to meet CRAN standards.
+I look forward to your feedback and I am happy to make any necessary adjustments to meet CRAN standards.
+After being accepted as part of CRAN, I will submit a detailed paper to the *Journal of Statistical Software*, where I will discuss the mathematical background, the key features, and provide an application of the library, along with a discussion of potential future improvements."

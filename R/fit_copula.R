@@ -12,7 +12,7 @@
 #' @param copula A \code{data.frame} or \code{data.table} (the data will be coerced to a \code{data.table} internally).
 #' @param family List of copula types and their corresponding families. Currently supported families are "clayton", "frank", "amh", "gumbel", and "joe" for Archimedean Copula; "galambos", "gumbel", and "huslerReiss" for Extreme-Value copula; "normal" and "t" for Elliptical copula.
 #' @param dim number of columns of data.
-#' @param u marix of (pseudo-)observations. Consider applying the function \code{pobs()} first in order to obtain such data.
+#' @param u matrix of (pseudo-)observations. Consider applying the function \code{pobs()} first in order to obtain such data.
 
 #' @return A \code{data.table} with the corresponding AIC and the parameter estimates of the evaluated copulas and families.
 #'

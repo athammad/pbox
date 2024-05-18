@@ -36,6 +36,10 @@ setMethod("scenario_pbox", signature = "pbox",
               stop("The list is empty!")
             }
 
+            if(!is.numeric(range)) {
+              stop("Non-numeric range input!")
+            }
+
             if(!all(unique(unlist(unname(param_list)))%in%unique(names(unlist(pbx@copula@paramMargins))))){
               stop("The parameters you wish to modify do not exist in the current copula margins!")
             }

@@ -6,7 +6,7 @@
 #' @format ## `SEAex`
 #' A data frame with 122 rows and 4 columns:
 #' \describe{
-#'   \item{Malaysia,Thailand,Vietnam}{Yearly max temperatures in Celsisus for each country over 122 years.}
+#'   \item{Malaysia,Thailand,Vietnam}{Yearly max temperatures in Celsius for each country over 122 years.}
 #'   \item{avgRegion}{Average temperature in Celsius over the whole South East Asia region}
 #' }
 #' @examples

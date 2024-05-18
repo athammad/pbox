@@ -2,11 +2,10 @@ library(testthat)
 library(data.table)
 library(copula)
 
-pbx<-set_pbox(SEAex[,.(Malaysia,Thailand)])
-# Create sample data and pbox object for testing
 
 # Test correct functionality with typical input
 test_that("Test correct functionality with typical input", {
+  pbx<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam)])
   param_list <- list(Malaysia = c("mu","sigma"))
   result <- scenario_pbox(pbx, param_list, sigma = 0.05, range = seq(-3, 3, 1),mj="Malaysia:33 & Thailand:33")
   # Check if the result is a list
@@ -31,6 +30,7 @@ test_that("Test handling of invalid pbox input", {
 
 # Test handling of empty param_list input
 test_that("Test handling of empty param_list input", {
+  pbx<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam)])
   param_list <- list()
   expect_error(scenario_pbox(pbx, param_list, sigma = 0.05, range = seq(-3, 3, 1),mj="Malaysia:33 & Thailand:33"))
 
@@ -38,6 +38,7 @@ test_that("Test handling of empty param_list input", {
 
 # Test handling of different sigma values
 test_that("Test handling of different sigma values", {
+  pbx<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam)])
   param_list <- list(Malaysia = "mu")
   result <- scenario_pbox(pbx, param_list, sigma = 0.1, range = seq(-3, 3, 1),mj="Malaysia:33 & Thailand:33")
 
@@ -56,6 +57,7 @@ test_that("Test handling of different sigma values", {
 
 # Test handling of different range values
 test_that("Test handling of different range values", {
+  pbx<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam)])
   param_list <- list(Malaysia = "mu")
   result <- scenario_pbox(pbx, param_list, sigma = 0.05, range = seq(-5, 5, 2),mj="Malaysia:33 & Thailand:33")
 
@@ -74,7 +76,8 @@ test_that("Test handling of different range values", {
 
 # Test handling of non-numeric range input
 test_that("Test handling of non-numeric range input", {
+  pbx<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam)])
   param_list <- list(Malaysia = "mu")
-  expect_error(scenario_pbox(pbx, param_list, sigma = 0.05, range = "not_a_vector",mj="Malaysia:33 & Thailand:33"), "non-numeric argument to binary operator")
+  expect_error(scenario_pbox(pbx, param_list, sigma = 0.05, range = "not_a_vector",mj="Malaysia:33 & Thailand:33"))
 })
 

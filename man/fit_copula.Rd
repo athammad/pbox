@@ -18,7 +18,7 @@
 
 \item{dim}{number of columns of data.}
 
-\item{u}{marix of (pseudo-)observations. Consider applying the function \code{pobs()} first in order to obtain such data.}
+\item{u}{matrix of (pseudo-)observations. Consider applying the function \code{pobs()} first in order to obtain such data.}
 }
 \value{
 A \code{data.table} with the corresponding AIC and the parameter estimates of the evaluated copulas and families.

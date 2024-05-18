@@ -1,28 +1,42 @@
-Package: pbox
 Type: Package
-Title: Exploring multivariate spaces with Probability Boxes
+Package: pbox
+Title: Exploring Multivariate Spaces with Probability Boxes
 Version: 0.1.6
-Authors@R: c(person("Ahmed T.", "Hammad", role = c("aut", "cre"),
-                     email = "ahmed.t.hammad@gmail.com",
-                     comment = c(ORCID = "0000-0003-3327-2435")))
-Author: Ahmed T. Hammad [aut, cre]
+Authors@R: 
+    person("Ahmed T.", "Hammad", , "ahmed.t.hammad@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-3327-2435"))
 Maintainer: Ahmed T. Hammad <ahmed.t.hammad@gmail.com>
-Description: The pbox package is an advanced statistical library that offers a method to encapsulate and query the probability space of a dataset effortlessly. Its distinctive feature lies in the ease with which users can navigate and analyze marginal, joint, and conditional probabilities while taking into account the underlying correlation structure inherent in the data using copula theory and models.
-License: GPL-3 + file LICENSE
-Encoding: UTF-8
-LazyData: true
+Description: The pbox package is an advanced statistical library that
+    offers a method to encapsulate and query the probability space of a
+    dataset effortlessly. Its distinctive feature lies in the ease with
+    which users can navigate and analyze marginal, joint, and conditional
+    probabilities while taking into account the underlying correlation
+    structure inherent in the data using copula theory and models.
+URL: https://www.r-project.org, https://github.com/athammad/pbox
+BugReports: https://github.com/athammad/pbox/issues
 Depends:
     gamlss.dist,
     R (>= 2.10)
 Imports: 
-    data.table,
     copula,
+    data.table,
     gamlss,
+    methods,
     purrr,
+    stats,
     stringr,
-    methods
-URL: https://www.r-project.org, https://github.com/athammad/pbox
-BugReports: https://github.com/athammad/pbox/issues
+    utils
+Suggests: 
+    ggplot2,
+    knitr,
+    rmarkdown,
+    spelling,
+    testthat (>= 3.0.0)
+VignetteBuilder: 
+    knitr
+Config/testthat/edition: 3
+Encoding: UTF-8
+LazyData: true
 RoxygenNote: 7.3.1
 Collate: 
     'SEAex.R'
@@ -50,10 +64,5 @@ Collate:
     'set_pbox.R'
     'show.R'
     'stats_calc.R'
-Suggests: 
-    knitr,
-    rmarkdown,
-    ggplot2,
-    testthat (>= 3.0.0)
-Config/testthat/edition: 3
-VignetteBuilder: knitr
+License: GPL (>= 3) + file LICENSE
+Language: en-US

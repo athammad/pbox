@@ -145,18 +145,16 @@ covr::report()
 
 # Run tests
 devtools::test()
-testthat::test_dir("tests/testthat/")
 
 # Run examples
 devtools::run_examples()
 
-# autotest::autotest_package(test = TRUE)
 
 # Check package as CRAN using the correct CRAN repo
 withr::with_options(list(repos = c(CRAN = "https://cloud.r-project.org/")),
                     {callr::default_repos()
                       rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran")) })
-# devtools::check(args = c("--no-manual", "--as-cran"))
+devtools::check(args = c("--no-manual", "--as-cran"))
 
 # Check content
 # install.packages('checkhelper', repos = 'https://thinkr-open.r-universe.dev')
@@ -170,7 +168,7 @@ all_files_remaining
 # If needed, set back parallel testing with `Config/testthat/parallel: true` in DESCRIPTION
 
 # Check spelling - No typo
-# usethis::use_spell_check()
+usethis::use_spell_check()
 spelling::spell_check_package()
 
 # Check URL are correct
