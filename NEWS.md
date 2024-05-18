@@ -1,6 +1,5 @@
 # pbox 0.1.7
 
-# pbox 0.1.6
 
 ------------------------------------------------------------------------
 
@@ -11,7 +10,7 @@ Miscellaneous
 -   fixed bugs in tests.
 -   fixed typos.
 -   fixed issue with LICENSE file.
--   updated README.
+-   updated `README`.
 
 ------------------------------------------------------------------------
 

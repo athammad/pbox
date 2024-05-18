@@ -1,6 +1,6 @@
 # PBOX <img src="./other/pboxIcon.png" align="right" height="138"/>
 
-### Version 0.1.6 (BETA)
+### Version 0.1.7 (BETA)
 
 ## Overview
 
@@ -72,10 +72,22 @@ scenario_pbox(pbx,mj = "Vietnam:31 & avgRegion:26", param_list = list(Vietnam="m
 ```
 
 ## Installation
-The library is currently being developed at a fast pace with the aim of being available on CRAN soon. The development version can be installed as follows:
-```         
+The `pbox` package is currently under active development with the aim of being available on CRAN soon. The development version can be installed from GitHub, and once it is available on CRAN, you can install it directly from CRAN. Below are the installation instructions for both the development version and the CRAN version:
+
+### Development Version
+To install the development version from GitHub, you first need to install the remotes package if you haven't already. Then, use `remotes::install_github` to install the `pbox` package from GitHub:
+
+```
 install.packages("remotes")
 remotes::install_github("athammad/pbox")
+
+```
+
+### CRAN Version
+Once the `pbox` package is available on CRAN, you can install it directly from CRAN with the following command:
+
+```
+install.packages("pbox")
 ```
 
 ## Getting Help or Reporting an Issue

@@ -1,22 +1,16 @@
----
-editor_options: 
-  markdown: 
-    wrap: sentence
----
-
 ## R CMD check results
 
-0 errors \| 0 warnings \| 0 note
+0 errors | 0 warnings | 1 note
 
--   This is a new release.
+* This is a new release.
 
 **Comments for CRAN Submission**
 
 **Package:** `pbox`
 
-**Version:** 0.1.6
+**Version:** 0.1.7
 
-**Title:** Exploring multivariate spaces with Probability Boxes
+**Title:** Exploring Multivariate Spaces with Probability Boxes
 
 **Authors:** Ahmed T. Hammad ([ahmed.t.hammad\@gmail.com](mailto:ahmed.t.hammad@gmail.com){.email})
 

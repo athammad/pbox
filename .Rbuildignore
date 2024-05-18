@@ -6,3 +6,5 @@
 ^LICENSE\.md$
 ^doc$
 ^Meta$
+^revdep$
+^\.github$

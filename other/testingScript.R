@@ -193,7 +193,7 @@ devtools::check_win_release()
 devtools::check_mac_release()
 
 # Check reverse dependencies
-# remotes::install_github("r-lib/revdepcheck")
+#remotes::install_github("r-lib/revdepcheck")
 usethis::use_git_ignore("revdep/")
 usethis::use_build_ignore("revdep/")
 
