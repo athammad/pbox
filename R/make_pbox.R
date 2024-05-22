@@ -12,7 +12,6 @@
 #'         - `$data`: The data coerced into a `data.table`.
 #'         - `$copula`: The provided copula object.
 #' @examples
-#' \dontrun{
 #'   library(copula)
 #'   data("SEAex")
 #'
@@ -25,7 +24,6 @@
 #'   copSEA <- mvdc(cop, distList, allDistrs)
 #'   pbx <- make_pbox(data = SEAex, cop = copSEA)
 #'   print(class(pbx))
-#' }
 #' @importFrom data.table setDT
 
 setGeneric("make_pbox",

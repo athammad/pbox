@@ -29,10 +29,8 @@ This method utilizes statistical techniques to fit distributions to each column 
 argument, evaluating fit using criteria like AIC to determine the best fitting model.
 }
 \examples{
-\dontrun{
   data(SEAex)
   distFits <- fit_dist_pbox(data=SEAex)
   print(distFits$allDitrs)
   print(distFits$distTable)
-}
 }

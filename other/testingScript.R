@@ -17,7 +17,7 @@ goodpractice::gp()
 prova<-devtools::check()
 pkgload::load_all()
 data(SEAex)
-dai<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam,avgRegion)])
+dai<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam,avgRegion)],verbose=FALSE)
 print(dai)
 
 qpbox(dai,marginal = "Vietnam:31 & avgRegion:26")
@@ -219,7 +219,7 @@ revdep_reset()
 usethis::use_cran_comments(open = rlang::is_interactive())
 
 # Upgrade version number
-usethis::use_version(which = c("patch", "minor", "major", "dev")[1])
+usethis::use_version(which = c("patch", "minor", "major", "dev")[4])
 
 # Verify you're ready for release, and release
 devtools::release()

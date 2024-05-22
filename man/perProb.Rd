@@ -31,12 +31,10 @@ The perturbation process adjusts the copula parameters and evaluates the impact
 on the outcome probability.
 }
 \examples{
-\dontrun{
   data(SEAex)
   pbx <- set_pbox(SEAex[, .(Malaysia, Thailand)])
   vecQuery <- c(31, 34)
   perProb(pbx, vecQuery)
-}
 }
 \seealso{
 \code{\link{set_pbox}}, \code{\link{pMvdc}}

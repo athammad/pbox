@@ -13,12 +13,10 @@
 #'         \item{allDitrs}{List of the fitted distributions for each variable.}
 #'         \item{distTable}{A data table displaying the AIC for each tested distribution.}
 #' @examples
-#' \dontrun{
 #'   data(SEAex)
 #'   distFits <- fit_dist_pbox(data=SEAex)
 #'   print(distFits$allDitrs)
 #'   print(distFits$distTable)
-#' }
 #' @importFrom gamlss fitDist
 #' @importFrom utils capture.output
 #' @importFrom purrr map_depth imap is_empty

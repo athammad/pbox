@@ -14,6 +14,7 @@
 #'
 #' @export
 #' @param data A data frame or data table. The data will be coerced to a `data.table` internally.
+#' @param verbose control verbosity of the output. Default to TRUE.
 #' @param ... Other arguments to be passed to the `fitDist` function.
 #' @return An object of class `pbox` with the following slots:
 #'         - `@data`: The original data coerced into a `data.table`.
@@ -21,16 +22,14 @@
 #'         - `@fit`: A list containing results from the automated selection processes for
 #'           both the marginal distributions and the copula.
 #' @examples
-#' \dontrun{
 #'   data("SEAex")
 #'   pbx <- set_pbox(data = SEAex)
 #'   print(pbx)
 #'   print(class(pbx))
-#' }
 #' @importFrom gamlss fitDist
 #' @import gamlss.dist
 setGeneric("set_pbox",
-           def = function(data, ...) {
+           def = function(data,verbose=TRUE, ...) {
              standardGeneric("set_pbox")
            })
 
@@ -43,7 +42,7 @@ setGeneric("set_pbox",
 #'
 
 setMethod("set_pbox",
-          definition = function(data,...) {
+          definition = function(data,verbose=TRUE,...) {
 
   if (!inherits(data, c("data.frame","data.table"))) {
     stop("Input must be a data frame or a data.table")
@@ -67,8 +66,8 @@ setMethod("set_pbox",
   distSearch<-fit_dist_pbox(data,...)
   CopulaSearch<-fit_copula_pbox(data,.copula_families)
 
-  finalCopula<-final_pbox(CopulaSearch,distSearch$allDitrs,data)
-  cat("pbox object generated!\n")
+  finalCopula<-final_pbox(CopulaSearch,distSearch$allDitrs,data, verbose)
+  message("pbox object generated!\n")
 
   obj <- new("pbox", data =data, copula=finalCopula,fit=list(distSearch,CopulaSearch))
 

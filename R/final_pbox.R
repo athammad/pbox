@@ -9,21 +9,20 @@
 #' @param results_df A data.table with AIC and parameter estimates of evaluated copulas and families from `fit_copula_pbox`.
 #' @param allDitrs A list containing fitted distributions for each variable from `fit_dist_pbox`.
 #' @param data A data frame or data table; this will be coerced to a `data.table` internally.
+#' @param verbose control verbosity of the output. Default to TRUE.
 #' @return An object of class `mvdc` representing the combined multivariate distribution.
 #' @examples
-#' \dontrun{
 #'   data("SEAex")
 #'   copulaFits <- fit_copula_pbox(data = SEAex, .copula_families)
 #'   distFits <- fit_dist_pbox(data = SEAex)
 #'   final_mvd <- final_pbox(copulaFits, distFits$allDitrs, SEAex)
 #'   print(final_mvd)
-#' }
 #' @importFrom utils getFromNamespace
 #' @importFrom purrr map_depth map
 #' @importFrom copula mvdc
 
 setGeneric("final_pbox",
-           def = function(results_df, allDitrs, data) {
+           def = function(results_df, allDitrs, data,verbose=TRUE) {
              standardGeneric("final_pbox")
            })
 
@@ -34,7 +33,7 @@ setGeneric("final_pbox",
 #' marginal distributions fitted to each variable.
 
 setMethod("final_pbox",
-          definition=function(results_df,allDitrs,data){
+          definition=function(results_df,allDitrs,data,verbose=TRUE){
 
   # Should favor evCopula if small difference with the others?????
   #bestCopula<-results_df[which.min(results_df$AIC),]
@@ -65,11 +64,13 @@ setMethod("final_pbox",
   finalCop <- copula::mvdc(cop, distList,allPar)
   #risky using the <deprecated slot>!!!
   finalCop@copula@fullname<-bestCopula$copula
+  if (verbose) {
   cat("\n\n---Final fitted copula---\n")
   cat("Copula Type:",bestCopula$copula,"\n")
   cat("Family:",bestCopula$family,"\n")
   cat("parameter:",bestCopula$coef,"\n")
   cat("--------------------------\n")
+  }
   return(finalCop)
 })
 

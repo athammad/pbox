@@ -1,7 +1,15 @@
 # pbox (development version)
 
-# pbox 0.1.7
+# pbox 0.1.7.9000
 
+------------------------------------------------------------------------
+
+**Changes in version 0.1.7.9000**
+
+Miscellaneous
+
+-   fixed errors CRAN submission.
+-   added `verbose` parameter to `set_pbox()` and `final_pbox()`.
 
 ------------------------------------------------------------------------
 

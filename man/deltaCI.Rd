@@ -26,10 +26,8 @@ Internal method to compute the probability using delta method which approximates
 the variance of a function of random variables (in this case, the ratio) based on the variance of the original estimates.
 }
 \examples{
-\dontrun{
   cond <- list(
   c(P = 0.3597117, `2.5\%` = 0.3074215, `97.5\%` = 0.4075315),
   c(P = 0.5682882, `2.5\%` = 0.4560553, `97.5\%` = 0.6823438))
   deltaCI(cond)
-}
 }

@@ -55,12 +55,10 @@ and conditional parameters. It handles both simple probability calculations and 
 joint and conditional distributions, with an option for bootstrap confidence interval estimation.
 }
 \examples{
-\dontrun{
   data("SEAex")
   pbx <- set_pbox(SEAex)
   # Get marginal distribution
   qpbox(pbx, mj="Malaysia:33")
-  # Get conditional distribution with fixed conditions
-  qpbox(pbx, mj="Malaysia:33 & Vietnam:31", co="avgRegion:26", fixed=TRUE)
-}
+  # Get conditional distribution
+  qpbox(pbx, mj="Malaysia:33 & Vietnam:31", co="avgRegion:26")
 }

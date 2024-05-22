@@ -18,14 +18,12 @@
 #' @param iter Integer; the number of replications for the confidence interval calculation. Default is 1000.
 #' @return Estimated probabilities as a numeric value or a named vector including confidence intervals if requested.
 #' @examples
-#' \dontrun{
 #'   data("SEAex")
 #'   pbx <- set_pbox(SEAex)
 #'   # Get marginal distribution
 #'   qpbox(pbx, mj="Malaysia:33")
-#'   # Get conditional distribution with fixed conditions
-#'   qpbox(pbx, mj="Malaysia:33 & Vietnam:31", co="avgRegion:26", fixed=TRUE)
-#' }
+#'   # Get conditional distribution
+#'   qpbox(pbx, mj="Malaysia:33 & Vietnam:31", co="avgRegion:26")
 #' @importFrom copula pMvdc cCopula
 #' @importFrom data.table setDT
 #' @importFrom stats setNames

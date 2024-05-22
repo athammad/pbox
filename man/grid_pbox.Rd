@@ -35,11 +35,9 @@ and conditional parameters. It handles both simple probability calculations and 
 joint and conditional distributions, with an option for bootstrap confidence interval estimation.
 }
 \examples{
-\dontrun{
   data("SEAex")
   pbx <- set_pbox(SEAex)
   grid_pbox(pbx, mj = c("Vietnam", "Malaysia"))
-}
 \dontrun{
   data("SEAex")
   pbx <- set_pbox(SEAex)

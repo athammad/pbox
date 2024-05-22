@@ -5,9 +5,9 @@
 \alias{final_pbox,ANY-method}
 \title{Build a Multivariate Distribution from Copula}
 \usage{
-final_pbox(results_df, allDitrs, data)
+final_pbox(results_df, allDitrs, data, verbose = TRUE)
 
-\S4method{final_pbox}{ANY}(results_df, allDitrs, data)
+\S4method{final_pbox}{ANY}(results_df, allDitrs, data, verbose = TRUE)
 }
 \arguments{
 \item{results_df}{A data.table with AIC and parameter estimates of evaluated copulas and families from `fit_copula_pbox`.}
@@ -15,6 +15,8 @@ final_pbox(results_df, allDitrs, data)
 \item{allDitrs}{A list containing fitted distributions for each variable from `fit_dist_pbox`.}
 
 \item{data}{A data frame or data table; this will be coerced to a `data.table` internally.}
+
+\item{verbose}{control verbosity of the output. Default to TRUE.}
 }
 \value{
 An object of class `mvdc` representing the combined multivariate distribution.
@@ -28,11 +30,9 @@ The method uses the best copula model as determined by the lowest AIC and combin
 marginal distributions fitted to each variable.
 }
 \examples{
-\dontrun{
   data("SEAex")
   copulaFits <- fit_copula_pbox(data = SEAex, .copula_families)
   distFits <- fit_dist_pbox(data = SEAex)
   final_mvd <- final_pbox(copulaFits, distFits$allDitrs, SEAex)
   print(final_mvd)
-}
 }

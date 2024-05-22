@@ -6,12 +6,14 @@
 \alias{set_pbox,ANY-method}
 \title{Create a Probability Box from Data}
 \usage{
-set_pbox(data, ...)
+set_pbox(data, verbose = TRUE, ...)
 
-\S4method{set_pbox}{ANY}(data, ...)
+\S4method{set_pbox}{ANY}(data, verbose = TRUE, ...)
 }
 \arguments{
 \item{data}{A data frame or data table. The data will be coerced to a `data.table` internally.}
+
+\item{verbose}{control verbosity of the output. Default to TRUE.}
 
 \item{...}{Other arguments to be passed to the `fitDist` function.}
 }
@@ -33,10 +35,8 @@ executed through external functions presumed to be available in the working envi
 or described in the package.
 }
 \examples{
-\dontrun{
   data("SEAex")
   pbx <- set_pbox(data = SEAex)
   print(pbx)
   print(class(pbx))
-}
 }

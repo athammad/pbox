@@ -29,7 +29,6 @@ that the input data and copula are compatible in terms of dimensions and structu
 to form a Pbox.
 }
 \examples{
-\dontrun{
   library(copula)
   data("SEAex")
 
@@ -42,5 +41,4 @@ to form a Pbox.
   copSEA <- mvdc(cop, distList, allDistrs)
   pbx <- make_pbox(data = SEAex, cop = copSEA)
   print(class(pbx))
-}
 }

@@ -1,6 +1,13 @@
-# PBOX <img src="./other/pboxIcon.png" align="right" height="138"/>
+# PBOX <img src="./man/figures/pboxIcon.png" align="right" height="138"/>
 
-### Version 0.1.7 (BETA)
+<!-- badges: 
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/bayesplot?color=blue)](https://cran.r-project.org/web/packages/bayesplot)
+[![Downloads](https://cranlogs.r-pkg.org/badges/bayesplot?color=blue)](https://cran.rstudio.com/package=bayesplot)
+[![R-CMD-check](https://github.com/stan-dev/bayesplot/workflows/R-CMD-check/badge.svg)](https://github.com/stan-dev/bayesplot/actions)
+[![codecov](https://codecov.io/gh/stan-dev/bayesplot/branch/master/graph/badge.svg)](https://codecov.io/gh/stan-dev/bayesplot)
+<!-- badges: end -->
+
+### Version 0.1.7.9000 (BETA)
 
 ## Overview
 
@@ -94,13 +101,28 @@ install.packages("pbox")
 
 To report bugs/issues/feature requests, please file an [issue](https://github.com/athammad/pbox/issues/).
 
+## Author
+`pbox` is written by [Ahmed T. Hammad](https://athsas.com/) and is under active development. Please feel free to contribute by submitting any issues or requests—or by solving any current issues!
+
+
+<!---
+
+
+
+# Citation
+```
+@article{hammad2024obox,
+  author = {Ahmed T. Hammad},
+  title = {pbox: Exploring multivariate spaces with Probability Boxes},
+  journal = {Journal of Statistical Software},
+  year = {2024}
+}
+```
 ## TO DO
 
 
 -   Finalise Vignette
 -   Improve documentation
-
-<!---
 
 1) Errors from fitdist should be stored somewhere and accesible to the user. How?
 

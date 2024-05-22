@@ -1,6 +1,6 @@
 ---
-title: "Probability Box (pbox) Package Vignette"
-author: "Your Name"
+title: "pbox Package Vignette"
+author: "Ahmed T. Hammad"
 date: "2024-05-16"
 output: rmarkdown::html_vignette
 vignette: >
@@ -14,7 +14,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-
 
 ```
 # Introduction

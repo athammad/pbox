@@ -10,12 +10,10 @@
 #' @param vecQuery A numeric vector representing the query values.
 #' @return The probability computed using a perturbed copula.
 #' @examples
-#' \dontrun{
 #'   data(SEAex)
 #'   pbx <- set_pbox(SEAex[, .(Malaysia, Thailand)])
 #'   vecQuery <- c(31, 34)
 #'   perProb(pbx, vecQuery)
-#' }
 #' @importFrom data.table copy
 #' @importFrom copula pMvdc
 setGeneric("perProb",

@@ -13,11 +13,9 @@
 #' @param ... Additional parameters passed to \code{qpbox}.
 #' @return A data.table containing estimated probabilities for each combination of quantiles and distributions queried.
 #' @examples
-#' \dontrun{
 #'   data("SEAex")
 #'   pbx <- set_pbox(SEAex)
 #'   grid_pbox(pbx, mj = c("Vietnam", "Malaysia"))
-#' }
 #' @importFrom data.table setDT
 #' @importFrom stats quantile
 
