@@ -1,7 +1,7 @@
 Type: Package
 Package: pbox
 Title: Exploring Multivariate Spaces with Probability Boxes
-Version: 0.1.7.9000
+Version: 0.1.8
 Authors@R: 
     person("Ahmed T.", "Hammad", , "ahmed.t.hammad@gmail.com", role = c("aut", "cre","cph"),
            comment = c(ORCID = "0000-0003-3327-2435"))

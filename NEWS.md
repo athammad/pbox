@@ -1,4 +1,4 @@
-# pbox (development version)
+# pbox 0.1.8
 
 # pbox 0.1.7.9000
 
