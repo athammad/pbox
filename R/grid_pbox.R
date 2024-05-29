@@ -37,12 +37,7 @@ setGeneric("grid_pbox",
 #' @param probs A numeric vector of quantiles to calculate probabilities for (default: seq(0, 1, 0.1)).
 #' @param ... Additional parameters passed to \code{qpbox}.
 #' @return A data.table containing estimated probabilities for each combination of quantiles and distributions queried.
-#' @examples
-#' \dontrun{
-#'   data("SEAex")
-#'   pbx <- set_pbox(SEAex)
-#'   grid_pbox(pbx, mj = c("Vietnam", "Malaysia"))
-#' }
+
 setMethod("grid_pbox", signature = "pbox",
           definition = function(pbx, mj = character(), co = NULL, probs = seq(0, 1, 0.1), ...) {
             if (!is.character(mj)) {

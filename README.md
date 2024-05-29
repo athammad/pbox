@@ -1,13 +1,12 @@
 # PBOX <img src="./man/figures/pboxIcon.png" align="right" height="138"/>
 
-<!-- badges: 
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/bayesplot?color=blue)](https://cran.r-project.org/web/packages/bayesplot)
-[![Downloads](https://cranlogs.r-pkg.org/badges/bayesplot?color=blue)](https://cran.rstudio.com/package=bayesplot)
-[![R-CMD-check](https://github.com/stan-dev/bayesplot/workflows/R-CMD-check/badge.svg)](https://github.com/stan-dev/bayesplot/actions)
-[![codecov](https://codecov.io/gh/stan-dev/bayesplot/branch/master/graph/badge.svg)](https://codecov.io/gh/stan-dev/bayesplot)
+<!-- badges:  -->
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/pbox?color=blue)](https://cran.r-project.org/web/packages/pbox/)
+[![Downloads](https://cranlogs.r-pkg.org/badges/pbox?color=blue)](https://cran.rstudio.com/package=pbox)
+
 <!-- badges: end -->
 
-### Version 0.1.7.9000 (BETA)
+### Version 0.1.8 
 
 ## Overview
 
@@ -79,7 +78,7 @@ scenario_pbox(pbx,mj = "Vietnam:31 & avgRegion:26", param_list = list(Vietnam="m
 ```
 
 ## Installation
-The `pbox` package is currently under active development with the aim of being available on CRAN soon. The development version can be installed from GitHub, and once it is available on CRAN, you can install it directly from CRAN. Below are the installation instructions for both the development version and the CRAN version:
+The `pbox` package is currently under active development. The development version can be installed from GitHub,the stable version can be install directly from CRAN. Below are the installation instructions for both the development version and the CRAN version:
 
 ### Development Version
 To install the development version from GitHub, you first need to install the remotes package if you haven't already. Then, use `remotes::install_github` to install the `pbox` package from GitHub:
@@ -91,7 +90,7 @@ remotes::install_github("athammad/pbox")
 ```
 
 ### CRAN Version
-Once the `pbox` package is available on CRAN, you can install it directly from CRAN with the following command:
+Install `pbox` directly from CRAN with the following command:
 
 ```
 install.packages("pbox")
@@ -118,24 +117,6 @@ To report bugs/issues/feature requests, please file an [issue](https://github.co
   year = {2024}
 }
 ```
-## TO DO
 
-
--   Finalise Vignette
--   Improve documentation
-
-1) Errors from fitdist should be stored somewhere and accesible to the user. How?
-
-2) Some copula families are not included yet!
-.copula_families <- list(
-  # Archimedean copula families # "amh",
-  archmCopula = c("clayton", "frank", "gumbel", "joe"),
-  # Extreme-Value copula families #"tawn" #"tev"
-  evCopula = c("galambos", "gumbel", "huslerReiss"),
-  # Elliptical copula families # "t"
-  ellipCopula = c("normal")
-)
-
-3) Currently the user cannot change the copulas and families beign tested!
 -->
 

@@ -32,7 +32,6 @@ This method performs a grid search over specified copula families to find the be
 It employs the pseudoinverse of the empirical distribution functions to standardize the data.
 }
 \examples{
-\dontrun{
   data("SEAex")
   .copula_families <- list(
     archmCopula = c("clayton", "frank", "gumbel", "joe"),
@@ -41,5 +40,4 @@ It employs the pseudoinverse of the empirical distribution functions to standard
   )
   distFits <- fit_copula_pbox(data = SEAex, .copula_families)
   print(distFits)
-}
 }

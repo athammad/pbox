@@ -1,5 +1,7 @@
 library(pbox)
-
+library(ggplot2)
+library(data.table)
+library(stargazer)
 ### Load Data ###
 data("SEAex",package = "pbox")
 SEAex$Year<-c(1901:2022)
@@ -30,13 +32,13 @@ pbx<-set_pbox(SEAex)
 print(pbx)
 
 
-### Explore Porbability Space ###
+### Explore Probability Space ###
 
 
 #Get marginal distribution
-qpbox(pbx,"Malaysia:33",)
+qpbox(pbx,"Malaysia:33")
 #Get Joint distribution
-qpbox(pbx,"Malaysia:33 & Vietnam:34",)
+qpbox(pbx,"Malaysia:33 & Vietnam:34")
 #Get Joint distribution
 qpbox(pbx,"Vietnam:31", "avgRegion:26")
 #Conditional distribution Pr(X <= x, Y <= y) / Pr(Y <= y)

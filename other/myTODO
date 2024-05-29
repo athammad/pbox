@@ -1,0 +1,19 @@
+## TO DO
+
+
+-   Finalise Vignette
+-   Improve documentation
+
+1) Errors from fitdist should be stored somewhere and accesible to the user. How?
+
+2) Some copula families are not included yet!
+.copula_families <- list(
+  # Archimedean copula families # "amh",
+  archmCopula = c("clayton", "frank", "gumbel", "joe"),
+  # Extreme-Value copula families #"tawn" #"tev"
+  evCopula = c("galambos", "gumbel", "huslerReiss"),
+  # Elliptical copula families # "t"
+  ellipCopula = c("normal")
+)
+
+3) Currently the user cannot change the copulas and families beign tested!

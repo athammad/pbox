@@ -38,9 +38,4 @@ joint and conditional distributions, with an option for bootstrap confidence int
   data("SEAex")
   pbx <- set_pbox(SEAex)
   grid_pbox(pbx, mj = c("Vietnam", "Malaysia"))
-\dontrun{
-  data("SEAex")
-  pbx <- set_pbox(SEAex)
-  grid_pbox(pbx, mj = c("Vietnam", "Malaysia"))
-}
 }

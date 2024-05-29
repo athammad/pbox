@@ -219,7 +219,10 @@ revdep_reset()
 usethis::use_cran_comments(open = rlang::is_interactive())
 
 # Upgrade version number
-usethis::use_version(which = c("patch", "minor", "major", "dev")[4])
+usethis::use_version(which = c("patch", "minor", "major", "dev")[1])
 
 # Verify you're ready for release, and release
 devtools::release()
+
+#resubmit to cran
+devtools::submit_cran()

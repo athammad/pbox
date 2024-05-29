@@ -17,7 +17,6 @@
 #'        of strings naming the copula families (e.g., "clayton", "frank").
 #' @return A data table summarizing the AIC and parameter estimates for each copula family evaluated.
 #' @examples
-#' \dontrun{
 #'   data("SEAex")
 #'   .copula_families <- list(
 #'     archmCopula = c("clayton", "frank", "gumbel", "joe"),
@@ -26,7 +25,6 @@
 #'   )
 #'   distFits <- fit_copula_pbox(data = SEAex, .copula_families)
 #'   print(distFits)
-#' }
 #' @importFrom stats setNames
 #' @importFrom utils stack
 setGeneric("fit_copula_pbox",

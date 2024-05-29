@@ -23,7 +23,7 @@ This is a resubmission. In this version I have:
 
 **Package:** `pbox`
 
-**Version:** 0.1.7.9000
+**Version:** 0.1.8
 
 **Title:** Exploring Multivariate Spaces with Probability Boxes
 
