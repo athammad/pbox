@@ -44,7 +44,7 @@ setMethod("match_maker",
             if(!is.data.frame(data)){
               stop("'data' must be a data.frame!")
             }
-
+            #browser()
             if(!all(na.omit(trimws(unlist(strsplit(c(matches$Varnames,matches$Varnames2),","))))  %in% varSet$Varnames)){
               stop("Your query mismatch with the variables names in the data!")
             }

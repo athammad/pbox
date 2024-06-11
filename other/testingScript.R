@@ -65,13 +65,13 @@ qpbox(pbx,mj="Malaysia:33")
 #Get Joint distribution
 qpbox(pbx,mj="Malaysia:33 & Vietnam:34")
 #Get Joint distribution
-qpbox(pbx,mj="Vietnam:31", co="avgRegion:26")
+qpbox(dai,mj="Vietnam:31", co="avgRegion:26")
 #Conditional distribution Pr(X <= x, Y <= y) / Pr(Y <= y)
 qpbox(pbx,mj="Malaysia:33 & Vietnam:31", co="avgRegion:26")
 #Conditional distribution Pr(X <= x, Y <= y) / Pr(Y = y)
 qpbox(pbx,"Malaysia:33 & Vietnam:31", "avgRegion:26",fixed=TRUE)
 # Joint distribution with values set on their respective mean value
-qpbox(pbx,"mean:c(Vietnam,Thailand)",lower.tail=TRUE)
+qpbox(dai,"mean:c(Vietnam,Thailand)",lower.tail=TRUE)
 # Joint distribution with values set on their respective median value
 qpbox(pbx,"median:c(Vietnam, Thailand)",lower.tail=TRUE)
 # Joint distribution with xxxx
