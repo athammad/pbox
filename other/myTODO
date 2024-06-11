@@ -1,9 +1,6 @@
 ## TO DO
 
 
--   Finalise Vignette
--   Improve documentation
-
 1) Errors from fitdist should be stored somewhere and accesible to the user. How?
 
 2) Some copula families are not included yet!
@@ -17,3 +14,5 @@
 )
 
 3) Currently the user cannot change the copulas and families beign tested!
+4) add function qcorr fro paper tails + add
+5) disequazioni

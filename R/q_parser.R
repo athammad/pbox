@@ -33,7 +33,9 @@ setMethod("q_parser",
           definition= function(query){
   # Define the regular expression pattern
   #pattern <- "([a-zA-Z]+)(:)(\\d+)|(\\w+)([:])c\\(([^)]+)\\)"
-  pattern <- "([a-zA-Z]+)(:)(\\d+\\.?\\d*)|(\\w+)([:])c\\(([^)]+)\\)"
+  #pattern <- "([a-zA-Z]+)(:)(\\d+\\.?\\d*)|(\\w+)([:])c\\(([^)]+)\\)"# old for non negative
+  pattern <- "([a-zA-Z]+)(:)(-?\\d+\\.?\\d*)|(\\w+)(:)(c\\([^)]*\\))"
+
   # Extract matches using the regular expression pattern
   matches <- as.data.table(str_match_all(query, pattern)[[1]])[, -1]
   colnames(matches) <- c("Varnames", "Colon1", "Value", "Operator", "Colon2", "Varnames2")

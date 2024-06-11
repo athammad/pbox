@@ -43,6 +43,10 @@ setGeneric("qpbox",
 setMethod("qpbox", signature = "pbox",
           definition = function(pbx,mj="character",co="character", lower.tail=TRUE,fixed=FALSE,CI=FALSE,iter=1000) {
 
+            if (missing(pbx)) {
+              stop("pbox object is missing!")
+            }
+
             if (!inherits(pbx, c("pbox"))) {
               stop("Input must be a pbox object!")
             }
@@ -55,7 +59,9 @@ setMethod("qpbox", signature = "pbox",
             varSet<-cbind.data.frame(Varnames,Value)
             if (missing(co)) {
               mj<- gsub("[[:blank:]]", "",mj)
-              valid_format <- grepl("^([a-zA-Z]+:(\\d+(\\.\\d+)?|[a-zA-Z]+\\(.*\\)),?(&[a-zA-Z]+:(\\d+(\\.\\d+)?|[a-zA-Z]+\\(.*\\)),?)*$)", mj)
+              #valid_format <- grepl("^([a-zA-Z]+:(\\d+(\\.\\d+)?|[a-zA-Z]+\\(.*\\)),?(&[a-zA-Z]+:(\\d+(\\.\\d+)?|[a-zA-Z]+\\(.*\\)),?)*$)", mj) # old for non negative
+              valid_format <- grepl("^([a-zA-Z]+:(-?\\d+(\\.\\d+)?|[a-zA-Z]+\\(.*\\)),?(&[a-zA-Z]+:(-?\\d+(\\.\\d+)?|[a-zA-Z]+\\(.*\\)),?)*$)", mj)
+
               if (!valid_format) {
                 stop("Please specify the marginal in the following format 'Variable1:Value1 & Variable2:Value2'")
               }
@@ -72,7 +78,7 @@ setMethod("qpbox", signature = "pbox",
                 probres<-setNames(probres, c("P", "2.5%", "97.5%"))
                 probres
               }else{
-              #browser()
+             # browser()
               varSet<-match_maker(varSet,q_parser(mj),pbx@data)
               probres<-pMvdc(c(varSet$Value), pbx@copula)
               if(lower.tail==FALSE){probres<-1-probres}
@@ -82,8 +88,8 @@ setMethod("qpbox", signature = "pbox",
             } else {
               cond<-lapply(list(mj,co),function(z){
                 z<-gsub("[[:blank:]]", "",z)
-                valid_format <- grepl("^([a-zA-Z]+:(\\d+(\\.\\d+)?|[a-zA-Z]+\\(.*\\)),?(&[a-zA-Z]+:(\\d+(\\.\\d+)?|[a-zA-Z]+\\(.*\\)),?)*$)", z)
-
+                #valid_format <- grepl("^([a-zA-Z]+:(\\d+(\\.\\d+)?|[a-zA-Z]+\\(.*\\)),?(&[a-zA-Z]+:(\\d+(\\.\\d+)?|[a-zA-Z]+\\(.*\\)),?)*$)", z)# old for non negative
+                valid_format <- grepl("^([a-zA-Z]+:(-?\\d+(\\.\\d+)?|[a-zA-Z]+\\(.*\\)),?(&[a-zA-Z]+:(-?\\d+(\\.\\d+)?|[a-zA-Z]+\\(.*\\)),?)*$)", z)
                 if (!valid_format) {
                   stop("Please specify the conditional in the following format 'Variable1:Value1 & Variable2:Value2'")
                 }

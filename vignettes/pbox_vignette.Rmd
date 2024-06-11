@@ -103,7 +103,7 @@ qpbox(pbx, mj = "Malaysia:33 & median:c(Vietnam,Thailand)", co = "mean:c(avgRegi
 qpbox(pbx, mj = "Malaysia:33 & median:c(Vietnam,Thailand)", co = "mean:c(avgRegion)", CI = TRUE, fixed = TRUE)
 ```
 
-## Grid Search
+# Grid Search
 We can perform a grid search to explore the probabilistic space over a grid of values.
 
 ```{r}

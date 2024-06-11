@@ -34,7 +34,7 @@ setMethod(f = "show",
             cat("\n")
             cat("2.1)Copula margins:\n")
             print(object@copula@margins)
-            cat("2.1)Kendall correlation:\n")
+            cat("2.2)Kendall correlation:\n")
             print(stats::cor(object@data,method = "kendall"))
             cat("\n-------------------------------\n")
 

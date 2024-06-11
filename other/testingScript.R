@@ -12,21 +12,23 @@ libary(goodpractice)
 goodpractice::gp()
 
 
-
 #####TEST ALL
 prova<-devtools::check()
 pkgload::load_all()
 data(SEAex)
+#SEAex<-SEAex[,lapply(.SD, diff)]
 dai<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam,avgRegion)],verbose=FALSE)
 print(dai)
 
-qpbox(dai,marginal = "Vietnam:31 & avgRegion:26")
-qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",CI=T)
-qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32")
-qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",CI=T)
-qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32", fixed = T)
-qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",CI=T, fixed = T)
-qpbox(dai,marginal = "Vietnam:31 & avgRegion:26",conditional = "Malaysia:32",fixed = T)
+qpbox(dai,mj = "Vietnam:1 & avgRegion:-0.2")
+
+qpbox(dai,mj = "Vietnam:31 & avgRegion:26")
+qpbox(dai,mj = "Vietnam:31 & avgRegion:26",CI=T)
+qpbox(dai,mj = "Vietnam:31 & avgRegion:26",co = "Malaysia:32")
+qpbox(dai,mj = "Vietnam:31 & avgRegion:26",co = "Malaysia:32",CI=T)
+qpbox(dai,mj = "Vietnam:31 & avgRegion:26",co = "Malaysia:32", fixed = T)
+qpbox(dai,mj = "Vietnam:31 & avgRegion:26",co = "Malaysia:32",CI=T, fixed = T)
+qpbox(dai,mj = "Vietnam:31 & avgRegion:26",co = "Malaysia:32",fixed = T)
 
 library(goodpractice)
 goodpractice::gp()
