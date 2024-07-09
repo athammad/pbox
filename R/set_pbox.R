@@ -15,8 +15,8 @@
 #' @export
 #' @param data A data frame or data table. The data will be coerced to a `data.table` internally.
 #' @param verbose control verbosity of the output. Default to TRUE.
-#' @param type Charter indicating the type of copula among archmCopula,evCopula,ellipCopula.
-#' @param familly Charter indicating the family of copula among clayton,frank,gumbel,joe,galambos, huslerReiss, normal.
+#' @param ctype Charter indicating the type of copula among archmCopula,evCopula,ellipCopula.
+#' @param cfamilly Charter indicating the family of copula among clayton,frank,gumbel,joe,galambos, huslerReiss, normal.
 #' @param ... Other arguments to be passed to the `fitDist` function.
 #' @return An object of class `pbox` with the following slots:
 #'         - `@data`: The original data coerced into a `data.table`.
@@ -32,7 +32,7 @@
 #' @import gamlss.dist
 #' @importFrom tseries adf.test
 setGeneric("set_pbox",
-           def = function(data,verbose=TRUE,type="all",family="all", ...) {
+           def = function(data,verbose=TRUE,ctype="all",cfamily="all", ...) {
              standardGeneric("set_pbox")
            })
 
@@ -45,7 +45,7 @@ setGeneric("set_pbox",
 #'
 
 setMethod("set_pbox",
-          definition = function(data,verbose=TRUE,type="all",family="all",...) {
+          definition = function(data,verbose=TRUE,ctype="all",cfamily="all",...) {
 
   if (!inherits(data, c("data.frame","data.table"))) {
     stop("Input must be a data frame or a data.table")
@@ -75,10 +75,10 @@ setMethod("set_pbox",
 
   distSearch<-fit_dist_pbox(data,...)
   #filtering Copula types and families
-  if ("all" %in% type && "all" %in% family) {
+  if ("all" %in% ctype && "all" %in% cfamily) {
     CopulaSearch <- fit_copula_pbox(data, .copula_families)
   } else {
-    selected_types <- if ("all" %in% type) names(.copula_families) else type
+    selected_types <- if ("all" %in% ctype) names(.copula_families) else ctype
     # Initialize an empty list to store selected copulas
     selected_copulas <- list()
 
@@ -89,7 +89,7 @@ setMethod("set_pbox",
 
       # If family is "all", select all families for the current type
       # Otherwise, filter the families based on the provided family list
-      selected_families <- if ("all" %in% family) families else intersect(families, family)
+      selected_families <- if ("all" %in% cfamily) families else intersect(families, cfamily)
 
       # Add the selected families to the result list
       selected_copulas[[t]] <- selected_families
