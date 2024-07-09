@@ -8,8 +8,7 @@ prova<-devtools::check()
 usethis::use_news_md()
 commenti<-usethis::use_cran_comments()
 #devtools::release()
-libary(goodpractice)
-goodpractice::gp()
+
 
 
 #####TEST ALL
@@ -19,6 +18,8 @@ data(SEAex)
 #SEAex<-SEAex[,lapply(.SD, diff)]
 dai<-set_pbox(SEAex[,.(Malaysia,Thailand,Vietnam,avgRegion)],verbose=FALSE)
 print(dai)
+
+dai@copula@copula@parameters
 
 qpbox(dai,mj = "Vietnam:1 & avgRegion:-0.2")
 
@@ -30,8 +31,6 @@ qpbox(dai,mj = "Vietnam:31 & avgRegion:26",co = "Malaysia:32", fixed = T)
 qpbox(dai,mj = "Vietnam:31 & avgRegion:26",co = "Malaysia:32",CI=T, fixed = T)
 qpbox(dai,mj = "Vietnam:31 & avgRegion:26",co = "Malaysia:32",fixed = T)
 
-library(goodpractice)
-goodpractice::gp()
 
 
 

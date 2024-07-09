@@ -24,7 +24,8 @@ Imports:
     purrr,
     stats,
     stringr,
-    utils
+    utils,
+    tseries
 Suggests: 
     ggplot2,
     knitr,

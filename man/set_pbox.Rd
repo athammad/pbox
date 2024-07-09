@@ -6,14 +6,18 @@
 \alias{set_pbox,ANY-method}
 \title{Create a Probability Box from Data}
 \usage{
-set_pbox(data, verbose = TRUE, ...)
+set_pbox(data, verbose = TRUE, type = NULL, familly = NULL, ...)
 
-\S4method{set_pbox}{ANY}(data, verbose = TRUE, ...)
+\S4method{set_pbox}{ANY}(data, verbose = TRUE, type = NULL, familly = NULL, ...)
 }
 \arguments{
 \item{data}{A data frame or data table. The data will be coerced to a `data.table` internally.}
 
 \item{verbose}{control verbosity of the output. Default to TRUE.}
+
+\item{type}{Charter indicating the type of copula among archmCopula,evCopula,ellipCopula.}
+
+\item{familly}{Charter indicating the family of copula among clayton,frank,gumbel,joe,galambos, huslerReiss, normal.}
 
 \item{...}{Other arguments to be passed to the `fitDist` function.}
 }
